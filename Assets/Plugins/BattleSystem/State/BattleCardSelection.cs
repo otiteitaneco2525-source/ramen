@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class BattleCardSelectionState : BattleStateBase
 {
-    public BattleCardSelecctionState(BattleSystem battleSystem) : base(battleSystem)
+    public BattleCardSelectionState(BattleSystem battleSystem) : base(battleSystem)
     {
 
     }
 
     public override void OnEnter()
     {
-        Debug.Log("CardSelectionÇÃEnter");
+        Debug.Log("CardSelection„Å´Enter");
 
     }
 }

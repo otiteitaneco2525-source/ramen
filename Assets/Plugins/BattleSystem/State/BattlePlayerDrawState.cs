@@ -9,7 +9,7 @@ public class BattlePlayerDrawState : BattleStateBase
 
     public override void OnEnter()
     {
-        Debug.Log("PlayerDraw‚ÌEnter");
+        Debug.Log("PlayerDrawã«Enter");
 
     }
 }
