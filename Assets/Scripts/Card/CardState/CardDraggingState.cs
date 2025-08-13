@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CardDraggingState : CardStateBase
+{
+    public CardDraggingState(CardObj owner) : base(owner)
+    {
+    }
+
+    // ‚±‚Ìó‘Ô‚ÌŠÔ‚Íƒ}ƒEƒX‚É’Ç]‚·‚é
+
+    public override void OnUpdate()
+    {
+        Owner.transform.position = Input.mousePosition;
+        if (Input.GetMouseButtonDown(1))
+        {
+            // ‰ðœ‚·‚é
+            Owner.ResetPos();
+            Owner.ChangeState(Owner.WaitState);
+        }
+
+        // ˆê’èˆÈãy‚ª‚¨‚¨‚«‚­‚È‚Á‚ç‚½‚çSelected‚É‘JˆÚ
+        if (Owner.transform.localPosition.y > 100)
+        {
+            Owner.ChangeState(Owner.SelectedState);
+        }
+    }
+}
