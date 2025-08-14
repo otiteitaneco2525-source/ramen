@@ -2,7 +2,7 @@
 
 public class CardIdelState : CardStateBase
 {
-    public CardIdelState(CardObj owner) : base(owner)
+    public CardIdelState(CardView owner) : base(owner)
     {
     }
 

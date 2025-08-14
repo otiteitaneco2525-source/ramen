@@ -4,7 +4,7 @@ using DG.Tweening;
 
 public class CardWaitState : CardStateBase
 {
-    public CardWaitState(CardObj owner) : base(owner)
+    public CardWaitState(CardView owner) : base(owner)
     {
     }
 

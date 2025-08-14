@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class CardObj : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] Text nameText;
     [SerializeField] Text descriptionText;

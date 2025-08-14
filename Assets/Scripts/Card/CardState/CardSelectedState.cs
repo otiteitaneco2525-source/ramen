@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class CardSelectedState : CardStateBase
 {
-    public CardSelectedState(CardObj owner) : base(owner)
+    public CardSelectedState(CardView owner) : base(owner)
     {
     }
 

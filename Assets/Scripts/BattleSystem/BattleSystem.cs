@@ -1,6 +1,6 @@
 ﻿using VContainer.Unity;
 
-public class BattleSystem : IInitializable
+public sealed class BattleSystem : IInitializable
 {
     BattleSetupState setupState;
     BattlePlayerDrawState playerDrawState;

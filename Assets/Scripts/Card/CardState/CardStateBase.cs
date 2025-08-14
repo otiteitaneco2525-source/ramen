@@ -2,9 +2,9 @@
 
 public abstract class CardStateBase
 {
-    protected CardObj Owner;
+    protected CardView Owner;
 
-    public CardStateBase(CardObj owner)
+    public CardStateBase(CardView owner)
     {
         Owner = owner;
     }

@@ -2,7 +2,7 @@
 
 public class CardDraggingState : CardStateBase
 {
-    public CardDraggingState(CardObj owner) : base(owner)
+    public CardDraggingState(CardView owner) : base(owner)
     {
     }
 

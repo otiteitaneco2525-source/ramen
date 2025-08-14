@@ -242,6 +242,9 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
+  _deckView: {fileID: 798105977}
+  _handView: {fileID: 1703966825}
+  _battleSettings: {fileID: 11400000, guid: c3b6dac55134d824383c1c4bc816e12e, type: 2}
 --- !u!4 &259584505
 Transform:
   m_ObjectHideFlags: 0
@@ -662,7 +665,7 @@ GameObject:
   - component: {fileID: 798105978}
   - component: {fileID: 798105977}
   m_Layer: 5
-  m_Name: Deck
+  m_Name: DeckView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -701,8 +704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1accce4cb613ec14997f8c27646e0e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardObjPrefab: {fileID: 8114490532081738249, guid: e9b2942aabf45294881f990d1acde88b, type: 3}
-  hand: {fileID: 1703966825}
+  _cardViewPrefab: {fileID: 8114490532081738249, guid: e9b2942aabf45294881f990d1acde88b, type: 3}
 --- !u!114 &798105978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1448,7 +1450,7 @@ GameObject:
   - component: {fileID: 1703966826}
   - component: {fileID: 1703966825}
   m_Layer: 5
-  m_Name: Hand
+  m_Name: HandView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

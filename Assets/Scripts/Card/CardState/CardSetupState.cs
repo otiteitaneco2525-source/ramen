@@ -1,6 +1,6 @@
 ﻿public class CardSetupState : CardStateBase
 {
-    public CardSetupState(CardObj owner) : base(owner)
+    public CardSetupState(CardView owner) : base(owner)
     {
     }
 
