@@ -1415,15 +1415,15 @@ RectTransform:
   m_GameObject: {fileID: 1703966823}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7.8999996, y: 1.7999997, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1880965831}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8, y: -180.88998}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 8, y: -190}
+  m_SizeDelta: {x: 1000, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1703966825
 MonoBehaviour:
@@ -1437,7 +1437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a301802df534b648ba1449213e0ed4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSpacing: 10
+  cardSpacing: 110
 --- !u!114 &1703966826
 MonoBehaviour:
   m_ObjectHideFlags: 0

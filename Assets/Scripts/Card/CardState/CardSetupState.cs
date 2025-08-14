@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class CardSetupState : CardStateBase
+﻿public class CardSetupState : CardStateBase
 {
     public CardSetupState(CardObj owner) : base(owner)
     {

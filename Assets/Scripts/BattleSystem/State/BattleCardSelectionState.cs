@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BattleCardSelectionState : BattleStateBase
 {
@@ -9,7 +9,7 @@ public class BattleCardSelectionState : BattleStateBase
 
     public override void OnEnter()
     {
-        Debug.Log("CardSelectionにEnter");
+        Debug.Log("CardSelection Enter");
 
     }
 }

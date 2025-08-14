@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
@@ -19,7 +17,7 @@ public class CardWaitState : CardStateBase
     {
         Owner.transform.DOScale(Vector3.one * 1.2f, 0.1f);
         Owner.defaultSiblingIndex = Owner.transform.GetSiblingIndex();
-        // ˆê”Ôã‚É•\¦‚·‚é
+        // ä¸€ç•ªä¸Šã«è¡¨ç¤ºã™ã‚‹
         Owner.transform.SetAsLastSibling();
     }
 

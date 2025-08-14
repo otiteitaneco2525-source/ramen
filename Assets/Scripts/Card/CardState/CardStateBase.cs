@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
-using UnityEngine.EventSystems;
+ï»¿using UnityEngine.EventSystems;
 
-public class CardStateBase
+public abstract class CardStateBase
 {
     protected CardObj Owner;
 
@@ -13,16 +9,17 @@ public class CardStateBase
         Owner = owner;
     }
 
-    // ‚»‚Ìó‘Ô‚É“ü‚Á‚½‚ÉŒÄ‚Î‚ê‚é
+    // ãã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã«å‘¼ã°ã‚Œã‚‹
     public virtual void OnEnter()
     {
     }
 
-    // ‚»‚Ìó‘Ô‚Ì–ˆƒtƒŒ[ƒ€XVˆ—
+    // ãã®çŠ¶æ…‹ã®æ¯ãƒ•ãƒ¬ãƒ¼ãƒ æ›´æ–°å‡¦ç†
     public virtual void OnUpdate()
     {
     }
-    // ‚»‚Ìó‘Ô‚©‚ço‚é‚ÉŒÄ‚Î‚ê‚é
+
+    // ãã®çŠ¶æ…‹ã‹ã‚‰å‡ºã‚‹æ™‚ã«å‘¼ã°ã‚Œã‚‹
     public virtual void OnExit()
     {
     }

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BattlePlayerDrawState : BattleStateBase
 {
@@ -9,7 +9,7 @@ public class BattlePlayerDrawState : BattleStateBase
 
     public override void OnEnter()
     {
-        Debug.Log("PlayerDrawにEnter");
+        Debug.Log("PlayerDraw Enter");
 
     }
 }
