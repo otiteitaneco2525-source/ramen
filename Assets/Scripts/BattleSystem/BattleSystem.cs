@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using VContainer.Unity;
 
-public class BattleSystem : MonoBehaviour
+public class BattleSystem : IInitializable
 {
     BattleSetupState setupState;
     BattlePlayerDrawState playerDrawState;
@@ -9,7 +9,7 @@ public class BattleSystem : MonoBehaviour
 
     public BattlePlayerDrawState PlayerDrawState { get => playerDrawState; }
 
-    void Start()
+    public void Initialize()
     {
         setupState = new BattleSetupState(this);
         playerDrawState = new BattlePlayerDrawState(this);
