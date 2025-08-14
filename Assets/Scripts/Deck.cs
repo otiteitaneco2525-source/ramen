@@ -36,6 +36,7 @@ public class Deck : MonoBehaviour
         cards.RemoveAt(0);
         return cardObj;
     }
+    
     CardObj Spawn()
     {
         return Instantiate(cardObjPrefab, transform);

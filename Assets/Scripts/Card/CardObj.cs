@@ -2,19 +2,19 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class CardObj : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class CardObj : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] Text nameText;
     [SerializeField] Text descriptionText;
     [SerializeField] Image icon;
     [SerializeField] Text costText;
 
-    private CardStateBase currentState;
+    private CardStateBase _currentState;
     public CardWaitState WaitState { get; private set; }
     public CardSelectedState SelectedState { get; private set; }
     public CardDraggingState DraggingState { get; private set; }
     public CardIdelState IdelState { get; private set; }
-    public int defaultSiblingIndex;
+    public int DefaultSiblingIndex;
 
     private void Awake()
     {
@@ -28,9 +28,9 @@ public class CardObj : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void ChangeState(CardStateBase newState)
     {
-        currentState?.OnExit();
-        currentState = newState;
-        currentState?.OnEnter();
+        _currentState?.OnExit();
+        _currentState = newState;
+        _currentState?.OnEnter();
     }
 
     public void ResetPos()
@@ -41,16 +41,21 @@ public class CardObj : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void Update()
     {
-        currentState?.OnUpdate();
+        _currentState?.OnUpdate();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        currentState?.OnPointerEnter(eventData);
+        _currentState?.OnPointerEnter(eventData);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        currentState?.OnPointerExit(eventData);
+        _currentState?.OnPointerExit(eventData);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        _currentState?.OnPointerClick(eventData);
     }
 }

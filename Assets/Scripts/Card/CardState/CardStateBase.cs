@@ -31,4 +31,8 @@ public abstract class CardStateBase
     public virtual void OnPointerExit(PointerEventData eventData)
     {
     }
+
+    public virtual void OnPointerClick(PointerEventData eventData)
+    {
+    }
 }

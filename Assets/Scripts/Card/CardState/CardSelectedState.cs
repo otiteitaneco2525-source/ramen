@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
 public class CardSelectedState : CardStateBase
 {
@@ -10,19 +11,16 @@ public class CardSelectedState : CardStateBase
     public override void OnEnter()
     {
         Debug.Log("Selected");
-        // 中央にDOTweenで移動
-        Owner.transform.DOLocalMove(Vector3.zero, 0.1f);
+        // 真上に移動する
+        Owner.transform.DOLocalMoveY(Owner.transform.position.y + 100, 0.1f);
         // スケールを大きく
         Owner.transform.DOScale(Vector3.one * 1.2f, 0.1f);
     }
 
-    public override void OnUpdate()
+    public override void OnPointerClick(PointerEventData eventData)
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            // 解除する
-            Owner.ResetPos();
-            Owner.ChangeState(Owner.WaitState);
-        }
+        Owner.transform.DOLocalMoveY(Owner.transform.position.y, 0.1f);
+        Owner.transform.DOScale(Vector3.one, 0.1f);
+        Owner.ChangeState(Owner.WaitState);
     }
 }

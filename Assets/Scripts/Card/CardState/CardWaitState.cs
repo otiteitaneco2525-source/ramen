@@ -13,17 +13,22 @@ public class CardWaitState : CardStateBase
         Debug.Log("Wait");
     }
 
+    public override void OnPointerClick(PointerEventData eventData)
+    {
+        Owner.ChangeState(Owner.SelectedState);
+    }
+
     public override void OnPointerEnter(PointerEventData eventData)
     {
         Owner.transform.DOScale(Vector3.one * 1.2f, 0.1f);
-        Owner.defaultSiblingIndex = Owner.transform.GetSiblingIndex();
+        Owner.DefaultSiblingIndex = Owner.transform.GetSiblingIndex();
         // 一番上に表示する
         Owner.transform.SetAsLastSibling();
     }
 
     public override void OnPointerExit(PointerEventData eventData)
     {
-        Owner.transform.SetSiblingIndex(Owner.defaultSiblingIndex);
+        Owner.transform.SetSiblingIndex(Owner.DefaultSiblingIndex);
         Owner.transform.DOScale(Vector3.one, 0.1f);
     }
 }

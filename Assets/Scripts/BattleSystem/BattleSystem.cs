@@ -2,11 +2,9 @@
 
 public class BattleSystem : MonoBehaviour
 {
-
     BattleSetupState setupState;
     BattlePlayerDrawState playerDrawState;
     BattleCardSelectionState cardSelectionState;
-
     BattleStateBase currentState;
 
     public BattlePlayerDrawState PlayerDrawState { get => playerDrawState; }
