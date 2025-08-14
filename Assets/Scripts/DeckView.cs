@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using VContainer.Unity;
+using TMPro;
 
-public interface IDeckView
+public interface IDeckView : IInitializable
 {
     CardView AddCard();
     CardView Draw();
@@ -10,11 +12,10 @@ public interface IDeckView
 public sealed class DeckView : MonoBehaviour, IDeckView
 {
     [SerializeField] CardView _cardViewPrefab;
-
-    // [Inject]
-    // private readonly HandView _handView;
+    [SerializeField] TextMeshProUGUI _deckCountText;
     private List<CardView> _cards = new List<CardView>();
-    void Start()
+
+    public void Initialize()
     {
         for (int i = 0; i < 10; i++)
         {
@@ -23,20 +24,6 @@ public sealed class DeckView : MonoBehaviour, IDeckView
             _cards.Add(cardView);
         }
     }
-    // void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.Space))
-    //     {
-    //         for (int i = 0; i < 5; i++)
-    //         {
-    //             CardView drawCard = Draw();
-    //             drawCard.transform.SetParent(_handView.transform,false);
-    //             drawCard.gameObject.SetActive(true);
-    //             _handView.AddCard(drawCard);
-    //             Debug.Log("Draw: " + drawCard.name);
-    //         }
-    //     }
-    // }
 
     public CardView Draw()
     {

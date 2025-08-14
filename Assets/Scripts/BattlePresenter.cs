@@ -16,6 +16,7 @@ public class BattlePresenter : IStartable, ITickable
     public void Start()
     {
         _battleSystem.Initialize();
+        _deckView.Initialize();
         Debug.Log("BattlePresenter Start");
     }
 
