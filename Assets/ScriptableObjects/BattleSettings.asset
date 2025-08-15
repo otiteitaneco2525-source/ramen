@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: BattleSettings
   m_EditorClassIdentifier: 
   DrawCount: 3
+  HeroHp: 15
+  EnemyHp: 20
