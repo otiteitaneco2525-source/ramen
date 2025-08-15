@@ -6,35 +6,36 @@ using TMPro;
 public interface IDeckView : IInitializable
 {
     CardView AddCard();
-    CardView Draw();
+    CardView Draw(List<CardView> cards);
+    void SetDeckCount(int count);
 }
 
 public sealed class DeckView : MonoBehaviour, IDeckView
 {
     [SerializeField] CardView _cardViewPrefab;
     [SerializeField] TextMeshProUGUI _deckCountText;
-    private List<CardView> _cards = new List<CardView>();
 
     public void Initialize()
     {
-        for (int i = 0; i < 10; i++)
-        {
-            CardView cardView = AddCard();
-            cardView.gameObject.SetActive(false);
-            _cards.Add(cardView);
-        }
     }
 
-    public CardView Draw()
+    public CardView Draw(List<CardView> cards)
     {
-        CardView cardObj = _cards[0];
-        cardObj.gameObject.SetActive(true);
-        _cards.RemoveAt(0);
-        return cardObj;
+        CardView cardView = cards[0];
+        cardView.gameObject.SetActive(true);
+        cards.RemoveAt(0);
+        return cardView;
+    }
+
+    public void SetDeckCount(int count)
+    {
+        _deckCountText.text = count.ToString();
     }
 
     public CardView AddCard()
     {
-        return Instantiate(_cardViewPrefab, transform);
+        CardView cardView = Instantiate(_cardViewPrefab, transform);
+        cardView.gameObject.SetActive(false);
+        return cardView;
     }  
 }

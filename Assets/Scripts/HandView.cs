@@ -5,38 +5,32 @@ public interface IHandView
 {
     void AddCard(CardView card);
     void RemoveCard(CardView card);
+    void ArrangeCards(List<CardView> cards);
 }
 
 public sealed class HandView : MonoBehaviour, IHandView
 {
-    [SerializeField] float cardSpacing = 100f;
-    private List<CardView> _handCards = new List<CardView>();
+    [SerializeField] float _cardSpacing;
 
     public void AddCard(CardView card)
     {
         card.transform.SetParent(transform, false);
-        _handCards.Add(card);
-        ArrangeCards();
     }
 
     public void RemoveCard(CardView card)
     {
-        if (_handCards.Contains(card))
-        {
-            _handCards.Remove(card);
-            ArrangeCards();
-        }
+        card.gameObject.SetActive(false);
     }
 
-    private void ArrangeCards()
+    public void ArrangeCards(List<CardView> cards)
     {
-        float totalWidth = (_handCards.Count - 1) * cardSpacing;
+        float totalWidth = (cards.Count - 1) * _cardSpacing;
         float startX = -totalWidth / 2f;
 
-        for (int i = 0; i < _handCards.Count; i++)
+        for (int i = 0; i < cards.Count; i++)
         {
-            Vector2 targetPos = new Vector2(startX + i * cardSpacing, 0f);
-            _handCards[i].GetComponent<RectTransform>().anchoredPosition = targetPos;
+            Vector2 targetPos = new Vector2(startX + i * _cardSpacing, 0f);
+            cards[i].GetComponent<RectTransform>().anchoredPosition = targetPos;
         }
     }
 }

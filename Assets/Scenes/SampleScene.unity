@@ -1679,7 +1679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a301802df534b648ba1449213e0ed4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSpacing: 110
+  _cardSpacing: 110
 --- !u!114 &1703966826
 MonoBehaviour:
   m_ObjectHideFlags: 0
