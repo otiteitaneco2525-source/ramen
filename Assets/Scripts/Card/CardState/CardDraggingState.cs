@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using DG.Tweening;
 
 public class CardDraggingState : CardStateBase
 {
@@ -6,15 +7,13 @@ public class CardDraggingState : CardStateBase
     {
     }
 
-    // この状態の間はマウスに追従する
-
     public override void OnUpdate()
     {
         Owner.transform.position = Input.mousePosition;
         if (Input.GetMouseButtonDown(1))
         {
-            // 解除する
-            Owner.ResetPos();
+            Owner.transform.DOLocalMoveY(Owner.transform.position.y, 0.1f);
+            Owner.transform.DOScale(Vector3.one, 0.1f);
             Owner.ChangeState(Owner.WaitState);
         }
 

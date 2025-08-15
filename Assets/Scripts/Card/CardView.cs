@@ -16,6 +16,28 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public CardIdelState IdelState { get; private set; }
     public int DefaultSiblingIndex;
 
+    public delegate void CardSelectedEventHandler(CardView card);
+    public event CardSelectedEventHandler OnCardSelected;
+
+    public delegate void CardDeselectedEventHandler(CardView card);
+    public event CardDeselectedEventHandler OnCardDeselected;
+
+    public void Select()
+    {
+        OnCardSelected?.Invoke(this);
+    }
+
+    public void Deselect()
+    {
+        OnCardDeselected?.Invoke(this);
+    }
+
+    public void SetWaitState()
+    {
+        transform.localScale = Vector3.one;
+        ChangeState(WaitState);
+    }
+
     private void Awake()
     {
         WaitState = new CardWaitState(this);
@@ -31,12 +53,6 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
         _currentState?.OnExit();
         _currentState = newState;
         _currentState?.OnEnter();
-    }
-
-    public void ResetPos()
-    {
-        transform.localPosition = Vector3.zero;
-        transform.localScale = Vector3.one;
     }
 
     private void Update()

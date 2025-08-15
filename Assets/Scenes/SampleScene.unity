@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 106874098}
   - component: {fileID: 106874097}
   m_Layer: 5
-  m_Name: DiscardArea
+  m_Name: DiscardView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b142ee18c5c0948997a42f0b0ca690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deckCountText: {fileID: 863737990}
 --- !u!114 &106874098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +245,7 @@ MonoBehaviour:
   autoInjectGameObjects: []
   _deckView: {fileID: 798105977}
   _handView: {fileID: 1703966825}
+  _discardView: {fileID: 106874097}
   _battleSettings: {fileID: 11400000, guid: c3b6dac55134d824383c1c4bc816e12e, type: 2}
 --- !u!4 &259584505
 Transform:
