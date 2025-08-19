@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    [SerializeField] Text nameText;
-    [SerializeField] Text descriptionText;
+    [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] Image icon;
-    [SerializeField] Text costText;
+    [SerializeField] TextMeshProUGUI costText;
 
     private CardStateBase _currentState;
     public CardWaitState WaitState { get; private set; }

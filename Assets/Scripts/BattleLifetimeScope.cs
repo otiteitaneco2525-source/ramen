@@ -1,6 +1,7 @@
 using VContainer;
 using VContainer.Unity;
 using UnityEngine;
+using Ramen.Data;
 
 public class BattleLifetimeScope : LifetimeScope
 {
@@ -10,6 +11,11 @@ public class BattleLifetimeScope : LifetimeScope
     [SerializeField] BattleSettings _battleSettings;
     [SerializeField] HeroView _heroView;
     [SerializeField] EnemyView _enemyView;
+    [SerializeField] CardComboList _cardComboList;
+    [SerializeField] CardList _cardList;
+    [SerializeField] EnemyList _enemyList;
+    [SerializeField] SerifList _serifList;
+    [SerializeField] SerifToCardList _serifToCardList;
     protected override void Configure(IContainerBuilder builder)
     {
         // BattleSystemをシングルトンとして登録
@@ -20,6 +26,11 @@ public class BattleLifetimeScope : LifetimeScope
         builder.RegisterInstance(_battleSettings);
         builder.RegisterInstance<IHeroView>(_heroView);
         builder.RegisterInstance<IEnemyView>(_enemyView);
+        builder.RegisterInstance<CardComboList>(_cardComboList);
+        builder.RegisterInstance<CardList>(_cardList);
+        builder.RegisterInstance<EnemyList>(_enemyList);
+        builder.RegisterInstance<SerifList>(_serifList);
+        builder.RegisterInstance<SerifToCardList>(_serifToCardList);
         // BattleManagerをエントリーポイントとして登録
         builder.RegisterEntryPoint<BattlePresenter>();
     }

@@ -2,11 +2,22 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using System.Collections.Generic;
+using Ramen.Data;
 
 public class BattlePresenter : IStartable, ITickable
 {
     [Inject]
     private readonly BattleSystem _battleSystem;
+    [Inject]
+    private readonly CardComboList _cardComboList;
+    [Inject]
+    private readonly CardList _cardList;
+    [Inject]
+    private readonly EnemyList _enemyList;
+    [Inject]
+    private readonly SerifList _serifList;
+    [Inject]
+    private readonly SerifToCardList _serifToCardList;
     [Inject]
     private readonly IDeckView _deckView;
     [Inject]
