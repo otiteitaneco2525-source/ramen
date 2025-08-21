@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.Events;
 
 public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -16,21 +17,8 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public CardIdelState IdelState { get; private set; }
     public int DefaultSiblingIndex;
 
-    public delegate void CardSelectedEventHandler(CardView card);
-    public event CardSelectedEventHandler OnCardSelected;
-
-    public delegate void CardDeselectedEventHandler(CardView card);
-    public event CardDeselectedEventHandler OnCardDeselected;
-
-    public void Select()
-    {
-        OnCardSelected?.Invoke(this);
-    }
-
-    public void Deselect()
-    {
-        OnCardDeselected?.Invoke(this);
-    }
+    public UnityAction<CardView> OnCardSelected;
+    public UnityAction<CardView> OnCardDeselected;
 
     public void SetWaitState()
     {

@@ -1,4 +1,6 @@
 ﻿using VContainer.Unity;
+using UnityEngine.Events;
+using System;
 
 public sealed class BattleSystem : IInitializable
 {
@@ -19,27 +21,17 @@ public sealed class BattleSystem : IInitializable
     public BattleEnemyAttackState EnemyAttackState { get => _enemyAttackState; }
     public BattleResultState ResultState { get => _resultState; }
 
-
-    public delegate void DrawCardEventHandler();
-    public event DrawCardEventHandler OnDrawCard;
-
-    public delegate bool IsPlayerWinEventHandler();
-    public event IsPlayerWinEventHandler OnIsPlayerWin;
-    public delegate bool IsEnemyWinEventHandler();
-    public event IsEnemyWinEventHandler OnIsEnemyWin;
-
-    public void DrawCard()
-    {
-        OnDrawCard?.Invoke();
-    }
+    public UnityAction OnDrawCard;
+    public Func<bool> OnIsPlayerWin;
+    public Func<bool> OnIsEnemyWin;
 
     public bool IsPlayerWin()
     {
-        return OnIsPlayerWin?.Invoke() ?? false;
+        return OnIsPlayerWin != null && OnIsPlayerWin();
     }
     public bool IsEnemyWin()
     {
-        return OnIsEnemyWin?.Invoke() ?? false;
+        return OnIsEnemyWin != null && OnIsEnemyWin();
     }
 
     public void Initialize()

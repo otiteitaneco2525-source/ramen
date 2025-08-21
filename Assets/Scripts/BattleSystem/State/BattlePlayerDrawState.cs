@@ -10,7 +10,7 @@ public class BattlePlayerDrawState : BattleStateBase
     public override void OnEnter()
     {
         Debug.Log("PlayerDraw Enter");
-        Owner.DrawCard();
+        Owner.OnDrawCard?.Invoke();
         Owner.ChangeState(Owner.CardSelectionState);
     }
 }

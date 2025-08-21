@@ -15,7 +15,7 @@ public class CardSelectedState : CardStateBase
         Owner.transform.DOLocalMoveY(Owner.transform.position.y + 100, 0.1f);
         // スケールを大きく
         Owner.transform.DOScale(Vector3.one * 1.2f, 0.1f);
-        Owner.Select();
+        Owner.OnCardSelected?.Invoke(Owner);
     }
 
     public override void OnPointerClick(PointerEventData eventData)
@@ -23,6 +23,6 @@ public class CardSelectedState : CardStateBase
         Owner.transform.DOLocalMoveY(Owner.transform.position.y, 0.1f);
         Owner.transform.DOScale(Vector3.one, 0.1f);
         Owner.ChangeState(Owner.WaitState);
-        Owner.Deselect();
+        Owner.OnCardDeselected?.Invoke(Owner);
     }
 }

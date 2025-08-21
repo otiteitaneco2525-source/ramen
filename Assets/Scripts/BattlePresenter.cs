@@ -39,9 +39,9 @@ public class BattlePresenter : IStartable, ITickable
     public void Start()
     {
         _battleSystem.Initialize();
-        _battleSystem.OnDrawCard += OnDrawCard;
-        _battleSystem.OnIsPlayerWin += IsPlayerWin;
-        _battleSystem.OnIsEnemyWin += IsEnemyWin;
+        _battleSystem.OnDrawCard = OnDrawCard;
+        _battleSystem.OnIsPlayerWin = IsPlayerWin;
+        _battleSystem.OnIsEnemyWin = IsEnemyWin;
         _deckView.Initialize();
 
         for (int i = 0; i < 10; i++)
