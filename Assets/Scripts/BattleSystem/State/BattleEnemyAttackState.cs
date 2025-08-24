@@ -11,6 +11,7 @@ public class BattleEnemyAttackState : BattleStateBase
         Debug.Log("Enemy Attack Enter");
         // 敵攻撃開始時の処理
         // 例: 敵の攻撃アニメーション開始、AIによる攻撃選択など
+        Owner.OnEnemyAttack?.Invoke();
 
         if (Owner.IsEnemyWin())
         {

@@ -3,12 +3,13 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.Events;
+using Ramen.Data;
 
 public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    [SerializeField] TextMeshProUGUI nameText;
-    [SerializeField] Image icon;
-    [SerializeField] TextMeshProUGUI costText;
+    [SerializeField] TextMeshProUGUI _nameText;
+    [SerializeField] Image _icon;
+    [SerializeField] TextMeshProUGUI _costText;
 
     private CardStateBase _currentState;
     public CardWaitState WaitState { get; private set; }
@@ -17,8 +18,91 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public CardIdelState IdelState { get; private set; }
     public int DefaultSiblingIndex;
 
+    // カードデータ
+    public Card CardData { get; private set; }
+
+    // カードの状態管理プロパティ
+    public bool IsInDeck { get; private set; }
+    public bool IsInHand { get; private set; }
+    public bool IsInDiscard { get; private set; }
+
     public UnityAction<CardView> OnCardSelected;
     public UnityAction<CardView> OnCardDeselected;
+
+    /// <summary>
+    /// カードデータを設定
+    /// </summary>
+    /// <param name="card">カードデータ</param>
+    public void SetCardData(Card card)
+    {
+        CardData = card;
+        UpdateDisplay();
+    }
+
+    /// <summary>
+    /// 表示を更新
+    /// </summary>
+    private void UpdateDisplay()
+    {
+        if (CardData != null)
+        {
+            if (_nameText != null)
+                _nameText.text = CardData.Name;
+            
+            if (_costText != null)
+                _costText.text = CardData.Power.ToString();
+            
+            // アイコンの設定（必要に応じて実装）
+            // if (_icon != null && CardData.Icon != null)
+            //     _icon.sprite = CardData.Icon;
+        }
+    }
+
+    /// <summary>
+    /// デッキに配置
+    /// </summary>
+    public void SetInDeck()
+    {
+        IsInDeck = true;
+        IsInHand = false;
+        IsInDiscard = false;
+        gameObject.SetActive(false); // デッキ内のカードは非表示
+    }
+
+    /// <summary>
+    /// 手札に配置
+    /// </summary>
+    public void SetInHand()
+    {
+        IsInDeck = false;
+        IsInHand = true;
+        IsInDiscard = false;
+        gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// 破棄札に配置
+    /// </summary>
+    public void SetInDiscard()
+    {
+        IsInDeck = false;
+        IsInHand = false;
+        IsInDiscard = true;
+        SetWaitState();
+        gameObject.SetActive(false); // 破棄札のカードは非表示
+    }
+
+    /// <summary>
+    /// 現在の状態を取得
+    /// </summary>
+    /// <returns>カードの現在の状態</returns>
+    public string GetCurrentLocation()
+    {
+        if (IsInDeck) return "デッキ";
+        if (IsInHand) return "手札";
+        if (IsInDiscard) return "破棄札";
+        return "不明";
+    }
 
     public void SetWaitState()
     {

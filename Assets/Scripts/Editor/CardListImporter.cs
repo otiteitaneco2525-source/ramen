@@ -3,6 +3,7 @@ using UnityEditor;
 using System.IO;
 using System.Collections.Generic;
 using Ramen.Data;
+using System;
 
 namespace Ramen.Editor
 {
@@ -122,7 +123,7 @@ namespace Ramen.Editor
                         var card = new Card
                         {
                             CardID = values[0].Trim(),
-                            CardType = values[1].Trim(),
+                            CardType = CardTypeExtensions.FromLetter(values[1].Trim()),
                             CardTypeName = values[2].Trim(),
                             Name = values[3].Trim(),
                             Power = int.TryParse(values[4].Trim(), out int power) ? power : 0
@@ -178,7 +179,7 @@ namespace Ramen.Editor
                         var card = new Card
                         {
                             CardID = values[0].Trim(),
-                            CardType = values[1].Trim(),
+                            CardType = CardTypeExtensions.FromLetter(values[1].Trim()),
                             CardTypeName = values[2].Trim(),
                             Name = values[3].Trim(),
                             Power = int.TryParse(values[4].Trim(), out int power) ? power : 0

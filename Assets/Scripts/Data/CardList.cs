@@ -61,7 +61,7 @@ namespace Ramen.Data
         /// </summary>
         /// <param name="cardType">検索するカードタイプ（A, B, C）</param>
         /// <returns>該当するカードのリスト</returns>
-        public List<Card> GetCardsByType(string cardType)
+        public List<Card> GetCardsByType(CardType cardType)
         {
             return cards.FindAll(card => card.CardType == cardType);
         }

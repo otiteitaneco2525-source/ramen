@@ -3,6 +3,8 @@ using VContainer;
 using VContainer.Unity;
 using System.Collections.Generic;
 using Ramen.Data;
+using System.Linq;
+using System;
 
 public class BattlePresenter : IStartable, ITickable
 {
@@ -30,11 +32,16 @@ public class BattlePresenter : IStartable, ITickable
     private readonly IHeroView _heroView;
     [Inject]
     private readonly IEnemyView _enemyView;
+    [Inject]
+    private readonly IBattleUiView _battleUiView;
 
     private readonly List<CardView> _deckCards = new List<CardView>();
     private readonly List<CardView> _handCards = new List<CardView>();
     private readonly List<CardView> _selectedCards = new List<CardView>();
     private readonly List<CardView> _discardCards = new List<CardView>();
+
+    // CardTypeごとのカードデータ配列
+    private readonly Dictionary<CardType, List<Card>> _cardsByType = new Dictionary<CardType, List<Card>>();
 
     public void Start()
     {
@@ -44,15 +51,36 @@ public class BattlePresenter : IStartable, ITickable
         _battleSystem.OnIsEnemyWin = IsEnemyWin;
         _deckView.Initialize();
 
-        for (int i = 0; i < 10; i++)
+        // CardTypeごとに最大2つかつランダムで2つカードデータを取得して配列に格納
+        CardType[] cardTypes = Enum.GetValues(typeof(CardType)).Cast<CardType>().ToArray();
+        foreach (var cardType in cardTypes)
         {
-            _deckCards.Add(_deckView.AddCard());
+            var cardList = _cardList.GetCardsByType(cardType);
+            if (cardList != null && cardList.Count > 0)
+            {
+                // 最大2つまで取得し、ランダムに選択
+                int count = Mathf.Min(2, cardList.Count);
+                var shuffledCardList = cardList.OrderBy(x => UnityEngine.Random.value).Take(count).ToList();
+                _cardsByType[cardType] = shuffledCardList;
+                
+                Debug.Log($"{cardType}タイプのカードを{count}枚ランダムに取得しました");
+            }
+            else
+            {
+                _cardsByType[cardType] = new List<Card>();
+                Debug.LogWarning($"{cardType}タイプのカードが見つかりませんでした");
+            }
+        }
+
+        for (int i = 0; i < 6; i++)
+        {
+            _deckCards.Add(_deckView.CreateCard());
         }
 
         foreach (var card in _deckCards)
         {
-            card.OnCardSelected += OnCardSelected;
-            card.OnCardDeselected += OnCardDeselected;
+            card.OnCardSelected = OnCardSelected;
+            card.OnCardDeselected = OnCardDeselected;
         }
 
         _deckView.SetDeckCount(_deckCards.Count);
@@ -61,6 +89,10 @@ public class BattlePresenter : IStartable, ITickable
         _enemyView.SetHp(_battleSettings.EnemyHp);
 
         Debug.Log("BattlePresenter Start");
+
+        _battleUiView.OnSkipButtonClicked = OnSkipButtonClicked;
+
+        _battleSystem.OnEnemyAttack = OnEnemyAttack;
 
         _battleSystem.ChangeState(_battleSystem.SetupState);
     }
@@ -84,13 +116,36 @@ public class BattlePresenter : IStartable, ITickable
             _discardView.SetDiscardCount(_discardCards.Count);
         }
 
-        for (int i = 0; i < _battleSettings.DrawCount; i++)
+        // CardTypeごとに1枚ずつ合計3枚のカードを引く
+        CardType[] cardTypes = Enum.GetValues(typeof(CardType)).Cast<CardType>().ToArray();
+        foreach (var cardType in cardTypes)
         {
-            CardView cardView = _deckView.Draw(_deckCards);
-            _handCards.Add(cardView);
-            _handView.AddCard(cardView);
-            cardView.SetWaitState();
+            // デッキにカードがない場合は処理を終了
+            if (_deckCards.Count == 0) break;
+
+            // _cardsByTypeから選択されたカードタイプのカードを取得
+            if (_cardsByType.ContainsKey(cardType) && _cardsByType[cardType].Count > 0)
+            {
+                // ランダムにカードを選択
+                var availableCards = _cardsByType[cardType];
+                Card selectedCard = availableCards[UnityEngine.Random.Range(0, availableCards.Count)];
+                
+                // デッキからカードビューを取得
+                CardView cardView = _deckView.Draw(_deckCards);
+                
+                // カードデータを設定
+                cardView.SetCardData(selectedCard);
+                
+                // 手札に追加
+                _handCards.Add(cardView);
+                _handView.AddCard(cardView);
+                cardView.SetInHand();
+                cardView.SetWaitState();
+                
+                Debug.Log($"カードを引きました: {selectedCard.Name} ({cardType})");
+            }
         }
+        
         _handView.ArrangeCards(_handCards);
         _deckView.SetDeckCount(_deckCards.Count);
     }
@@ -119,6 +174,7 @@ public class BattlePresenter : IStartable, ITickable
             _handCards.Remove(selectedCard);
             _handView.RemoveCard(selectedCard);
             _discardCards.Add(selectedCard);
+            selectedCard.SetInDiscard();
         }
         _selectedCards.Clear();
         _discardView.SetDiscardCount(_discardCards.Count);
@@ -140,5 +196,23 @@ public class BattlePresenter : IStartable, ITickable
     private void OnCardDeselected(CardView card)
     {
         _selectedCards.Remove(card);
+    }
+
+    private void OnSkipButtonClicked()
+    {
+        if (_battleSystem.CurrentState is BattleCardSelectionState)
+        {
+            foreach (var card in _selectedCards)
+            {
+                card.SetWaitState();
+            }
+
+            _battleSystem.ChangeState(_battleSystem.EnemyAttackState);
+        }
+    }
+
+    private void OnEnemyAttack()
+    {
+        _heroView.Damage(3);
     }
 }

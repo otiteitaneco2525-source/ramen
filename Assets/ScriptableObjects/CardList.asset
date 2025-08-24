@@ -14,92 +14,92 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cards:
   - CardID: 1
-    CardType: A
+    CardType: 0
     CardTypeName: "\u51FA\u6C41"
     Name: "\u3068\u308A"
     Power: 10
   - CardID: 2
-    CardType: A
+    CardType: 0
     CardTypeName: "\u51FA\u6C41"
     Name: "\u3076\u305F"
     Power: 8
   - CardID: 3
-    CardType: A
+    CardType: 0
     CardTypeName: "\u51FA\u6C41"
     Name: "\u3055\u304B\u306A"
     Power: 8
   - CardID: 4
-    CardType: A
+    CardType: 0
     CardTypeName: "\u51FA\u6C41"
     Name: "\u30AB\u30EC\u30FC"
     Power: 8
   - CardID: 5
-    CardType: A
+    CardType: 0
     CardTypeName: "\u51FA\u6C41"
     Name: "\u8C9D"
     Power: 10
   - CardID: 6
-    CardType: A
+    CardType: 0
     CardTypeName: "\u51FA\u6C41"
     Name: "\u725B\u8089"
     Power: 12
   - CardID: 7
-    CardType: A
+    CardType: 0
     CardTypeName: "\u51FA\u6C41"
     Name: "\u6606\u5E03"
     Power: 10
   - CardID: 8
-    CardType: B
+    CardType: 1
     CardTypeName: "\u9999\u5473\u91CE\u83DC"
     Name: "\u30B7\u30E7\u30A6\u30AC"
     Power: 2
   - CardID: 9
-    CardType: B
+    CardType: 1
     CardTypeName: "\u9999\u5473\u91CE\u83DC"
     Name: "\u306D\u304E"
     Power: 1
   - CardID: 10
-    CardType: B
+    CardType: 1
     CardTypeName: "\u9999\u5473\u91CE\u83DC"
     Name: "\u306B\u3093\u306B\u304F"
     Power: 2
   - CardID: 11
-    CardType: B
+    CardType: 1
     CardTypeName: "\u9999\u5473\u91CE\u83DC"
     Name: "\u7389\u306D\u304E"
     Power: 2
   - CardID: 12
-    CardType: B
+    CardType: 1
     CardTypeName: "\u9999\u5473\u91CE\u83DC"
     Name: "\u30EC\u30E2\u30F3"
     Power: 4
   - CardID: 13
-    CardType: C
+    CardType: 2
     CardTypeName: "\u8ABF\u5473\u6599"
     Name: "\u725B\u4E73"
     Power: 12
   - CardID: 14
-    CardType: C
+    CardType: 2
     CardTypeName: "\u8ABF\u5473\u6599"
     Name: "\u91A4\u6CB9"
     Power: 6
   - CardID: 15
-    CardType: C
+    CardType: 2
     CardTypeName: "\u8ABF\u5473\u6599"
     Name: "\u5869"
     Power: 8
   - CardID: 16
-    CardType: C
+    CardType: 2
     CardTypeName: "\u8ABF\u5473\u6599"
     Name: "\u5473\u564C"
     Power: 8
   - CardID: 17
-    CardType: C
+    CardType: 2
     CardTypeName: "\u8ABF\u5473\u6599"
     Name: "\u30C8\u30DE\u30C8"
     Power: 10
   - CardID: 18
-    CardType: C
+    CardType: 2
     CardTypeName: "\u8ABF\u5473\u6599"
     Name: "\u8D64\u5510\u8F9B\u5B50"
     Power: 6

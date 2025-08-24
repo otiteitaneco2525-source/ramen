@@ -16,7 +16,7 @@ namespace Ramen.Data
         /// <summary>
         /// カードタイプ（A, B, C）
         /// </summary>
-        public string CardType;
+        public CardType CardType;
         
         /// <summary>
         /// カードタイプ名（出汁、香味野菜、調味料など）
@@ -48,7 +48,7 @@ namespace Ramen.Data
         /// <param name="cardTypeName">カードタイプ名</param>
         /// <param name="name">カード名</param>
         /// <param name="power">パワー値</param>
-        public Card(string cardID, string cardType, string cardTypeName, string name, int power)
+        public Card(string cardID, CardType cardType, string cardTypeName, string name, int power)
         {
             CardID = cardID;
             CardType = cardType;

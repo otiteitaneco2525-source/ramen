@@ -242,9 +242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d28c097690d094ca738451b655d708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 2744104714827046043}
-  icon: {fileID: 311383900551661396}
-  costText: {fileID: 1819826649772247283}
+  _nameText: {fileID: 2744104714827046043}
+  _icon: {fileID: 0}
+  _costText: {fileID: 1819826649772247283}
   DefaultSiblingIndex: 0
 --- !u!1 &6287867578798342976
 GameObject:
