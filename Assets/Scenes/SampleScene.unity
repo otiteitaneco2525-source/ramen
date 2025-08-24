@@ -1532,6 +1532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hpSlider: {fileID: 298595909}
+  _serifText: {fileID: 315558318}
 --- !u!222 &900985634
 CanvasRenderer:
   m_ObjectHideFlags: 0

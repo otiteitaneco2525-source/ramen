@@ -43,6 +43,8 @@ public class BattlePresenter : IStartable, ITickable
     // CardTypeごとのカードデータ配列
     private readonly Dictionary<CardType, List<Card>> _cardsByType = new Dictionary<CardType, List<Card>>();
 
+    private Serif _serif;
+
     public void Start()
     {
         _battleSystem.Initialize();
@@ -87,6 +89,7 @@ public class BattlePresenter : IStartable, ITickable
         _discardView.SetDiscardCount(_discardCards.Count);
         _heroView.SetHp(_battleSettings.HeroHp);
 
+
         _enemyView.SetStatus(_enemyList.GetEnemyByID(1));
 
         Debug.Log("BattlePresenter Start");
@@ -94,6 +97,7 @@ public class BattlePresenter : IStartable, ITickable
         _battleUiView.OnSkipButtonClicked = OnSkipButtonClicked;
 
         _battleSystem.OnEnemyAttack = OnEnemyAttack;
+        _battleSystem.OnSetup = OnSetup;
 
         _battleSystem.ChangeState(_battleSystem.SetupState);
     }
@@ -166,7 +170,9 @@ public class BattlePresenter : IStartable, ITickable
     private void OnPlayerAttack()
     {
         // 相手にダメージ
-        _enemyView.Damage(3);
+
+
+
 
         // 自分の手札を削除
         var selectedCardsToProcess = _selectedCards.ToArray();
@@ -215,5 +221,12 @@ public class BattlePresenter : IStartable, ITickable
     private void OnEnemyAttack()
     {
         _heroView.Damage(_enemyView.GetAttackPower());
+    }
+
+    private void OnSetup()
+    {
+        // セリフを取得
+        _serif = _serifList.GetRandomNormalBattleSerif();
+        _enemyView.SetSerif(_serif);
     }
 }

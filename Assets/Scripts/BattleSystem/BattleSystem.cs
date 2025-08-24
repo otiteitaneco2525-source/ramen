@@ -26,6 +26,7 @@ public sealed class BattleSystem : IInitializable
     public Func<bool> OnIsPlayerWin;
     public Func<bool> OnIsEnemyWin;
     public UnityAction OnEnemyAttack;
+    public UnityAction OnSetup;
 
     public bool IsPlayerWin()
     {

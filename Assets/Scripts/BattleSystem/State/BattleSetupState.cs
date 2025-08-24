@@ -9,6 +9,7 @@ public class BattleSetupState : BattleStateBase
     public override void OnEnter()
     {
         Debug.Log("Setup Enter");
+        Owner.OnSetup?.Invoke();
         Owner.ChangeState(Owner.PlayerDrawState);
     }
 }

@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using DG.Tweening;
 using Ramen.Data;
+using TMPro;
 
 public interface IEnemyView
 {
@@ -9,11 +10,13 @@ public interface IEnemyView
     int GetHp();
     void SetStatus(Enemy enemy);
     int GetAttackPower();
+    void SetSerif(Serif serif);
 }
 
 public class EnemyView : MonoBehaviour, IEnemyView
 {
     [SerializeField] Slider _hpSlider;
+    [SerializeField] TextMeshProUGUI _serifText;
     private int _hp;
     private Enemy _enemy;
 
@@ -50,5 +53,10 @@ public class EnemyView : MonoBehaviour, IEnemyView
     public int GetAttackPower()
     {
         return _enemy.AttackPower;
+    }
+
+    public void SetSerif(Serif serif)
+    {
+        _serifText.text = serif.SerifName;
     }
 }
