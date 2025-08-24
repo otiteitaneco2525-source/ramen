@@ -51,7 +51,7 @@ namespace Ramen.Data
         /// </summary>
         /// <param name="enemyID">検索する敵ID</param>
         /// <returns>見つかった敵、見つからない場合はnull</returns>
-        public Enemy GetEnemyByID(string enemyID)
+        public Enemy GetEnemyByID(int enemyID)
         {
             return enemies.Find(enemy => enemy.EnemyID == enemyID);
         }

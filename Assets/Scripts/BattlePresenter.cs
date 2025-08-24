@@ -86,7 +86,8 @@ public class BattlePresenter : IStartable, ITickable
         _deckView.SetDeckCount(_deckCards.Count);
         _discardView.SetDiscardCount(_discardCards.Count);
         _heroView.SetHp(_battleSettings.HeroHp);
-        _enemyView.SetHp(_battleSettings.EnemyHp);
+
+        _enemyView.SetStatus(_enemyList.GetEnemyByID(1));
 
         Debug.Log("BattlePresenter Start");
 
@@ -213,6 +214,6 @@ public class BattlePresenter : IStartable, ITickable
 
     private void OnEnemyAttack()
     {
-        _heroView.Damage(3);
+        _heroView.Damage(_enemyView.GetAttackPower());
     }
 }

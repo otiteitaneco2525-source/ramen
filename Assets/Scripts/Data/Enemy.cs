@@ -11,7 +11,7 @@ namespace Ramen.Data
         /// <summary>
         /// 敵ID（例：1, 2, 3 ...）
         /// </summary>
-        public string EnemyID;
+        public int EnemyID;
 
         /// <summary>
         /// 敵名（例：スライム、ケモノ、魔女、ボス）
@@ -42,7 +42,7 @@ namespace Ramen.Data
         /// <param name="enemyName">敵名</param>
         /// <param name="hp">体力</param>
         /// <param name="attackPower">攻撃力</param>
-        public Enemy(string enemyID, string enemyName, int hp, int attackPower)
+        public Enemy(int enemyID, string enemyName, int hp, int attackPower)
         {
             EnemyID = enemyID;
             EnemyName = enemyName;

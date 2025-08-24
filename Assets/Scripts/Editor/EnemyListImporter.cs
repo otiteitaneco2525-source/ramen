@@ -120,7 +120,7 @@ namespace Ramen.Editor
                     {
                         var enemy = new Enemy
                         {
-                            EnemyID = values[0].Trim(),
+                            EnemyID = int.TryParse(values[0].Trim(), out int id) ? id : 0,
                             EnemyName = values[1].Trim(),
                             HP = int.TryParse(values[2].Trim(), out int hp) ? hp : 0,
                             AttackPower = int.TryParse(values[3].Trim(), out int atk) ? atk : 0
@@ -175,7 +175,7 @@ namespace Ramen.Editor
                     {
                         var enemy = new Enemy
                         {
-                            EnemyID = values[0].Trim(),
+                            EnemyID = int.TryParse(values[0].Trim(), out int id) ? id : 0,
                             EnemyName = values[1].Trim(),
                             HP = int.TryParse(values[2].Trim(), out int hp) ? hp : 0,
                             AttackPower = int.TryParse(values[3].Trim(), out int atk) ? atk : 0

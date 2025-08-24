@@ -1,29 +1,25 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Ramen.Data;
 
 public interface IEnemyView
 {
-    void SetHp(int value);
     void Damage(int value);
     int GetHp();
+    void SetStatus(Enemy enemy);
+    int GetAttackPower();
 }
 
 public class EnemyView : MonoBehaviour, IEnemyView
 {
     [SerializeField] Slider _hpSlider;
     private int _hp;
+    private Enemy _enemy;
 
     public int GetHp()
     {
         return _hp;
-    }
-
-    public void SetHp(int value)
-    {
-        _hp = value;
-        _hpSlider.maxValue = _hp;
-        _hpSlider.value = _hp;
     }
 
     public void Damage(int value)
@@ -41,5 +37,18 @@ public class EnemyView : MonoBehaviour, IEnemyView
             Debug.Log("EnemyObjがやられた");
             // Destroy(gameObject);
         }
+    }
+
+    public void SetStatus(Enemy enemy)
+    {
+        _enemy = enemy;
+        _hp = enemy.HP;
+        _hpSlider.maxValue = _hp;
+        _hpSlider.value = _hp;
+    }
+
+    public int GetAttackPower()
+    {
+        return _enemy.AttackPower;
     }
 }
