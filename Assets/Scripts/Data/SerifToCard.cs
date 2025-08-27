@@ -26,7 +26,7 @@ namespace Ramen.Data
         /// <summary>
         /// オプション（None, OtherThanなど）
         /// </summary>
-        public string Option;
+        public SerifToCardType Option;
 
         /// <summary>
         /// デフォルトコンストラクタ
@@ -42,7 +42,7 @@ namespace Ramen.Data
         /// <param name="cardID">カードID</param>
         /// <param name="cardName">カード名</param>
         /// <param name="option">オプション</param>
-        public SerifToCard(string selfID, string cardID, string cardName, string option)
+        public SerifToCard(string selfID, string cardID, string cardName, SerifToCardType option)
         {
             SelfID = selfID;
             CardID = cardID;
@@ -84,7 +84,7 @@ namespace Ramen.Data
         /// </summary>
         /// <param name="option">チェックするオプション</param>
         /// <returns>一致する場合true</returns>
-        public bool HasOption(string option)
+        public bool HasOption(SerifToCardType option)
         {
             return Option == option;
         }
@@ -95,7 +95,7 @@ namespace Ramen.Data
         /// <returns>OtherThanの場合true</returns>
         public bool IsOtherThan()
         {
-            return Option == "OtherThan";
+            return Option == SerifToCardType.OtherThan;
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Ramen.Data
         /// <returns>Noneの場合true</returns>
         public bool IsNone()
         {
-            return Option == "None";
+            return Option == SerifToCardType.None;
         }
     }
 }

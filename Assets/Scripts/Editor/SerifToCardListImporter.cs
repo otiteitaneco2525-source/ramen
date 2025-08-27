@@ -145,7 +145,7 @@ namespace Ramen.Editor
                             SelfID = values[0].Trim(),
                             CardID = values[1].Trim(),
                             CardName = values[2].Trim(),
-                            Option = values[3].Trim()
+                            Option = ParseOption(values[3])
                         };
                         previewSerifToCards.Add(stc);
                     }
@@ -200,7 +200,7 @@ namespace Ramen.Editor
                             SelfID = values[0].Trim(),
                             CardID = values[1].Trim(),
                             CardName = values[2].Trim(),
-                            Option = values[3].Trim()
+                            Option = ParseOption(values[3])
                         };
                         targetSerifToCardList.AddSerifToCard(stc);
                         importedCount++;
@@ -238,6 +238,20 @@ namespace Ramen.Editor
             {
                 return line.Split(',');
             }
+        }
+
+        /// <summary>
+        /// 文字列をSerifToCardTypeに変換
+        /// </summary>
+        /// <param name="optionString">オプション文字列</param>
+        /// <returns>SerifToCardType</returns>
+        private SerifToCardType ParseOption(string optionString)
+        {
+            if (System.Enum.TryParse<SerifToCardType>(optionString.Trim(), true, out SerifToCardType result))
+            {
+                return result;
+            }
+            return SerifToCardType.None; // デフォルト値
         }
     }
 }

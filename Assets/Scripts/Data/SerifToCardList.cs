@@ -71,7 +71,7 @@ namespace Ramen.Data
         /// </summary>
         /// <param name="option">検索するオプション</param>
         /// <returns>該当する関連のリスト</returns>
-        public List<SerifToCard> GetSerifToCardsByOption(string option)
+        public List<SerifToCard> GetSerifToCardsByOption(SerifToCardType option)
         {
             return serifToCards.FindAll(stc => stc.HasOption(option));
         }
@@ -161,13 +161,13 @@ namespace Ramen.Data
             
             foreach (var stc in serifToCards)
             {
-                if (stats.ContainsKey(stc.Option))
+                if (stats.ContainsKey(stc.Option.ToString()))
                 {
-                    stats[stc.Option]++;
+                    stats[stc.Option.ToString()]++;
                 }
                 else
                 {
-                    stats[stc.Option] = 1;
+                    stats[stc.Option.ToString()] = 1;
                 }
             }
             
