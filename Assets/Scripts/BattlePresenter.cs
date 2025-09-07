@@ -169,10 +169,23 @@ public class BattlePresenter : IStartable, ITickable
 
     private void OnPlayerAttack()
     {
-        // 相手にダメージ
+        var currentSerifToCards = _serifToCardList.SerifToCards.Where(x => x.SelfID == _serif.SerifID).ToList();
 
+        // 選択されたカードが条件に一致するかチェック
+        bool isCardSelectionValid = CheckCardSelectionValidity(_selectedCards, currentSerifToCards);
 
+        var attackPower = _selectedCards.Sum(x => x.CardData.Power);
+        
+        if (isCardSelectionValid)
+        {
+            // 条件に一致した場合の処理
+            attackPower += _battleSettings.SerifBonusPower;
+            Debug.Log("カード選択が条件に一致しました。");
+        }
 
+        _enemyView.Damage(attackPower);
+
+        Debug.Log("攻撃力: " + attackPower);
 
         // 自分の手札を削除
         var selectedCardsToProcess = _selectedCards.ToArray();
@@ -188,6 +201,74 @@ public class BattlePresenter : IStartable, ITickable
         _handView.ArrangeCards(_handCards);
 
         _battleSystem.ChangeState(_battleSystem.PlayerAttackState);
+    }
+
+    /// <summary>
+    /// 選択されたカードが条件に一致するかチェック
+    /// </summary>
+    /// <param name="selectedCards">選択されたカード</param>
+    /// <param name="serifToCards">セリフに対応するカード条件</param>
+    /// <returns>すべての条件に一致する場合true</returns>
+    private bool CheckCardSelectionValidity(List<CardView> selectedCards, List<SerifToCard> serifToCards)
+    {
+        if (serifToCards.Count == 0)
+        {
+            Debug.LogWarning("セリフに対応するカード条件が見つかりませんでした。");
+            return false;
+        }
+
+        // 選択されたカードのIDリスト
+        var selectedCardIds = selectedCards.Select(card => card.CardData.CardID).ToList();
+
+        List<bool> conditionMets = new List<bool>();
+
+        // 各条件をチェック
+        foreach (var serifToCard in serifToCards)
+        {
+            bool conditionMet = false;
+            
+            if (serifToCard.Option == SerifToCardType.None)
+            {
+                // Noneの場合：選択されたカードに指定されたカードIDが含まれているかチェック
+                conditionMet = selectedCardIds.Contains(serifToCard.CardID);
+            }
+            else if (serifToCard.Option == SerifToCardType.OtherThan)
+            {
+                // OtherThanの場合：選択されたカードに指定されたカードIDが含まれていないかチェック
+                conditionMet = !selectedCardIds.Contains(serifToCard.CardID);
+            }
+
+            conditionMets.Add(conditionMet);
+        }
+
+        return conditionMets.Count(x => x) == conditionMets.Count;
+    }
+
+    private int GetComboBonusPower(List<CardView> selectedCards)
+    {
+        int bonusPower = 0;
+
+        foreach (var cardFrom in selectedCards)
+        {
+            var combos = _cardComboList.GetCombosByCardIdFrom(cardFrom.CardData.CardID);
+
+            foreach (var cardTo in selectedCards)
+            {
+                foreach (var combo in combos)
+                {
+                    if (combo.CardID_To == cardTo.CardData.CardID)
+                    {
+                        bonusPower += combo.Bonus;
+                    }
+                    else if (combo.Option == CardComboType.OtherThan)
+                    {
+                        bonusPower += combo.Bonus;
+                    }
+                }
+            }
+        }
+
+        return bonusPower;
     }
 
     private bool IsPlayerWin()

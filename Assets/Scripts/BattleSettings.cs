@@ -5,4 +5,5 @@ public class BattleSettings : ScriptableObject
 {
     public int DrawCount;
     public int HeroHp;
+    public int SerifBonusPower;
 }

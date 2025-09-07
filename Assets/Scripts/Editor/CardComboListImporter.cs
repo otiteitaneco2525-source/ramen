@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEditor;
-using System.IO;
+using System;
 using System.Collections.Generic;
 using Ramen.Data;
 
@@ -141,7 +141,7 @@ namespace Ramen.Editor
                             CardID_To = values[2].Trim(),
                             CardID_To_Name = values[3].Trim(),
                             Bonus = int.TryParse(values[4].Trim(), out int bonus) ? bonus : 0,
-                            Option = values[5].Trim()
+                            Option = Enum.TryParse<CardComboType>(values[5].Trim(), out CardComboType option) ? option : CardComboType.None
                         };
                         previewCardCombos.Add(combo);
                     }
@@ -198,7 +198,7 @@ namespace Ramen.Editor
                             CardID_To = values[2].Trim(),
                             CardID_To_Name = values[3].Trim(),
                             Bonus = int.TryParse(values[4].Trim(), out int bonus) ? bonus : 0,
-                            Option = values[5].Trim()
+                            Option = Enum.TryParse<CardComboType>(values[5].Trim(), out CardComboType option) ? option : CardComboType.None
                         };
                         targetCardComboList.AddCardCombo(combo);
                         importedCount++;

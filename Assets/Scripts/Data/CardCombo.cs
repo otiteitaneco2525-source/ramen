@@ -36,7 +36,7 @@ namespace Ramen.Data
         /// <summary>
         /// オプション（None, OtherThanなど）
         /// </summary>
-        public string Option;
+        public CardComboType Option;
 
         /// <summary>
         /// デフォルトコンストラクタ
@@ -61,7 +61,7 @@ namespace Ramen.Data
             CardID_To = cardID_To;
             CardID_To_Name = cardID_To_Name;
             Bonus = bonus;
-            Option = option;
+            Option = (CardComboType)Enum.Parse(typeof(CardComboType), option);
         }
 
         /// <summary>
@@ -97,9 +97,19 @@ namespace Ramen.Data
         /// </summary>
         /// <param name="cardID">チェックするカードID</param>
         /// <returns>組み合わせに含まれる場合true</returns>
-        public bool ContainsCardID(string cardID)
+        public bool ContainsCardIdFrom(string cardID)
         {
-            return CardID_From == cardID || CardID_To == cardID;
+            return CardID_From == cardID;
+        }
+
+        /// <summary>
+        /// 特定のカードIDとの組み合わせかどうか
+        /// </summary>
+        /// <param name="cardIdFrom">チェックするカードID</param>
+        /// <returns>組み合わせに含まれる場合true</returns>
+        public bool ContainsCardIdFromTo(string cardIdFrom, string cardIdTo)
+        {
+            return CardID_From == cardIdFrom && CardID_To == cardIdTo;
         }
     }
 }

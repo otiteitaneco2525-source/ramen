@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_GUID: 65a1a88dda58d094790c7a5a797b6f3d
+  m_SerializeEntries:
+  - m_GUID: 2549202a76e711b4ca114aaf13585b19
+    m_Address: Assets/ScriptableObjects/EnemyList.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f424177e40152145843306d1ee805ff
+    m_Address: Assets/ScriptableObjects/SerifList.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bfbc08a96ba0a7144a90a3ff45de0353
+    m_Address: Assets/ScriptableObjects/CardList.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3b6dac55134d824383c1c4bc816e12e
+    m_Address: Assets/ScriptableObjects/BattleSettings.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e33d18940deb88246864a7e611e1b503
+    m_Address: Assets/ScriptableObjects/SerifToCardList.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9e8086efb90cf742aef8ca0398b7cb1
+    m_Address: Assets/ScriptableObjects/CardComboList.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: c923a927eae505d4b98cbf3df845257f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6d65f7ac73d85bf4b8e76d35f0016aa0, type: 2}
+    - {fileID: 11400000, guid: e813fffed109e5f43adebab09f443c01, type: 2}
