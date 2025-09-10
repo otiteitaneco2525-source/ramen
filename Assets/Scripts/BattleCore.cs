@@ -37,7 +37,7 @@ public class BattleCore
 
     public bool IsDrawableCards(List<Card> cards, int drawCount)
     {
-        return cards.Count > drawCount;
+        return cards.Count >= drawCount;
     }
 
     public List<Card> DrawCards(List<Card> cards)
@@ -95,30 +95,12 @@ public class BattleCore
         return conditionMets.Count(x => x) == conditionMets.Count;
     }
 
-    public int GetComboBonusPower(List<Card> selectedCards, CardComboList cardComboList)
+    public int GetComboBonusPower(Card cardFrom, Card cardTo, CardComboList cardComboList)
     {
-        int bonusPower = 0;
-
-        foreach (var cardFrom in selectedCards)
-        {
-            var combos = cardComboList.GetCombosByCardIdFrom(cardFrom.CardID);
-
-            foreach (var cardTo in selectedCards)
-            {
-                foreach (var combo in combos)
-                {
-                    if (combo.CardID_To == cardTo.CardID)
-                    {
-                        bonusPower += combo.Bonus;
-                    }
-                    else if (combo.Option == CardComboType.OtherThan)
-                    {
-                        bonusPower += combo.Bonus;
-                    }
-                }
-            }
-        }
-
+        List<CardCombo> combos = new List<CardCombo>();
+        combos.AddRange(cardComboList.CardCombos.Where(x => x.CardID_From == cardFrom.CardID && x.CardID_To == cardTo.CardID));
+        combos.AddRange(cardComboList.CardCombos.Where(x => x.CardID_From == cardTo.CardID && x.CardID_To == cardFrom.CardID));
+        int bonusPower = combos.Sum(x => x.Bonus);
         return bonusPower;
     }
 }

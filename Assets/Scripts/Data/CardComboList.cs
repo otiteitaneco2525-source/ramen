@@ -51,7 +51,7 @@ namespace Ramen.Data
         /// </summary>
         /// <param name="cardID">検索するカードID</param>
         /// <returns>該当するカードコンボのリスト</returns>
-        public List<CardCombo> GetCombosByCardIdFrom(string cardID)
+        public List<CardCombo> GetCombosByCardId(string cardID)
         {
             return cardCombos.FindAll(combo => combo.ContainsCardIdFrom(cardID));
         }

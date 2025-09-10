@@ -111,10 +111,40 @@ MonoBehaviour:
     Option: 0
   - CardID_From: 13
     CardID_From_Name: "\u725B\u4E73"
-    CardID_To: 4
-    CardID_To_Name: "\u30AB\u30EC\u30FC"
+    CardID_To: 1
+    CardID_To_Name: "\u3068\u308A"
     Bonus: -10
-    Option: 1
+    Option: 0
+  - CardID_From: 13
+    CardID_From_Name: "\u725B\u4E73"
+    CardID_To: 2
+    CardID_To_Name: "\u3076\u305F"
+    Bonus: -10
+    Option: 0
+  - CardID_From: 13
+    CardID_From_Name: "\u725B\u4E73"
+    CardID_To: 3
+    CardID_To_Name: "\u3055\u304B\u306A"
+    Bonus: -10
+    Option: 0
+  - CardID_From: 13
+    CardID_From_Name: "\u725B\u4E73"
+    CardID_To: 5
+    CardID_To_Name: "\u8C9D"
+    Bonus: -10
+    Option: 0
+  - CardID_From: 13
+    CardID_From_Name: "\u725B\u4E73"
+    CardID_To: 6
+    CardID_To_Name: "\u725B\u8089"
+    Bonus: -10
+    Option: 0
+  - CardID_From: 13
+    CardID_From_Name: "\u725B\u4E73"
+    CardID_To: 7
+    CardID_To_Name: "\u6606\u5E03"
+    Bonus: -10
+    Option: 0
   - CardID_From: 18
     CardID_From_Name: "\u8D64\u5510\u8F9B\u5B50"
     CardID_To: 5

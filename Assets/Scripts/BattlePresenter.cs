@@ -250,7 +250,7 @@ public class BattlePresenter : IStartable, ITickable
 
         foreach (var cardFrom in selectedCards)
         {
-            var combos = _cardComboList.GetCombosByCardIdFrom(cardFrom.CardData.CardID);
+            var combos = _cardComboList.GetCombosByCardId(cardFrom.CardData.CardID);
 
             foreach (var cardTo in selectedCards)
             {

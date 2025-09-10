@@ -15,7 +15,12 @@ CardID_From	CardID_From_Name	CardID_To	CardID_To_Name	Bonus	Option
 6	牛肉	14	醤油	10	None
 7	昆布	14	醤油	10	None
 7	昆布	12	レモン	10	None
-13	牛乳	4	カレー	-10	OtherThan
+13	牛乳	1	とり	-10	None
+13	牛乳	2	ぶた	-10	None
+13	牛乳	3	さかな	-10	None
+13	牛乳	5	貝	-10	None
+13	牛乳	6	牛肉	-10	None
+13	牛乳	7	昆布	-10	None
 18	赤唐辛子	5	貝	-10	None
 5	貝	16	味噌	-10	None
 5	貝	17	トマト	-10	None
