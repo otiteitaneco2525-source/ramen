@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.Events;
 using Ramen.Data;
 
-public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, ICardView
 {
     [SerializeField] TextMeshProUGUI _nameText;
     [SerializeField] Image _icon;
