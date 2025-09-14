@@ -58,17 +58,65 @@ MonoBehaviour:
     CardName: "\u30AB\u30EC\u30FC"
     Option: 0
   - SelfID: 4
-    CardID: 2
-    CardName: "\u3076\u305F"
-    Option: 1
+    CardID: 1
+    CardName: "\u3068\u308A"
+    Option: 0
   - SelfID: 4
-    CardID: 4
-    CardName: "\u30AB\u30EC\u30FC"
-    Option: 1
+    CardID: 3
+    CardName: "\u3055\u304B\u306A"
+    Option: 0
   - SelfID: 4
-    CardID: 10
-    CardName: "\u306B\u3093\u306B\u304F"
-    Option: 1
+    CardID: 5
+    CardName: "\u8C9D"
+    Option: 0
+  - SelfID: 4
+    CardID: 6
+    CardName: "\u725B\u8089"
+    Option: 0
+  - SelfID: 4
+    CardID: 7
+    CardName: "\u6606\u5E03"
+    Option: 0
+  - SelfID: 4
+    CardID: 8
+    CardName: "\u30B7\u30E7\u30A6\u30AC"
+    Option: 0
+  - SelfID: 4
+    CardID: 9
+    CardName: "\u306D\u304E"
+    Option: 0
+  - SelfID: 4
+    CardID: 11
+    CardName: "\u7389\u306D\u304E"
+    Option: 0
+  - SelfID: 4
+    CardID: 12
+    CardName: "\u30EC\u30E2\u30F3"
+    Option: 0
+  - SelfID: 4
+    CardID: 13
+    CardName: "\u725B\u4E73"
+    Option: 0
+  - SelfID: 4
+    CardID: 14
+    CardName: "\u91A4\u6CB9"
+    Option: 0
+  - SelfID: 4
+    CardID: 15
+    CardName: "\u5869"
+    Option: 0
+  - SelfID: 4
+    CardID: 16
+    CardName: "\u5473\u564C"
+    Option: 0
+  - SelfID: 4
+    CardID: 17
+    CardName: "\u30C8\u30DE\u30C8"
+    Option: 0
+  - SelfID: 4
+    CardID: 18
+    CardName: "\u8D64\u5510\u8F9B\u5B50"
+    Option: 0
   - SelfID: 5
     CardID: 3
     CardName: "\u3055\u304B\u306A"
