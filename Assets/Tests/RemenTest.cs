@@ -10,9 +10,6 @@ using System.Linq;
 
 public class RemenTest
 {
-    private readonly List<Card> _deckCards = new List<Card>();
-    private readonly List<Card> _handCards = new List<Card>();
-
     [Test]
     public void RemenScriptableObjectTest()
     {
@@ -31,65 +28,65 @@ public class RemenTest
         Assert.IsNotNull(serifToCardList);
 
 
-        BattleCore battleCore = new BattleCore();
-        _deckCards.AddRange(battleCore.DealCards(cardList));
-        Assert.IsNotNull(_deckCards);
-        Assert.IsNotEmpty(_deckCards);
+        BattleCore battleCore = new BattleCore(cardList, battleSettings, cardComboList, serifList, serifToCardList);
+        battleCore.DealCards();
+        Assert.IsNotNull(battleCore.DeckCards);
+        Assert.IsNotEmpty(battleCore.DeckCards);
 
-        Assert.AreEqual(_deckCards.Count, 6);
-        Assert.AreEqual(_deckCards.Where(x => x.CardType == CardType.Dashi).Count(), 2);
-        Assert.AreEqual(_deckCards.Where(x => x.CardType == CardType.AromaticVegetables).Count(), 2);
-        Assert.AreEqual(_deckCards.Where(x => x.CardType == CardType.Seasoning).Count(), 2);
+        Assert.AreEqual(battleCore.DeckCards.Count, 6);
+        Assert.AreEqual(battleCore.DeckCards.Where(x => x.CardType == CardType.Dashi).Count(), 2);
+        Assert.AreEqual(battleCore.DeckCards.Where(x => x.CardType == CardType.AromaticVegetables).Count(), 2);
+        Assert.AreEqual(battleCore.DeckCards.Where(x => x.CardType == CardType.Seasoning).Count(), 2);
 
         // カードを引く1回目
-        if (battleCore.IsDrawableCards(_deckCards, battleSettings.DrawCount))
+        if (battleCore.IsDrawableCards())
         {
-            _handCards.AddRange(battleCore.DrawCards(_deckCards));
+            battleCore.DrawCards();
         }
 
-        Assert.AreEqual(_deckCards.Count, 3);
-        Assert.AreEqual(_deckCards.Where(x => x.CardType == CardType.Dashi).Count(), 1);
-        Assert.AreEqual(_deckCards.Where(x => x.CardType == CardType.AromaticVegetables).Count(), 1);
-        Assert.AreEqual(_deckCards.Where(x => x.CardType == CardType.Seasoning).Count(), 1);
+        Assert.AreEqual(battleCore.DeckCards.Count, 3);
+        Assert.AreEqual(battleCore.DeckCards.Where(x => x.CardType == CardType.Dashi).Count(), 1);
+        Assert.AreEqual(battleCore.DeckCards.Where(x => x.CardType == CardType.AromaticVegetables).Count(), 1);
+        Assert.AreEqual(battleCore.DeckCards.Where(x => x.CardType == CardType.Seasoning).Count(), 1);
 
-        Assert.IsNotNull(_handCards);
-        Assert.IsNotEmpty(_handCards);
-        Assert.AreEqual(_handCards.Count, 3);
-        Assert.AreEqual(_handCards.Where(x => x.CardType == CardType.Dashi).Count(), 1);
-        Assert.AreEqual(_handCards.Where(x => x.CardType == CardType.AromaticVegetables).Count(), 1);
-        Assert.AreEqual(_handCards.Where(x => x.CardType == CardType.Seasoning).Count(), 1);
+        Assert.IsNotNull(battleCore.HandCards);
+        Assert.IsNotEmpty(battleCore.HandCards);
+        Assert.AreEqual(battleCore.HandCards.Count, 3);
+        Assert.AreEqual(battleCore.HandCards.Where(x => x.CardType == CardType.Dashi).Count(), 1);
+        Assert.AreEqual(battleCore.HandCards.Where(x => x.CardType == CardType.AromaticVegetables).Count(), 1);
+        Assert.AreEqual(battleCore.HandCards.Where(x => x.CardType == CardType.Seasoning).Count(), 1);
 
 
         // カードを引く2回目
-        if (battleCore.IsDrawableCards(_deckCards, battleSettings.DrawCount))
+        if (battleCore.IsDrawableCards())
         {
-            _handCards.AddRange(battleCore.DrawCards(_deckCards));
+            battleCore.DrawCards();
         }
-        Assert.AreEqual(_deckCards.Count, 0);
-        Assert.AreEqual(_deckCards.Where(x => x.CardType == CardType.Dashi).Count(), 0);
-        Assert.AreEqual(_deckCards.Where(x => x.CardType == CardType.AromaticVegetables).Count(), 0);
-        Assert.AreEqual(_deckCards.Where(x => x.CardType == CardType.Seasoning).Count(), 0);
+        Assert.AreEqual(battleCore.DeckCards.Count, 0);
+        Assert.AreEqual(battleCore.DeckCards.Where(x => x.CardType == CardType.Dashi).Count(), 0);
+        Assert.AreEqual(battleCore.DeckCards.Where(x => x.CardType == CardType.AromaticVegetables).Count(), 0);
+        Assert.AreEqual(battleCore.DeckCards.Where(x => x.CardType == CardType.Seasoning).Count(), 0);
 
-        Assert.IsNotNull(_handCards);
-        Assert.IsNotEmpty(_handCards);
-        Assert.AreEqual(_handCards.Count, 6);
-        Assert.AreEqual(_handCards.Where(x => x.CardType == CardType.Dashi).Count(), 2);
-        Assert.AreEqual(_handCards.Where(x => x.CardType == CardType.AromaticVegetables).Count(), 2);
-        Assert.AreEqual(_handCards.Where(x => x.CardType == CardType.Seasoning).Count(), 2);
+        Assert.IsNotNull(battleCore.HandCards);
+        Assert.IsNotEmpty(battleCore.HandCards);
+        Assert.AreEqual(battleCore.HandCards.Count, 6);
+        Assert.AreEqual(battleCore.HandCards.Where(x => x.CardType == CardType.Dashi).Count(), 2);
+        Assert.AreEqual(battleCore.HandCards.Where(x => x.CardType == CardType.AromaticVegetables).Count(), 2);
+        Assert.AreEqual(battleCore.HandCards.Where(x => x.CardType == CardType.Seasoning).Count(), 2);
         
 
         // カードを引く3回目
-        Assert.IsFalse(battleCore.IsDrawableCards(_deckCards, battleSettings.DrawCount));
+        Assert.IsFalse(battleCore.IsDrawableCards());
 
-        if (battleCore.IsDrawableCards(_deckCards, battleSettings.DrawCount))
+        if (battleCore.IsDrawableCards())
         {
-            _handCards.AddRange(battleCore.DrawCards(_deckCards));
+            battleCore.DrawCards();
         }
 
-        Assert.AreEqual(_deckCards.Count, 0);
-        Assert.AreEqual(_deckCards.Where(x => x.CardType == CardType.Dashi).Count(), 0);
-        Assert.AreEqual(_deckCards.Where(x => x.CardType == CardType.AromaticVegetables).Count(), 0);
-        Assert.AreEqual(_deckCards.Where(x => x.CardType == CardType.Seasoning).Count(), 0);
+        Assert.AreEqual(battleCore.DeckCards.Count, 0);
+        Assert.AreEqual(battleCore.DeckCards.Where(x => x.CardType == CardType.Dashi).Count(), 0);
+        Assert.AreEqual(battleCore.DeckCards.Where(x => x.CardType == CardType.AromaticVegetables).Count(), 0);
+        Assert.AreEqual(battleCore.DeckCards.Where(x => x.CardType == CardType.Seasoning).Count(), 0);
 
         // コンボの検証
         foreach (var cardFrom in cardList.Cards)
@@ -101,30 +98,30 @@ public class RemenTest
                 combos.AddRange(cardComboList.CardCombos.Where(x => x.CardID_From == cardTo.CardID && x.CardID_To == cardFrom.CardID));
                 var bonusPowerExpected = combos.Sum(x => x.Bonus);
 
-                var bonusPower = battleCore.GetComboBonusPower(cardFrom, cardTo, cardComboList);
+                var bonusPower = battleCore.GetComboBonusPower(cardFrom, cardTo);
                 
                 Debug.Log($"コンボ: {cardFrom.Name}({cardFrom.CardID}) + {cardTo.Name}({cardTo.CardID}) = {bonusPower} | {bonusPowerExpected} | {combos.Count}");
                 Assert.AreEqual(bonusPowerExpected, bonusPower);
             }
         }
 
-        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "12", "1", "3" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("1")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
-        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "2", "4", "6" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("2")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
-        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "18", "4" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("3")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
-        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "3", "5" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("4")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
-        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "3", "5", "7" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("5")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
-        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "6", "2", "1" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("6")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
-        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "13", "17", "6" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("7")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("1"), GetCardList(new string[] { "12", "1", "3" }, cardList)));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("2"), GetCardList(new string[] { "2", "4", "6" }, cardList)));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("3"), GetCardList(new string[] { "18", "4" }, cardList)));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("4"), GetCardList(new string[] { "1", "3", "5" }, cardList)));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("5"), GetCardList(new string[] { "3", "5", "7" }, cardList)));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("6"), GetCardList(new string[] { "6", "2", "1" }, cardList)));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("7"), GetCardList(new string[] { "13", "17", "6" }, cardList)));
 
 
 
-        Assert.AreNotSame(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("1")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
-        Assert.AreNotSame(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("2")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
-        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("3")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
-        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("4")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
-        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("5")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
-        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("6")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
-        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("7")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
+        Assert.AreNotSame(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("1"), GetCardList(new string[] { "1", "2", "3" }, cardList)));
+        Assert.AreNotSame(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("2"), GetCardList(new string[] { "1", "2", "3" }, cardList)));
+        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("3"), GetCardList(new string[] { "1", "2", "3" }, cardList)));
+        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("4"), GetCardList(new string[] { "1", "2", "3" }, cardList)));
+        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("5"), GetCardList(new string[] { "1", "2", "3" }, cardList)));
+        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("6"), GetCardList(new string[] { "1", "2", "3" }, cardList)));
+        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("7"), GetCardList(new string[] { "1", "2", "3" }, cardList)));
 
         // リソースを解放
         Addressables.Release(cardList);

@@ -4,15 +4,50 @@ using Ramen.Data;
 using System;
 using System.Linq;
 
-public class BattleCore
+public sealed class BattleCore
 {
-    // private readonly List<ICardView> _deckCards = new List<ICardView>();
-    // private readonly List<ICardView> _handCards = new List<ICardView>();
-    // private readonly List<ICardView> _selectedCards = new List<ICardView>();
-    // private readonly List<ICardView> _discardCards = new List<ICardView>();
-    // private readonly Dictionary<CardType, List<Card>> _cardsByType = new Dictionary<CardType, List<Card>>();
+    private readonly List<Card> _deckCards = new List<Card>();
+    private readonly List<Card> _handCards = new List<Card>();
+    private readonly List<Card> _discardCards = new List<Card>();
 
-    public List<Card> DealCards(CardList cardList)
+    public List<Card> DeckCards => _deckCards;
+    public List<Card> HandCards => _handCards;
+    public List<Card> DiscardCards => _discardCards;
+
+    private readonly CardList _cardList;
+    private readonly BattleSettings _battleSettings;
+    private readonly CardComboList _cardComboList;
+    private readonly SerifList _serifList;
+    private readonly SerifToCardList _serifToCardList;
+    private Serif _currentSerif = null;
+
+    public Serif CurrentSerif => _currentSerif;
+
+    public BattleCore(CardList cardList, BattleSettings battleSettings, CardComboList cardComboList, SerifList serifList, SerifToCardList serifToCardList)
+    {
+        _cardList = cardList;
+        _cardComboList = cardComboList;
+        _serifList = serifList;
+        _serifToCardList = serifToCardList;
+        _battleSettings = battleSettings;
+    }
+
+    public void SetCurrentSerif(Serif serif)
+    {
+        _currentSerif = serif;
+    }
+
+    public Serif GetRandomNormalBattleSerif()
+    {
+        return _serifList.GetRandomNormalBattleSerif();
+    }
+
+    public void DealCards()
+    {
+        _deckCards.AddRange(DealCards(_cardList));
+    }
+
+    private List<Card> DealCards(CardList cardList)
     {
         var result = new List<Card>();
 
@@ -35,12 +70,28 @@ public class BattleCore
         return result;
     }
 
-    public bool IsDrawableCards(List<Card> cards, int drawCount)
+    public bool IsDrawableCards()
+    {
+        return IsDrawableCards(_deckCards, _battleSettings.DrawCount);
+    }
+
+    private bool IsDrawableCards(List<Card> cards, int drawCount)
     {
         return cards.Count >= drawCount;
     }
 
-    public List<Card> DrawCards(List<Card> cards)
+    public void DrawCards()
+    {
+        if (!IsDrawableCards())
+        {
+            _deckCards.AddRange(_discardCards.ToArray());
+            _discardCards.Clear();
+        }
+
+        _handCards.AddRange(DrawCards(_deckCards));
+    }
+
+    private List<Card> DrawCards(List<Card> cards)
     {
         var result = new List<Card>();
 
@@ -60,7 +111,22 @@ public class BattleCore
         return result;
     }
 
-    public int GetSerifBonusPower(List<Card> selectedCards, List<SerifToCard> serifToCards, int serifBonusPower, int drawCount)
+    public void SetDiscardCards(List<Card> cards)
+    {
+        _discardCards.AddRange(cards);
+    }
+
+    public int GetSerifBonusPower(List<Card> selectedCards)
+    {
+        return GetSerifBonusPower(selectedCards, _serifToCardList.SerifToCards.Where(x => x.IsForSerifID(_currentSerif.SerifID)).ToList(), _battleSettings.SerifBonusPower, _battleSettings.DrawCount);
+    }
+
+    public int GetSerifBonusPower(Serif serif, List<Card> selectedCards)
+    {
+        return GetSerifBonusPower(selectedCards, _serifToCardList.SerifToCards.Where(x => x.IsForSerifID(serif.SerifID)).ToList(), _battleSettings.SerifBonusPower, _battleSettings.DrawCount);
+    }
+
+    private int GetSerifBonusPower(List<Card> selectedCards, List<SerifToCard> serifToCards, int serifBonusPower, int drawCount)
     {
         List<bool> conditionMets = new List<bool>();
 
@@ -74,11 +140,24 @@ public class BattleCore
         return conditionMets.Count(x => x) >= count ? serifBonusPower : 0;
     }
 
-    public int GetComboBonusPower(Card cardFrom, Card cardTo, CardComboList cardComboList)
+    // public int GetComboBonusPower(List<Card> selectedCards)
+    // {
+    //     int bonusPower = 0;
+    //     foreach (var cardFrom in selectedCards)
+    //     {
+    //         foreach (var cardTo in selectedCards)
+    //         {
+    //             bonusPower += GetComboBonusPower(cardFrom, cardTo);
+    //         }
+    //     }
+    //     return bonusPower;
+    // }
+
+    public int GetComboBonusPower(Card cardFrom, Card cardTo)
     {
         List<CardCombo> combos = new List<CardCombo>();
-        combos.AddRange(cardComboList.CardCombos.Where(x => x.CardID_From == cardFrom.CardID && x.CardID_To == cardTo.CardID));
-        combos.AddRange(cardComboList.CardCombos.Where(x => x.CardID_From == cardTo.CardID && x.CardID_To == cardFrom.CardID));
+        combos.AddRange(_cardComboList.CardCombos.Where(x => x.CardID_From == cardFrom.CardID && x.CardID_To == cardTo.CardID));
+        combos.AddRange(_cardComboList.CardCombos.Where(x => x.CardID_From == cardTo.CardID && x.CardID_To == cardFrom.CardID));
         int bonusPower = combos.Sum(x => x.Bonus);
         return bonusPower;
     }

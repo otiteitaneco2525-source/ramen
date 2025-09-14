@@ -79,10 +79,10 @@ public class BattlePresenter : IStartable, ITickable
             _deckCards.Add(_deckView.CreateCard());
         }
 
-        foreach (var card in _deckCards)
+        foreach (var cardView in _deckCards)
         {
-            card.OnCardSelected = OnCardSelected;
-            card.OnCardDeselected = OnCardDeselected;
+            cardView.OnCardSelected = OnCardSelected;
+            cardView.OnCardDeselected = OnCardDeselected;
         }
 
         _deckView.SetDeckCount(_deckCards.Count);
