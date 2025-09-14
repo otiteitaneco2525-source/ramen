@@ -108,30 +108,32 @@ public class RemenTest
             }
         }
 
-
-        // var combos = cardComboList.GetCombosByCardId("1");
-        // foreach (var cmd in cardComboList.CardCombos)
-        // {
-        //     int bonusPower = 0;
-        //     if (cmd.Option == CardComboType.None)
-        //     {
-        //         var selectedCards = cardList.Cards.Where(x => x.CardID == cmd.CardID_From || x.CardID == cmd.CardID_To).ToList();
-        //         bonusPower = battleCore.GetComboBonusPower(selectedCards, cardComboList);
-        //     }
-        //     else if (cmd.Option == CardComboType.OtherThan)
-        //     {
-        //         var selectedCards = cardList.Cards.Where(x => x.CardID == cmd.CardID_From || x.CardID == cmd.CardID_To).ToList();
-        //         bonusPower = battleCore.GetComboBonusPower(selectedCards, cardComboList);
-        //     }
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "12", "1", "3" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("1")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "2", "4", "6" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("2")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "18", "4" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("3")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "3", "5" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("4")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "3", "5", "7" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("5")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "6", "2", "1" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("6")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "13", "17", "6" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("7")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
 
 
-        //     Debug.Log($"コンボ: {cmd.CardID_From_Name}({cmd.CardID_From}) + {cmd.CardID_To_Name}({cmd.CardID_To}) = {bonusPower} ({cmd.Option})");
-        //     Assert.AreEqual(cmd.Bonus, bonusPower);
-        // }
 
+        Assert.AreNotSame(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("1")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
+        Assert.AreNotSame(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("2")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
+        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("3")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
+        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("4")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
+        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("5")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
+        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("6")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
+        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList), serifToCardList.SerifToCards.Where(x => x.IsForSerifID("7")).ToList(), battleSettings.SerifBonusPower, battleSettings.DrawCount));
 
         // リソースを解放
         Addressables.Release(cardList);
+    }
+
+
+    private List<Card> GetCardList(string[] cardIDs, CardList cardList)
+    {
+        return cardList.Cards.Where(x => cardIDs.Contains(x.CardID)).ToList();
     }
 
     private T LoadAsset<T>(string assetPath) where T : Object

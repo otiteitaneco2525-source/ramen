@@ -60,39 +60,18 @@ public class BattleCore
         return result;
     }
 
-    /// <summary>
-    /// 選択されたカードが条件に一致するかチェック
-    /// </summary>
-    /// <param name="selectedCards">選択されたカード</param>
-    /// <param name="serifToCards">セリフに対応するカード条件</param>
-    /// <returns>すべての条件に一致する場合true</returns>
-    public bool CheckCardSelectionValidity(List<Card> selectedCards, List<SerifToCard> serifToCards)
+    public int GetSerifBonusPower(List<Card> selectedCards, List<SerifToCard> serifToCards, int serifBonusPower, int drawCount)
     {
-        // 選択されたカードのIDリスト
-        var selectedCardIds = selectedCards.Select(card => card.CardID).ToList();
-
         List<bool> conditionMets = new List<bool>();
 
-        // 各条件をチェック
-        foreach (var serifToCard in serifToCards)
-        {
-            bool conditionMet = false;
-            
-            if (serifToCard.Option == SerifToCardType.None)
-            {
-                // Noneの場合：選択されたカードに指定されたカードIDが含まれているかチェック
-                conditionMet = selectedCardIds.Contains(serifToCard.CardID);
-            }
-            else if (serifToCard.Option == SerifToCardType.OtherThan)
-            {
-                // OtherThanの場合：選択されたカードに指定されたカードIDが含まれていないかチェック
-                conditionMet = !selectedCardIds.Contains(serifToCard.CardID);
-            }
+        int count = serifToCards.Count() > drawCount ? drawCount : serifToCards.Count();
 
-            conditionMets.Add(conditionMet);
+        foreach (var card in selectedCards)
+        {
+            conditionMets.Add(serifToCards.Where(x => x.IsForCardID(card.CardID)).Count() > 0);
         }
 
-        return conditionMets.Count(x => x) == conditionMets.Count;
+        return conditionMets.Count(x => x) >= count ? serifBonusPower : 0;
     }
 
     public int GetComboBonusPower(Card cardFrom, Card cardTo, CardComboList cardComboList)
