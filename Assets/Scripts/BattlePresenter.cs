@@ -35,15 +35,9 @@ public class BattlePresenter : IStartable, ITickable
     [Inject]
     private readonly IBattleUiView _battleUiView;
 
-    private readonly List<CardView> _deckCards = new List<CardView>();
-    private readonly List<CardView> _handCards = new List<CardView>();
-    private readonly List<CardView> _selectedCards = new List<CardView>();
-    private readonly List<CardView> _discardCards = new List<CardView>();
+    private readonly List<CardView> _cardViewList = new List<CardView>();
 
-    // CardTypeごとのカードデータ配列
-    private readonly Dictionary<CardType, List<Card>> _cardsByType = new Dictionary<CardType, List<Card>>();
-
-    private Serif _serif;
+    private BattleCore _battleCore;
 
     public void Start()
     {
@@ -53,42 +47,23 @@ public class BattlePresenter : IStartable, ITickable
         _battleSystem.OnIsEnemyWin = IsEnemyWin;
         _deckView.Initialize();
 
-        // CardTypeごとに最大2つかつランダムで2つカードデータを取得して配列に格納
-        CardType[] cardTypes = Enum.GetValues(typeof(CardType)).Cast<CardType>().ToArray();
-        foreach (var cardType in cardTypes)
+        _battleCore = new BattleCore(_cardList, _battleSettings, _cardComboList, _serifList, _serifToCardList);
+        _battleCore.DealCards();
+
+        for (int i = 0; i < _battleCore.DeckCards.Count; i++)
         {
-            var cardList = _cardList.GetCardsByType(cardType);
-            if (cardList != null && cardList.Count > 0)
-            {
-                // 最大2つまで取得し、ランダムに選択
-                int count = Mathf.Min(2, cardList.Count);
-                var shuffledCardList = cardList.OrderBy(x => UnityEngine.Random.value).Take(count).ToList();
-                _cardsByType[cardType] = shuffledCardList;
-                
-                Debug.Log($"{cardType}タイプのカードを{count}枚ランダムに取得しました");
-            }
-            else
-            {
-                _cardsByType[cardType] = new List<Card>();
-                Debug.LogWarning($"{cardType}タイプのカードが見つかりませんでした");
-            }
+            _cardViewList.Add(_deckView.CreateCard(_handView.GetTransform()));
         }
 
-        for (int i = 0; i < 6; i++)
-        {
-            _deckCards.Add(_deckView.CreateCard());
-        }
-
-        foreach (var cardView in _deckCards)
+        foreach (var cardView in _cardViewList)
         {
             cardView.OnCardSelected = OnCardSelected;
             cardView.OnCardDeselected = OnCardDeselected;
         }
 
-        _deckView.SetDeckCount(_deckCards.Count);
-        _discardView.SetDiscardCount(_discardCards.Count);
+        _deckView.SetDeckCount(_battleCore.DeckCards.Count);
+        _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
         _heroView.SetHp(_battleSettings.HeroHp);
-
 
         _enemyView.SetStatus(_enemyList.GetEnemyByID(1));
 
@@ -109,78 +84,67 @@ public class BattlePresenter : IStartable, ITickable
 
     private void OnDrawCard()
     {
-        if (_deckCards.Count < _battleSettings.DrawCount)
+        _battleCore.DrawCards();
+
+        Debug.Log("OnDrawCard: " + _battleCore.HandCards.Count);
+
+        foreach (var cardView in _cardViewList)
         {
-            var cardsToMove = _discardCards.ToArray();
-            foreach (var card in cardsToMove)
-            {
-                _deckCards.Add(card);
-                _discardCards.Remove(card);
-                card.SetWaitState();
-            }
-            _discardView.SetDiscardCount(_discardCards.Count);
+            cardView.SetCardData(null);
+            cardView.SetInDiscard();
+            cardView.SetWaitState();
         }
 
-        // CardTypeごとに1枚ずつ合計3枚のカードを引く
-        CardType[] cardTypes = Enum.GetValues(typeof(CardType)).Cast<CardType>().ToArray();
-        foreach (var cardType in cardTypes)
+        foreach (var card in _battleCore.HandCards)
         {
-            // デッキにカードがない場合は処理を終了
-            if (_deckCards.Count == 0) break;
+            var cardView = _cardViewList.FirstOrDefault(x => x.CardData == null);
 
-            // _cardsByTypeから選択されたカードタイプのカードを取得
-            if (_cardsByType.ContainsKey(cardType) && _cardsByType[cardType].Count > 0)
+            if (cardView == null)
             {
-                // ランダムにカードを選択
-                var availableCards = _cardsByType[cardType];
-                Card selectedCard = availableCards[UnityEngine.Random.Range(0, availableCards.Count)];
-                
-                // デッキからカードビューを取得
-                CardView cardView = _deckView.Draw(_deckCards);
-                
-                // カードデータを設定
-                cardView.SetCardData(selectedCard);
-                
-                // 手札に追加
-                _handCards.Add(cardView);
-                _handView.AddCard(cardView);
-                cardView.SetInHand();
-                cardView.SetWaitState();
-                
-                Debug.Log($"カードを引きました: {selectedCard.Name} ({cardType})");
+                continue;
             }
+
+            cardView.SetCardData(card);
+            cardView.SetInHand();
+            cardView.SetWaitState();
         }
-        
-        _handView.ArrangeCards(_handCards);
-        _deckView.SetDeckCount(_deckCards.Count);
+
+        _handView.ArrangeCards(_cardViewList);
+        _deckView.SetDeckCount(_battleCore.DeckCards.Count);
+        _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
     }
 
     private void OnCardSelected(CardView card)
     {
-        _selectedCards.Add(card);
+        _battleCore.SelectedCards.Add(card.CardData);
 
-        Debug.Log("OnCardSelected: " + _selectedCards.Count);
+        Debug.Log("OnCardSelected: " + _battleCore.SelectedCards.Count);
 
-        if (_selectedCards.Count == 3)
+        if (_battleCore.SelectedCards.Count == 3)
         {
             OnPlayerAttack();
         }
     }
 
+    private void OnCardDeselected(CardView card)
+    {
+        _battleCore.SelectedCards.Remove(card.CardData);
+    }
+
     private void OnPlayerAttack()
     {
-        var currentSerifToCards = _serifToCardList.SerifToCards.Where(x => x.SelfID == _serif.SerifID).ToList();
+        var currentSerifToCards = _serifToCardList.SerifToCards.Where(x => x.SelfID == _battleCore.CurrentSerif.SerifID).ToList();
 
-        // 選択されたカードが条件に一致するかチェック
-        bool isCardSelectionValid = CheckCardSelectionValidity(_selectedCards, currentSerifToCards);
+        var attackPower = _battleCore.SelectedCards.Sum(x => x.Power);
 
-        var attackPower = _selectedCards.Sum(x => x.CardData.Power);
-        
-        if (isCardSelectionValid)
+        attackPower += _battleCore.GetSerifBonusPower(_battleCore.SelectedCards);
+
+        foreach (var cardFrom in _battleCore.SelectedCards)
         {
-            // 条件に一致した場合の処理
-            attackPower += _battleSettings.SerifBonusPower;
-            Debug.Log("カード選択が条件に一致しました。");
+            foreach (var cardTo in _battleCore.SelectedCards)
+            {
+                attackPower += _battleCore.GetComboBonusPower(cardFrom, cardTo);
+            }
         }
 
         _enemyView.Damage(attackPower);
@@ -188,87 +152,28 @@ public class BattlePresenter : IStartable, ITickable
         Debug.Log("攻撃力: " + attackPower);
 
         // 自分の手札を削除
-        var selectedCardsToProcess = _selectedCards.ToArray();
-        foreach (var selectedCard in selectedCardsToProcess)
+        foreach (var selectedCard in _battleCore.SelectedCards)
         {
-            _handCards.Remove(selectedCard);
-            _handView.RemoveCard(selectedCard);
-            _discardCards.Add(selectedCard);
-            selectedCard.SetInDiscard();
+            var cardView = _cardViewList.FirstOrDefault(x => x.CardData == selectedCard);
+
+            if (cardView == null)
+            {
+                continue;
+            }
+
+            cardView.SetCardData(null);
+            cardView.SetInDiscard();
+            cardView.SetWaitState();
+            _battleCore.HandCards.Remove(selectedCard);
         }
-        _selectedCards.Clear();
-        _discardView.SetDiscardCount(_discardCards.Count);
-        _handView.ArrangeCards(_handCards);
+
+        _battleCore.MoveCardsToDiscard();
+
+        _deckView.SetDeckCount(_battleCore.DeckCards.Count);
+        _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
+        _handView.ArrangeCards(_cardViewList);
 
         _battleSystem.ChangeState(_battleSystem.PlayerAttackState);
-    }
-
-    /// <summary>
-    /// 選択されたカードが条件に一致するかチェック
-    /// </summary>
-    /// <param name="selectedCards">選択されたカード</param>
-    /// <param name="serifToCards">セリフに対応するカード条件</param>
-    /// <returns>すべての条件に一致する場合true</returns>
-    private bool CheckCardSelectionValidity(List<CardView> selectedCards, List<SerifToCard> serifToCards)
-    {
-        if (serifToCards.Count == 0)
-        {
-            Debug.LogWarning("セリフに対応するカード条件が見つかりませんでした。");
-            return false;
-        }
-
-        // 選択されたカードのIDリスト
-        var selectedCardIds = selectedCards.Select(card => card.CardData.CardID).ToList();
-
-        List<bool> conditionMets = new List<bool>();
-
-        // 各条件をチェック
-        foreach (var serifToCard in serifToCards)
-        {
-            bool conditionMet = false;
-            
-            if (serifToCard.Option == SerifToCardType.None)
-            {
-                // Noneの場合：選択されたカードに指定されたカードIDが含まれているかチェック
-                conditionMet = selectedCardIds.Contains(serifToCard.CardID);
-            }
-            else if (serifToCard.Option == SerifToCardType.OtherThan)
-            {
-                // OtherThanの場合：選択されたカードに指定されたカードIDが含まれていないかチェック
-                conditionMet = !selectedCardIds.Contains(serifToCard.CardID);
-            }
-
-            conditionMets.Add(conditionMet);
-        }
-
-        return conditionMets.Count(x => x) == conditionMets.Count;
-    }
-
-    private int GetComboBonusPower(List<CardView> selectedCards)
-    {
-        int bonusPower = 0;
-
-        foreach (var cardFrom in selectedCards)
-        {
-            var combos = _cardComboList.GetCombosByCardId(cardFrom.CardData.CardID);
-
-            foreach (var cardTo in selectedCards)
-            {
-                foreach (var combo in combos)
-                {
-                    if (combo.CardID_To == cardTo.CardData.CardID)
-                    {
-                        bonusPower += combo.Bonus;
-                    }
-                    else if (combo.Option == CardComboType.OtherThan)
-                    {
-                        bonusPower += combo.Bonus;
-                    }
-                }
-            }
-        }
-
-        return bonusPower;
     }
 
     private bool IsPlayerWin()
@@ -281,18 +186,13 @@ public class BattlePresenter : IStartable, ITickable
         return _heroView.GetHp() <= 0;
     }
 
-    private void OnCardDeselected(CardView card)
-    {
-        _selectedCards.Remove(card);
-    }
-
     private void OnSkipButtonClicked()
     {
         if (_battleSystem.CurrentState is BattleCardSelectionState)
         {
-            foreach (var card in _selectedCards)
+            foreach (var cardView in _cardViewList)
             {
-                card.SetWaitState();
+                cardView.SetWaitState();
             }
 
             _battleSystem.ChangeState(_battleSystem.EnemyAttackState);
@@ -307,7 +207,7 @@ public class BattlePresenter : IStartable, ITickable
     private void OnSetup()
     {
         // セリフを取得
-        _serif = _serifList.GetRandomNormalBattleSerif();
-        _enemyView.SetSerif(_serif);
+        _battleCore.SetCurrentSerif(_serifList.GetRandomNormalBattleSerif());
+        _enemyView.SetSerif(_battleCore.CurrentSerif);
     }
 }

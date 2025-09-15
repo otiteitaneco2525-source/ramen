@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public interface IHandView
 {
     void AddCard(CardView card);
     void RemoveCard(CardView card);
     void ArrangeCards(List<CardView> cards);
+    Transform GetTransform();
 }
 
 public sealed class HandView : MonoBehaviour, IHandView
@@ -24,13 +26,20 @@ public sealed class HandView : MonoBehaviour, IHandView
 
     public void ArrangeCards(List<CardView> cards)
     {
-        float totalWidth = (cards.Count - 1) * _cardSpacing;
+        var activeCards = cards.Where(x => x.gameObject.activeSelf).ToList();
+
+        float totalWidth = (activeCards.Count - 1) * _cardSpacing;
         float startX = -totalWidth / 2f;
 
-        for (int i = 0; i < cards.Count; i++)
+        for (int i = 0; i < activeCards.Count; i++)
         {
             Vector2 targetPos = new Vector2(startX + i * _cardSpacing, 0f);
-            cards[i].GetComponent<RectTransform>().anchoredPosition = targetPos;
+            activeCards[i].GetComponent<RectTransform>().anchoredPosition = targetPos;
         }
+    }
+
+    public Transform GetTransform()
+    {
+        return transform;
     }
 }

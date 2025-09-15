@@ -8,10 +8,11 @@ public sealed class BattleCore
 {
     private readonly List<Card> _deckCards = new List<Card>();
     private readonly List<Card> _handCards = new List<Card>();
+    private readonly List<Card> _selectedCards = new List<Card>();
     private readonly List<Card> _discardCards = new List<Card>();
-
     public List<Card> DeckCards => _deckCards;
     public List<Card> HandCards => _handCards;
+    public List<Card> SelectedCards => _selectedCards;
     public List<Card> DiscardCards => _discardCards;
 
     private readonly CardList _cardList;
@@ -88,6 +89,11 @@ public sealed class BattleCore
             _discardCards.Clear();
         }
 
+        if (_deckCards.Count == 0)
+        {
+            return;
+        }
+
         _handCards.AddRange(DrawCards(_deckCards));
     }
 
@@ -109,6 +115,12 @@ public sealed class BattleCore
         cards.RemoveAll(x => result.Contains(x));
 
         return result;
+    }
+
+    public void MoveCardsToDiscard()
+    {
+        _discardCards.AddRange(_selectedCards);
+        _selectedCards.Clear();
     }
 
     public void SetDiscardCards(List<Card> cards)

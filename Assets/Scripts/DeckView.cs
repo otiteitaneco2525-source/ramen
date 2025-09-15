@@ -5,7 +5,7 @@ using TMPro;
 
 public interface IDeckView : IInitializable
 {
-    CardView CreateCard();
+    CardView CreateCard(Transform parent);
     CardView Draw(List<CardView> cards);
     void SetDeckCount(int count);
 }
@@ -32,9 +32,9 @@ public sealed class DeckView : MonoBehaviour, IDeckView
         _deckCountText.text = count.ToString();
     }
 
-    public CardView CreateCard()
+    public CardView CreateCard(Transform parent)
     {
-        CardView cardView = Instantiate(_cardViewPrefab, transform);
+        CardView cardView = Instantiate(_cardViewPrefab, parent);
         cardView.gameObject.SetActive(false);
         return cardView;
     }  
