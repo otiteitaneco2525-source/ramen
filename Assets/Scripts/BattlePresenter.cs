@@ -195,6 +195,8 @@ public class BattlePresenter : IStartable, ITickable
                 cardView.SetWaitState();
             }
 
+            _battleCore.SelectedCards.Clear();
+
             _battleSystem.ChangeState(_battleSystem.EnemyAttackState);
         }
     }
