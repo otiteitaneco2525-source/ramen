@@ -105,24 +105,36 @@ public class RemenTest
             }
         }
 
-        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("1"), GetCardList(new string[] { "12", "1", "3" }, cardList)));
-        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("2"), GetCardList(new string[] { "2", "4", "6" }, cardList)));
-        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("3"), GetCardList(new string[] { "18", "4" }, cardList)));
-        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("4"), GetCardList(new string[] { "1", "3", "5" }, cardList)));
-        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("5"), GetCardList(new string[] { "3", "5", "7" }, cardList)));
-        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("6"), GetCardList(new string[] { "6", "2", "1" }, cardList)));
-        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("7"), GetCardList(new string[] { "13", "17", "6" }, cardList)));
+        battleCore.SetCurrentSerif(serifList.GetSerifByID("1"));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "12", "1", "3" }, cardList)));
+        battleCore.SetCurrentSerif(serifList.GetSerifByID("2"));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "2", "4", "6" }, cardList)));
+        battleCore.SetCurrentSerif(serifList.GetSerifByID("3"));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "18", "4" }, cardList)));
+        battleCore.SetCurrentSerif(serifList.GetSerifByID("4"));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "3", "5" }, cardList)));
+        battleCore.SetCurrentSerif(serifList.GetSerifByID("5"));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "3", "5", "7" }, cardList)));
+        battleCore.SetCurrentSerif(serifList.GetSerifByID("6"));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "6", "2", "1" }, cardList)));
+        battleCore.SetCurrentSerif(serifList.GetSerifByID("7"));
+        Assert.AreEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "13", "17", "6" }, cardList)));
 
-
-
-        Assert.AreNotSame(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("1"), GetCardList(new string[] { "1", "2", "3" }, cardList)));
-        Assert.AreNotSame(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("2"), GetCardList(new string[] { "1", "2", "3" }, cardList)));
-        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("3"), GetCardList(new string[] { "1", "2", "3" }, cardList)));
-        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("4"), GetCardList(new string[] { "1", "2", "3" }, cardList)));
-        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("5"), GetCardList(new string[] { "1", "2", "3" }, cardList)));
-        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("6"), GetCardList(new string[] { "1", "2", "3" }, cardList)));
-        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(serifList.GetSerifByID("7"), GetCardList(new string[] { "1", "2", "3" }, cardList)));
-
+        battleCore.SetCurrentSerif(serifList.GetSerifByID("1"));
+        Assert.AreNotSame(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList)));
+        battleCore.SetCurrentSerif(serifList.GetSerifByID("2"));
+        Assert.AreNotSame(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList)));
+        battleCore.SetCurrentSerif(serifList.GetSerifByID("3"));
+        Assert.AreNotSame(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList)));
+        battleCore.SetCurrentSerif(serifList.GetSerifByID("4"));
+        Assert.AreNotSame(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList)));
+        battleCore.SetCurrentSerif(serifList.GetSerifByID("5"));
+        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList)));
+        battleCore.SetCurrentSerif(serifList.GetSerifByID("6"));
+        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList)));
+        battleCore.SetCurrentSerif(serifList.GetSerifByID("7"));
+        Assert.AreNotEqual(battleSettings.SerifBonusPower, battleCore.GetSerifBonusPower(GetCardList(new string[] { "1", "2", "3" }, cardList)));
+        
         // リソースを解放
         Addressables.Release(cardList);
     }

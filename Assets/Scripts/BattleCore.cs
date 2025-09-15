@@ -121,11 +121,6 @@ public sealed class BattleCore
         return GetSerifBonusPower(selectedCards, _serifToCardList.SerifToCards.Where(x => x.IsForSerifID(_currentSerif.SerifID)).ToList(), _battleSettings.SerifBonusPower, _battleSettings.DrawCount);
     }
 
-    public int GetSerifBonusPower(Serif serif, List<Card> selectedCards)
-    {
-        return GetSerifBonusPower(selectedCards, _serifToCardList.SerifToCards.Where(x => x.IsForSerifID(serif.SerifID)).ToList(), _battleSettings.SerifBonusPower, _battleSettings.DrawCount);
-    }
-
     private int GetSerifBonusPower(List<Card> selectedCards, List<SerifToCard> serifToCards, int serifBonusPower, int drawCount)
     {
         List<bool> conditionMets = new List<bool>();
@@ -139,19 +134,6 @@ public sealed class BattleCore
 
         return conditionMets.Count(x => x) >= count ? serifBonusPower : 0;
     }
-
-    // public int GetComboBonusPower(List<Card> selectedCards)
-    // {
-    //     int bonusPower = 0;
-    //     foreach (var cardFrom in selectedCards)
-    //     {
-    //         foreach (var cardTo in selectedCards)
-    //         {
-    //             bonusPower += GetComboBonusPower(cardFrom, cardTo);
-    //         }
-    //     }
-    //     return bonusPower;
-    // }
 
     public int GetComboBonusPower(Card cardFrom, Card cardTo)
     {
