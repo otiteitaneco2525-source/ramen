@@ -20,12 +20,7 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     // カードデータ
     public Card CardData { get; private set; }
-
-    // カードの状態管理プロパティ
-    public bool IsInDeck { get; private set; }
-    public bool IsInHand { get; private set; }
-    public bool IsInDiscard { get; private set; }
-
+    public bool Visible { get { return gameObject.activeSelf; } set { gameObject.SetActive(value); } }
     public UnityAction<CardView> OnCardSelected;
     public UnityAction<CardView> OnCardDeselected;
 
@@ -58,55 +53,19 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
-    /// <summary>
-    /// デッキに配置
-    /// </summary>
-    public void SetInDeck()
+    public void SetIdelState()
     {
-        IsInDeck = true;
-        IsInHand = false;
-        IsInDiscard = false;
-        gameObject.SetActive(false); // デッキ内のカードは非表示
-    }
-
-    /// <summary>
-    /// 手札に配置
-    /// </summary>
-    public void SetInHand()
-    {
-        IsInDeck = false;
-        IsInHand = true;
-        IsInDiscard = false;
-        gameObject.SetActive(true);
-    }
-
-    /// <summary>
-    /// 破棄札に配置
-    /// </summary>
-    public void SetInDiscard()
-    {
-        IsInDeck = false;
-        IsInHand = false;
-        IsInDiscard = true;
-        SetWaitState();
-        gameObject.SetActive(false); // 破棄札のカードは非表示
-    }
-
-    /// <summary>
-    /// 現在の状態を取得
-    /// </summary>
-    /// <returns>カードの現在の状態</returns>
-    public string GetCurrentLocation()
-    {
-        if (IsInDeck) return "デッキ";
-        if (IsInHand) return "手札";
-        if (IsInDiscard) return "破棄札";
-        return "不明";
+        ChangeState(IdelState);
     }
 
     public void SetWaitState()
     {
+        var position = transform.localPosition;
+        position.y = 0;
+        transform.localPosition = position;
+
         transform.localScale = Vector3.one;
+
         ChangeState(WaitState);
     }
 

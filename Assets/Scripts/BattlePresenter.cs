@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Ramen.Data;
 using System.Linq;
 using System;
+using Cysharp.Threading.Tasks;
 
 public class BattlePresenter : IStartable, ITickable
 {
@@ -91,7 +92,7 @@ public class BattlePresenter : IStartable, ITickable
         foreach (var cardView in _cardViewList)
         {
             cardView.SetCardData(null);
-            cardView.SetInDiscard();
+            cardView.Visible = false;
             cardView.SetWaitState();
         }
 
@@ -105,7 +106,7 @@ public class BattlePresenter : IStartable, ITickable
             }
 
             cardView.SetCardData(card);
-            cardView.SetInHand();
+            cardView.Visible = true;
             cardView.SetWaitState();
         }
 
@@ -131,8 +132,22 @@ public class BattlePresenter : IStartable, ITickable
         _battleCore.SelectedCards.Remove(card.CardData);
     }
 
-    private void OnPlayerAttack()
+    private async void OnPlayerAttack()
     {
+        foreach (var selectedCard in _battleCore.SelectedCards)
+        {
+            var cardView = _cardViewList.FirstOrDefault(x => x.CardData == selectedCard);
+
+            if (cardView == null)
+            {
+                continue;
+            }
+
+            cardView.SetIdelState();
+        }
+
+        await UniTask.Delay(500);
+
         var currentSerifToCards = _serifToCardList.SerifToCards.Where(x => x.SelfID == _battleCore.CurrentSerif.SerifID).ToList();
 
         var attackPower = _battleCore.SelectedCards.Sum(x => x.Power);
@@ -162,7 +177,7 @@ public class BattlePresenter : IStartable, ITickable
             }
 
             cardView.SetCardData(null);
-            cardView.SetInDiscard();
+            cardView.Visible = false;
             cardView.SetWaitState();
             _battleCore.HandCards.Remove(selectedCard);
         }
