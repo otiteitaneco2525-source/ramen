@@ -11,6 +11,7 @@ public interface IEnemyView
     void SetStatus(Enemy enemy);
     int GetAttackPower();
     void SetSerif(Serif serif);
+    Transform GetTransform();
 }
 
 public class EnemyView : MonoBehaviour, IEnemyView
@@ -31,7 +32,7 @@ public class EnemyView : MonoBehaviour, IEnemyView
         _hpSlider.value = _hp;
 
         // 自身を揺らしたい
-        transform.DOShakePosition(0.3f, 10f, 10, 90f, false, true);
+        //transform.DOShakePosition(0.3f, 10f, 10, 90f, false, true);
 
         if (_hp <= 0)
         {
@@ -58,5 +59,10 @@ public class EnemyView : MonoBehaviour, IEnemyView
     public void SetSerif(Serif serif)
     {
         _serifText.text = serif.SerifName;
+    }
+
+    public Transform GetTransform()
+    {
+        return transform;
     }
 }

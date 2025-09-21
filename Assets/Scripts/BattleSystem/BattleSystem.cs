@@ -1,6 +1,7 @@
 ﻿using VContainer.Unity;
 using UnityEngine.Events;
 using System;
+using Cysharp.Threading.Tasks;
 
 public sealed class BattleSystem : IInitializable
 {
@@ -25,8 +26,8 @@ public sealed class BattleSystem : IInitializable
     public UnityAction OnDrawCard;
     public Func<bool> OnIsPlayerWin;
     public Func<bool> OnIsEnemyWin;
-    public UnityAction OnEnemyAttack;
     public UnityAction OnSetup;
+    public Func<UniTask> OnPlayerAttack;
 
     public bool IsPlayerWin()
     {

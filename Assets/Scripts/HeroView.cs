@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
 public interface IHeroView
 {
     void SetHp(int value);
     void Damage(int value);
     int GetHp();
+    Transform GetTransform();
 }
 
 public class HeroView : MonoBehaviour, IHeroView
@@ -31,9 +31,6 @@ public class HeroView : MonoBehaviour, IHeroView
         _hp -= value;
         _hpSlider.value = _hp;
 
-        // 自身を揺らしたい
-        transform.DOShakePosition(0.3f, 10f, 10, 90f, false, true);
-
         if (_hp <= 0)
         {
             _hp = 0;
@@ -41,5 +38,10 @@ public class HeroView : MonoBehaviour, IHeroView
             Debug.Log("HeroObjがやられた");
             // Destroy(gameObject);
         }
+    }
+
+    public Transform GetTransform()
+    {
+        return transform;
     }
 }

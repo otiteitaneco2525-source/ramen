@@ -6,6 +6,8 @@ using Ramen.Data;
 using System.Linq;
 using System;
 using Cysharp.Threading.Tasks;
+using LitMotion;
+using LitMotion.Extensions;
 
 public class BattlePresenter : IStartable, ITickable
 {
@@ -72,8 +74,8 @@ public class BattlePresenter : IStartable, ITickable
 
         _battleUiView.OnSkipButtonClicked = OnSkipButtonClicked;
 
-        _battleSystem.OnEnemyAttack = OnEnemyAttack;
         _battleSystem.OnSetup = OnSetup;
+        _battleSystem.OnPlayerAttack = OnPlayerAttack;
 
         _battleSystem.ChangeState(_battleSystem.SetupState);
     }
@@ -123,7 +125,7 @@ public class BattlePresenter : IStartable, ITickable
 
         if (_battleCore.SelectedCards.Count == 3)
         {
-            OnPlayerAttack();
+            _battleSystem.ChangeState(_battleSystem.PlayerAttackState);
         }
     }
 
@@ -132,7 +134,7 @@ public class BattlePresenter : IStartable, ITickable
         _battleCore.SelectedCards.Remove(card.CardData);
     }
 
-    private async void OnPlayerAttack()
+    private async UniTask OnPlayerAttack()
     {
         foreach (var selectedCard in _battleCore.SelectedCards)
         {
@@ -146,7 +148,7 @@ public class BattlePresenter : IStartable, ITickable
             cardView.SetIdelState();
         }
 
-        await UniTask.Delay(500);
+        // await UniTask.Delay(500);
 
         var currentSerifToCards = _serifToCardList.SerifToCards.Where(x => x.SelfID == _battleCore.CurrentSerif.SerifID).ToList();
 
@@ -162,9 +164,48 @@ public class BattlePresenter : IStartable, ITickable
             }
         }
 
+        if (attackPower <= 0)
+        {
+            attackPower = 0;
+        }
+
+        Vector3 startPos = _heroView.GetTransform().position;
+        Vector3 endPos = _heroView.GetTransform().position + new Vector3(-1.5f, 0, 0);
+        await LMotion.Create(startPos, endPos, 0.15f).WithEase(Ease.Linear).BindToPosition(_heroView.GetTransform());
+
+        await UniTask.Delay(250);
+
         _enemyView.Damage(attackPower);
 
-        Debug.Log("攻撃力: " + attackPower);
+        await LMotion.Shake.Create(_enemyView.GetTransform().position, new Vector3(0.5f, 0.5f, 0f), 0.15f)
+            .WithFrequency(4)
+            .WithDampingRatio(0f)
+            .WithRandomSeed(180)
+            .BindToPosition(_enemyView.GetTransform());
+
+        await LMotion.Create(endPos, startPos, 0.15f).WithEase(Ease.Linear).BindToPosition(_heroView.GetTransform());
+
+        await UniTask.Delay(500);
+
+        _battleSystem.ChangeState(_battleSystem.EnemyAttackState);
+
+        startPos = _enemyView.GetTransform().position;
+        endPos = _enemyView.GetTransform().position + new Vector3(1.5f, 0, 0);
+        await LMotion.Create(startPos, endPos, 0.15f).WithEase(Ease.Linear).BindToPosition(_enemyView.GetTransform());
+
+        await UniTask.Delay(250);
+
+        await LMotion.Create(endPos, startPos, 0.15f).WithEase(Ease.Linear).BindToPosition(_enemyView.GetTransform());
+
+        _heroView.Damage(_enemyView.GetAttackPower());
+
+        await LMotion.Shake.Create(_heroView.GetTransform().position, new Vector3(0.5f, 0.5f, 0f), 0.15f)
+            .WithFrequency(4)
+            .WithDampingRatio(0f)
+            .WithRandomSeed(180)
+            .BindToPosition(_heroView.GetTransform());
+
+        // Debug.Log("攻撃力: " + attackPower);
 
         // 自分の手札を削除
         foreach (var selectedCard in _battleCore.SelectedCards)
@@ -188,7 +229,7 @@ public class BattlePresenter : IStartable, ITickable
         _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
         _handView.ArrangeCards(_cardViewList);
 
-        _battleSystem.ChangeState(_battleSystem.PlayerAttackState);
+        _battleSystem.ChangeState(_battleSystem.SetupState);
     }
 
     private bool IsPlayerWin()
@@ -214,11 +255,6 @@ public class BattlePresenter : IStartable, ITickable
 
             _battleSystem.ChangeState(_battleSystem.EnemyAttackState);
         }
-    }
-
-    private void OnEnemyAttack()
-    {
-        _heroView.Damage(_enemyView.GetAttackPower());
     }
 
     private void OnSetup()
