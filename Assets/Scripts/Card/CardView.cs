@@ -10,6 +10,7 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField] TextMeshProUGUI _nameText;
     [SerializeField] Image _icon;
     [SerializeField] TextMeshProUGUI _costText;
+    [SerializeField] private RectTransform _rectTransform;
 
     private CardStateBase _currentState;
     public CardWaitState WaitState { get; private set; }
@@ -23,6 +24,9 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public bool Visible { get { return gameObject.activeSelf; } set { gameObject.SetActive(value); } }
     public UnityAction<CardView> OnCardSelected;
     public UnityAction<CardView> OnCardDeselected;
+    public float CardWidth => _rectTransform.rect.width;
+    public float CardHeight => _rectTransform.rect.height;
+    public RectTransform RectTransform => _rectTransform;
 
     /// <summary>
     /// カードデータを設定
