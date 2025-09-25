@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using LitMotion;
 using LitMotion.Extensions;
 using System.Collections.Generic;
+using System.Linq;
 
 public class TestMoveManager : MonoBehaviour
 {
@@ -27,38 +28,73 @@ public class TestMoveManager : MonoBehaviour
 
     [SerializeField] private LitMotion.Ease _ease;
 
+    [SerializeField] private int _maxCardCount;
+
     [SerializeField] private int _drawCardCount;
 
+    [SerializeField] private Button _drawButton;
+
     private readonly List<CardView> _cardViewList = new List<CardView>();
-    
-    async UniTask Start()
+
+    void Start()
     {
         Vector2 logicalCanvasSize = GetLogicalCanvasSize(_canvas);
 
-        CreateCard(_drawCardCount);
+        CreateCard(_maxCardCount);
         
         // カードの幅を取得（最初のカードから）
         Vector2 cardSize = GetCardSize();
         
-        // 全カードの総幅を計算
-        float totalWidth = (_drawCardCount - 1) * (_offsetX + cardSize.x);
-        float x = -totalWidth / 2f; // 中央揃えの開始位置
 
-        Vector2 startPosition = new Vector2(cardSize.x / 2 + (logicalCanvasSize.x / 2), cardSize.y / 2 + (logicalCanvasSize.y / 2) * -1 + _offsetY);
-        
+        _drawButton.onClick.AddListener(async () => await DrawCard(_drawCardCount, cardSize, logicalCanvasSize));
 
-        await DrawCard(_drawCardCount, startPosition, cardSize, x);
+        // await DrawCard(_drawCardCount, cardSize, logicalCanvasSize);
     }
 
-    public async UniTask DrawCard(int count, Vector2 startPosition, Vector2 cardSize, float x)
+    public async UniTask DrawCard(int drawCount, Vector2 cardSize, Vector2 logicalCanvasSize)
     {
-        for (int i = 0; i < count; i++)
+        Vector2 startPosition = new Vector2(cardSize.x / 2 + (logicalCanvasSize.x / 2), cardSize.y / 2 + (logicalCanvasSize.y / 2) * -1 + _offsetY);
+        int visibleCount = _cardViewList.Where(x => x.Visible).Count();
+        
+        // 全カードの総幅を計算
+        float totalWidth = (drawCount + visibleCount - 1) * (_offsetX + cardSize.x);
+        float centerX = -totalWidth / 2f; // 中央揃えの開始位置
+
+        if (visibleCount > 0)
         {
-            CardView cardView = _cardViewList[i];
+            var movdCardViewList = _cardViewList.Where(x => x.Visible == true).ToList();
+
+            for (int i = 0; i < movdCardViewList.Count; i++)
+            {
+                CardView cardView = movdCardViewList[i];
+                Vector2 endPosition = new Vector2(centerX + i * (_offsetX + cardSize.x), startPosition.y);
+            
+                cardView.RectTransform.localPosition = cardView.RectTransform.localPosition;
+            
+                // アニメーション実行
+                var motion = LMotion.Create((Vector3)cardView.RectTransform.localPosition, (Vector3)endPosition, 1.0f)
+                    .WithEase(_ease)
+                    .BindToLocalPosition(cardView.RectTransform);
+                _ = motion;
+
+                await UniTask.Delay(100);    
+            }
+        }
+
+        var drawCardViewList = _cardViewList.Where(x => x.Visible == false).ToList();
+
+        if (drawCardViewList.Count < drawCount)
+        {
+            drawCount = drawCardViewList.Count;
+        }
+
+        for (int i = 0; i < drawCount; i++)
+        {
+            CardView cardView = drawCardViewList[i];
             cardView.Visible = true;
             
             // 各カードの終了位置を計算（中央に移動）
-            Vector2 endPosition = new Vector2(x + i * (_offsetX + cardSize.x), startPosition.y);
+            Vector2 endPosition = new Vector2(centerX + (i + visibleCount) * (_offsetX + cardSize.x), startPosition.y);
             
             cardView.RectTransform.localPosition = startPosition;
             
