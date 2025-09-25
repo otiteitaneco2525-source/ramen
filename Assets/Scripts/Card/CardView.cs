@@ -28,6 +28,25 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public float CardHeight => _rectTransform.rect.height;
     public RectTransform RectTransform => _rectTransform;
 
+    private Vector2 _defaultPosition;
+
+    public void Initialize()
+    {
+        Visible = false;
+        WaitState = new CardWaitState(this);
+        SelectedState = new CardSelectedState(this);
+        DraggingState = new CardDraggingState(this);
+        IdelState = new CardIdelState(this);
+
+        ChangeState(IdelState);
+    }
+
+    public void SetDefaultPosition(Vector2 position)
+    {
+        _defaultPosition = position;
+        transform.localPosition = position;
+    }
+
     /// <summary>
     /// カードデータを設定
     /// </summary>
@@ -62,24 +81,22 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
         ChangeState(IdelState);
     }
 
-    public void SetWaitState()
+    public void SetDefaultPosition()
     {
-        var position = transform.localPosition;
-        position.y = 0;
-        transform.localPosition = position;
-
-        transform.localScale = Vector3.one;
-
-        ChangeState(WaitState);
+        transform.localPosition = _defaultPosition;
     }
 
-    private void Awake()
+    public void SetDefaultPositionY()
     {
-        WaitState = new CardWaitState(this);
-        SelectedState = new CardSelectedState(this);
-        DraggingState = new CardDraggingState(this);
-        IdelState = new CardIdelState(this);
+        transform.localPosition = new Vector2(transform.localPosition.x, _defaultPosition.y);
+    }
+    public void SetDefaultScale()
+    {
+        transform.localScale = Vector3.one;
+    }
 
+    public void SetWaitState()
+    {
         ChangeState(WaitState);
     }
 

@@ -1634,7 +1634,7 @@ MonoBehaviour:
   _canvasScaler: {fileID: 1880965829}
   _canvas: {fileID: 1880965830}
   _basePosition: {x: 0, y: -350}
-  _offsetX: 30
+  _offsetX: 50
   _offsetY: 40
   _ease: 26
   _maxCardCount: 6

@@ -40,11 +40,10 @@ public class TestMoveManager : MonoBehaviour
     {
         Vector2 logicalCanvasSize = GetLogicalCanvasSize(_canvas);
 
-        CreateCard(_maxCardCount);
-        
         // カードの幅を取得（最初のカードから）
         Vector2 cardSize = GetCardSize();
-        
+
+        CreateCard(_maxCardCount, cardSize, logicalCanvasSize);
 
         _drawButton.onClick.AddListener(async () => await DrawCard(_drawCardCount, cardSize, logicalCanvasSize));
 
@@ -53,8 +52,18 @@ public class TestMoveManager : MonoBehaviour
 
     public async UniTask DrawCard(int drawCount, Vector2 cardSize, Vector2 logicalCanvasSize)
     {
-        Vector2 startPosition = new Vector2(cardSize.x / 2 + (logicalCanvasSize.x / 2), cardSize.y / 2 + (logicalCanvasSize.y / 2) * -1 + _offsetY);
+        var drawCardViewList = _cardViewList.Where(x => x.Visible == false).ToList();
+
+        if (drawCardViewList.Count <= 0)
+        {
+            return;
+        }
+
+        _cardViewList.Where(x => x.Visible == true).ToList().ForEach(x => x.SetIdelState());
+
         int visibleCount = _cardViewList.Where(x => x.Visible).Count();
+
+        Vector2 startPosition = new Vector2(cardSize.x / 2 + (logicalCanvasSize.x / 2), cardSize.y / 2 + (logicalCanvasSize.y / 2) * -1 + _offsetY);
         
         // 全カードの総幅を計算
         float totalWidth = (drawCount + visibleCount - 1) * (_offsetX + cardSize.x);
@@ -67,6 +76,9 @@ public class TestMoveManager : MonoBehaviour
             for (int i = 0; i < movdCardViewList.Count; i++)
             {
                 CardView cardView = movdCardViewList[i];
+                cardView.SetDefaultPositionY();
+                cardView.SetDefaultScale();
+
                 Vector2 endPosition = new Vector2(centerX + i * (_offsetX + cardSize.x), startPosition.y);
             
                 cardView.RectTransform.localPosition = cardView.RectTransform.localPosition;
@@ -81,8 +93,6 @@ public class TestMoveManager : MonoBehaviour
             }
         }
 
-        var drawCardViewList = _cardViewList.Where(x => x.Visible == false).ToList();
-
         if (drawCardViewList.Count < drawCount)
         {
             drawCount = drawCardViewList.Count;
@@ -91,6 +101,8 @@ public class TestMoveManager : MonoBehaviour
         for (int i = 0; i < drawCount; i++)
         {
             CardView cardView = drawCardViewList[i];
+            cardView.SetDefaultPosition();
+            cardView.SetDefaultScale();
             cardView.Visible = true;
             
             // 各カードの終了位置を計算（中央に移動）
@@ -106,23 +118,28 @@ public class TestMoveManager : MonoBehaviour
 
             await UniTask.Delay(100);
         }
+
+        _cardViewList.Where(x => x.Visible == true).ToList().ForEach(x => x.SetWaitState());
     }
 
-    public void CreateCard(int count)
+    public void CreateCard(int count, Vector2 cardSize, Vector2 logicalCanvasSize)
     {
+        Vector2 startPosition = new Vector2(cardSize.x / 2 + (logicalCanvasSize.x / 2), cardSize.y / 2 + (logicalCanvasSize.y / 2) * -1 + _offsetY);
         for (int i = 0; i < count; i++)
         {
             CardView cardView = Instantiate(_cardView, _cardParent);
-            cardView.Visible = false;
+            cardView.Initialize();
+            cardView.SetDefaultPosition(startPosition);
             _cardViewList.Add(cardView);
         }
     }
 
     public Vector2 GetCardSize()
     {
-        CardView firstCard = _cardViewList[0];
-        float cardWidth = firstCard.CardWidth;
-        float cardHeight = firstCard.CardHeight;
+        CardView cardView = Instantiate(_cardView, _cardParent);
+        float cardWidth = cardView.CardWidth;
+        float cardHeight = cardView.CardHeight;
+        Destroy(cardView.gameObject);
         return new Vector2(cardWidth, cardHeight);
     }
 
