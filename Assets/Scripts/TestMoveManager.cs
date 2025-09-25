@@ -33,8 +33,10 @@ public class TestMoveManager : MonoBehaviour
     [SerializeField] private int _drawCardCount;
 
     [SerializeField] private Button _drawButton;
+    [SerializeField] private Button _selectedButton;
 
     private readonly List<CardView> _cardViewList = new List<CardView>();
+    private readonly List<CardView> _selectedCards = new List<CardView>();
 
     void Start()
     {
@@ -47,7 +49,27 @@ public class TestMoveManager : MonoBehaviour
 
         _drawButton.onClick.AddListener(async () => await DrawCard(_drawCardCount, cardSize, logicalCanvasSize));
 
+        _selectedButton.onClick.AddListener(async () => await SelectedCard(logicalCanvasSize));
+
         // await DrawCard(_drawCardCount, cardSize, logicalCanvasSize);
+    }
+
+    public async UniTask SelectedCard(Vector2 logicalCanvasSize)
+    {
+        _cardViewList.Where(x => x.Visible == true).ToList().ForEach(x => x.SetIdelState());
+
+        for (int i = 0; i < _selectedCards.Count; i++)
+        {
+            CardView cardView = _selectedCards[i];
+
+            Vector2 endPosition = new Vector2(0, 0);
+        
+            // アニメーション実行
+            var motion = LMotion.Create((Vector3)cardView.RectTransform.localPosition, (Vector3)endPosition, 1.0f)
+                .WithEase(Ease.Linear)
+                .BindToLocalPosition(cardView.RectTransform);
+            _ = motion;   
+        }
     }
 
     public async UniTask DrawCard(int drawCount, Vector2 cardSize, Vector2 logicalCanvasSize)
@@ -130,6 +152,8 @@ public class TestMoveManager : MonoBehaviour
             CardView cardView = Instantiate(_cardView, _cardParent);
             cardView.Initialize();
             cardView.SetDefaultPosition(startPosition);
+            cardView.OnCardSelected = OnCardSelected;
+            cardView.OnCardDeselected = OnCardDeselected;
             _cardViewList.Add(cardView);
         }
     }
@@ -148,5 +172,15 @@ public class TestMoveManager : MonoBehaviour
         var root = canvas.rootCanvas;
         return new Vector2(root.pixelRect.width  / root.scaleFactor,
                            root.pixelRect.height / root.scaleFactor);
+    }
+
+    private void OnCardSelected(CardView card)
+    {
+        _selectedCards.Add(card);
+    }
+
+    private void OnCardDeselected(CardView card)
+    {
+        _selectedCards.Remove(card);
     }
 }
