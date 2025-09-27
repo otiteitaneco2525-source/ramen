@@ -5,6 +5,7 @@ using LitMotion;
 using LitMotion.Extensions;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 
 public class TestMoveManager : MonoBehaviour
 {
@@ -49,14 +50,16 @@ public class TestMoveManager : MonoBehaviour
 
         _drawButton.onClick.AddListener(async () => await DrawCard(_drawCardCount, cardSize, logicalCanvasSize));
 
-        _selectedButton.onClick.AddListener(async () => await SelectedCard(logicalCanvasSize));
+        _selectedButton.onClick.AddListener(async () => await SelectedCard());
 
         // await DrawCard(_drawCardCount, cardSize, logicalCanvasSize);
     }
 
-    public async UniTask SelectedCard(Vector2 logicalCanvasSize)
+    public async UniTask SelectedCard()
     {
         _cardViewList.Where(x => x.Visible == true).ToList().ForEach(x => x.SetIdelState());
+
+        List<UniTask> taskList = new List<UniTask>();
 
         for (int i = 0; i < _selectedCards.Count; i++)
         {
@@ -65,11 +68,40 @@ public class TestMoveManager : MonoBehaviour
             Vector2 endPosition = new Vector2(0, 0);
         
             // アニメーション実行
-            var motion = LMotion.Create((Vector3)cardView.RectTransform.localPosition, (Vector3)endPosition, 1.0f)
+            var motion = LMotion.Create((Vector3)cardView.RectTransform.localPosition, (Vector3)endPosition, 0.25f)
                 .WithEase(Ease.Linear)
                 .BindToLocalPosition(cardView.RectTransform);
-            _ = motion;   
+            taskList.Add(motion.ToUniTask());
         }
+
+        await UniTask.WhenAll(taskList);
+
+        taskList.Clear();
+
+        for (int i = 0; i < _selectedCards.Count; i++)
+        {
+            CardView cardView = _selectedCards[i];
+
+            for (int j = 0; j < cardView.ImageList.Count; j++)
+            {
+                Image image = cardView.ImageList[j];
+                image.color = new Color(1, 1, 1, 1);
+                TextMeshProUGUI text = cardView.TextList[j];
+                text.color = new Color(1, 1, 1, 1);
+
+                var motion = LMotion.Create(image.color, new Color(1, 1, 1, 0), 0.25f)
+                    .WithEase(Ease.Linear)
+                    .BindToColor(image);
+                taskList.Add(motion.ToUniTask());
+
+                var motion2 = LMotion.Create(text.color, new Color(1, 1, 1, 0), 0.25f)
+                    .WithEase(Ease.Linear)
+                    .BindToColor(text);
+                taskList.Add(motion.ToUniTask());
+            }
+        }
+
+        await UniTask.WhenAll(taskList);
     }
 
     public async UniTask DrawCard(int drawCount, Vector2 cardSize, Vector2 logicalCanvasSize)

@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.Events;
 using Ramen.Data;
+using System.Collections.Generic;
 
 public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, ICardView
 {
@@ -11,6 +12,8 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField] Image _icon;
     [SerializeField] TextMeshProUGUI _costText;
     [SerializeField] private RectTransform _rectTransform;
+    [SerializeField] private List<Image> _imageList;
+    [SerializeField] private List<TextMeshProUGUI> _textList;
 
     private CardStateBase _currentState;
     public CardWaitState WaitState { get; private set; }
@@ -27,7 +30,8 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public float CardWidth => _rectTransform.rect.width;
     public float CardHeight => _rectTransform.rect.height;
     public RectTransform RectTransform => _rectTransform;
-
+    public List<Image> ImageList => _imageList;
+    public List<TextMeshProUGUI> TextList => _textList;
     private Vector2 _defaultPosition;
 
     public void Initialize()

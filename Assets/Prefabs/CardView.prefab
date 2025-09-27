@@ -246,6 +246,12 @@ MonoBehaviour:
   _icon: {fileID: 0}
   _costText: {fileID: 1819826649772247283}
   _rectTransform: {fileID: 6697137434313185640}
+  _imageList:
+  - {fileID: 948391465598692311}
+  - {fileID: 8182371278249881944}
+  _textList:
+  - {fileID: 2744104714827046043}
+  - {fileID: 1819826649772247283}
   DefaultSiblingIndex: 0
 --- !u!1 &6287867578798342976
 GameObject:
