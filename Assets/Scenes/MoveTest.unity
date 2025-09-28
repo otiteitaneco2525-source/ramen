@@ -2550,16 +2550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6213bc07110dfc24bafc58c6c53a8c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardView: {fileID: 8114490532081738249, guid: e9b2942aabf45294881f990d1acde88b, type: 3}
-  _cardParent: {fileID: 1703966824}
-  _canvasScaler: {fileID: 1880965829}
-  _canvas: {fileID: 1880965830}
-  _basePosition: {x: 0, y: -350}
-  _offsetX: 50
-  _offsetY: 40
-  _ease: 26
-  _maxCardCount: 6
-  _drawCardCount: 3
+  _handView: {fileID: 1703966825}
   _drawButton: {fileID: 381047811}
   _selectedButton: {fileID: 860970404}
   _effectView: {fileID: 949172444}
@@ -4359,7 +4350,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a301802df534b648ba1449213e0ed4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cardView: {fileID: 8114490532081738249, guid: e9b2942aabf45294881f990d1acde88b, type: 3}
   _cardSpacing: 210
+  _offsetX: 50
+  _offsetY: 40
+  _ease: 26
+  _maxCardCount: 6
+  _drawCardCount: 3
 --- !u!222 &1703966827
 CanvasRenderer:
   m_ObjectHideFlags: 0
