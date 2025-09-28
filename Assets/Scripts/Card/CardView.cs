@@ -5,11 +5,12 @@ using TMPro;
 using UnityEngine.Events;
 using Ramen.Data;
 using System.Collections.Generic;
+using UnityEngine.AddressableAssets;
 
 public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, ICardView
 {
     [SerializeField] TextMeshProUGUI _nameText;
-    [SerializeField] Image _icon;
+    [SerializeField] Image _cardImage;
     [SerializeField] TextMeshProUGUI _costText;
     [SerializeField] private RectTransform _rectTransform;
     [SerializeField] private List<Image> _imageList;
@@ -32,6 +33,7 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public RectTransform RectTransform => _rectTransform;
     public List<Image> ImageList => _imageList;
     public List<TextMeshProUGUI> TextList => _textList;
+    public Image CardImage => _cardImage;
     private Vector2 _defaultPosition;
 
     public void Initialize()
@@ -58,26 +60,43 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void SetCardData(Card card)
     {
         CardData = card;
-        UpdateDisplay();
+        UpdateDisplay(card);
     }
 
     /// <summary>
     /// 表示を更新
     /// </summary>
-    private void UpdateDisplay()
+    private void UpdateDisplay(Card card)
     {
-        if (CardData != null)
+        // cardがnullの場合は何もしない
+        if (card == null)
         {
-            if (_nameText != null)
-                _nameText.text = CardData.Name;
-            
-            if (_costText != null)
-                _costText.text = CardData.Power.ToString();
-            
-            // アイコンの設定（必要に応じて実装）
-            // if (_icon != null && CardData.Icon != null)
-            //     _icon.sprite = CardData.Icon;
+            return;
         }
+
+        if (_nameText != null)
+        {
+            _nameText.text = card.Name;
+        }
+            
+        if (_costText != null)
+        {
+            _costText.text = card.Power.ToString();
+        }
+
+        if (_cardImage != null)
+        {
+            _cardImage.sprite = null;
+            // Addressablesで画像を読み込む
+            Addressables.LoadAssetAsync<Sprite>($"Assets/Images/Card/{card.CardID}.png").Completed += (handle) =>
+            {
+                _cardImage.sprite = handle.Result;
+            };
+        }
+        // アイコンの設定（必要に応じて実装）
+        // if (_icon != null && CardData.Icon != null)
+        //     _icon.sprite = CardData.Icon;
+        
     }
 
     public void SetIdelState()

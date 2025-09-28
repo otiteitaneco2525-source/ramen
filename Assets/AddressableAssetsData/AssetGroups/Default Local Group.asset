@@ -15,13 +15,78 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 65a1a88dda58d094790c7a5a797b6f3d
   m_SerializeEntries:
+  - m_GUID: 0003e6055b5cc914ca68ae1f229e39b3
+    m_Address: Assets/Images/Card/18.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f44622d798309f4aafdc1fd9e9d8280
+    m_Address: Assets/Images/Card/12.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2549202a76e711b4ca114aaf13585b19
     m_Address: Assets/ScriptableObjects/EnemyList.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29a7a95a743a1de4993d11757309f6de
+    m_Address: Assets/Images/Card/13.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4480613e4cd73284cad401138f6c1702
+    m_Address: Assets/Images/Card/1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6f424177e40152145843306d1ee805ff
     m_Address: Assets/ScriptableObjects/SerifList.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 739018f22f98a22408f80e3c22a4ac5c
+    m_Address: Assets/Images/Card/17.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9950c0afd2d02204fbcda1dd92ef452e
+    m_Address: Assets/Images/Card/4.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7a19ea4604ba594799ae5f8d536ad55
+    m_Address: Assets/Images/Card/9.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a8f844fa510b5bf4482cb41740e2de44
+    m_Address: Assets/Images/Card/3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1ed6d94cabda1947ac88e31b957f28b
+    m_Address: Assets/Images/Card/2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b548670756de15c4ebf31f372e82728e
+    m_Address: Assets/Images/Card/15.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6737e034cbea8b4bb56c00385ea02aa
+    m_Address: Assets/Images/Card/16.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd1f6de6b6c676b4bacead4e4c574691
+    m_Address: Assets/Images/Card/8.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bda9720005ed5054cb45453cb62d9742
+    m_Address: Assets/Images/Card/14.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -35,13 +100,38 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cc36cc955905ccb4ebf54686ce0546f1
+    m_Address: Assets/Images/Card/5.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d013acadb69952d4eae2220921f14a34
+    m_Address: Assets/Images/Card/10.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e33d18940deb88246864a7e611e1b503
     m_Address: Assets/ScriptableObjects/SerifToCardList.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8a06913eaf0df9408de3f757b536efb
+    m_Address: Assets/Images/Card/7.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8c960552401c474485939e6abc2ce7c
+    m_Address: Assets/Images/Card/11.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f9e8086efb90cf742aef8ca0398b7cb1
     m_Address: Assets/ScriptableObjects/CardComboList.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fff8b036ab30e5c4baf55ba5b3d355e5
+    m_Address: Assets/Images/Card/6.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -125,18 +125,22 @@ public sealed class HandView : MonoBehaviour, IHandView
             {
                 Image image = cardView.ImageList[j];
                 image.color = new Color(1, 1, 1, 1);
-                TextMeshProUGUI text = cardView.TextList[j];
-                text.color = new Color(1, 1, 1, 1);
 
                 var motion = LMotion.Create(image.color, new Color(1, 1, 1, 0), 0.25f)
                     .WithEase(Ease.Linear)
                     .BindToColor(image);
                 taskList.Add(motion.ToUniTask());
+            }
+
+            for (int j = 0; j < cardView.TextList.Count; j++)
+            {
+                TextMeshProUGUI text = cardView.TextList[j];
+                text.color = new Color(1, 1, 1, 1);
 
                 var motion2 = LMotion.Create(text.color, new Color(1, 1, 1, 0), 0.25f)
                     .WithEase(Ease.Linear)
                     .BindToColor(text);
-                taskList.Add(motion.ToUniTask());
+                taskList.Add(motion2.ToUniTask());
             }
         }
 
