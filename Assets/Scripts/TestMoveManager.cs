@@ -36,6 +36,10 @@ public class TestMoveManager : MonoBehaviour
     [SerializeField] private Button _drawButton;
     [SerializeField] private Button _selectedButton;
 
+    [SerializeField] private EffectView _effectView;
+    [SerializeField] private Button _effectButton;
+    [SerializeField] private Button _slideButton;
+
     private readonly List<CardView> _cardViewList = new List<CardView>();
     private readonly List<CardView> _selectedCards = new List<CardView>();
 
@@ -51,6 +55,15 @@ public class TestMoveManager : MonoBehaviour
         _drawButton.onClick.AddListener(async () => await DrawCard(_drawCardCount, cardSize, logicalCanvasSize));
 
         _selectedButton.onClick.AddListener(async () => await SelectedCard());
+
+        _effectButton.onClick.AddListener(() => _effectView.ShowPlayerAttackAsync());
+
+        _slideButton.onClick.AddListener(() => {
+            // _effectView.SetYourTurnSprite();
+            // _effectView.SetEnemyTurnSprite();
+            _effectView.SetGameClearSprite();
+            _effectView.ShowSlideImage();
+        });
 
         // await DrawCard(_drawCardCount, cardSize, logicalCanvasSize);
     }
