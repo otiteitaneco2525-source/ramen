@@ -2709,6 +2709,7 @@ MonoBehaviour:
   _yourTurnSprite: {fileID: 21300000, guid: 216812c0ed5584d4cb07e1fe5829fbc0, type: 3}
   _enemyTurnSprite: {fileID: 21300000, guid: ba15282cc21c2a24cbe9b532b49920b6, type: 3}
   _gameClearSprite: {fileID: 21300000, guid: fcd540d4fd2d4ee4098dcb323ead5d42, type: 3}
+  _gameOverImage: {fileID: 365085767}
 --- !u!1 &957907105
 GameObject:
   m_ObjectHideFlags: 0

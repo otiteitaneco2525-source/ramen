@@ -56,13 +56,14 @@ public class TestMoveManager : MonoBehaviour
 
         _selectedButton.onClick.AddListener(async () => await SelectedCard());
 
-        _effectButton.onClick.AddListener(() => _effectView.ShowPlayerAttackAsync());
+        _effectButton.onClick.AddListener(() => _effectView.ShowPlayerAttackAsync().Forget());
 
         _slideButton.onClick.AddListener(() => {
             // _effectView.SetYourTurnSprite();
             // _effectView.SetEnemyTurnSprite();
-            _effectView.SetGameClearSprite();
-            _effectView.ShowSlideImage();
+            // _effectView.SetGameClearSprite();
+            // _effectView.ShowSlideAsync();
+            _effectView.ShowGameOverAsync().Forget();
         });
 
         // await DrawCard(_drawCardCount, cardSize, logicalCanvasSize);

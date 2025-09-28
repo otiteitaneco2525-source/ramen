@@ -15,6 +15,7 @@ public class EffectView : MonoBehaviour
     [SerializeField] private Sprite _yourTurnSprite;
     [SerializeField] private Sprite _enemyTurnSprite;
     [SerializeField] private Sprite _gameClearSprite;
+    [SerializeField] private Image _gameOverImage;
 
     public void SetDamageText(int damage)
     {
@@ -41,7 +42,7 @@ public class EffectView : MonoBehaviour
         _slideImage.sprite = _gameClearSprite;
     }
 
-    public async UniTask ShowSlideImage()
+    public async UniTask ShowSlideAsync()
     {
         List<UniTask> taskList = new List<UniTask>();
 
@@ -65,6 +66,21 @@ public class EffectView : MonoBehaviour
         await UniTask.Delay(1000);
 
         _slideImage.gameObject.SetActive(false);
+    }
+
+    public async UniTask ShowGameOverAsync()
+    {
+        List<UniTask> taskList = new List<UniTask>();
+
+        _gameOverImage.gameObject.SetActive(true);
+        _gameOverImage.color = new Color(1, 1, 1, 0);
+
+        var motion = LMotion.Create(_gameOverImage.color, new Color(1, 1, 1, 1), 1.25f)
+            .WithEase(Ease.Linear)
+            .BindToColor(_gameOverImage);
+        taskList.Add(motion.ToUniTask());
+
+        await UniTask.WhenAll(taskList);
     }
 
     public async UniTask ShowPlayerAttackAsync()
