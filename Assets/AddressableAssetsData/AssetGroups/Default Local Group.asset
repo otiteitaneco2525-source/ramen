@@ -35,6 +35,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f9415e852bd73548ba375a6a399fb7b
+    m_Address: Assets/Images/CardFrame/CardFrame_B.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4317b05a36e4d5042a78d149edef71a8
+    m_Address: Assets/Images/CardFrame/CardFrame_A.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4480613e4cd73284cad401138f6c1702
     m_Address: Assets/Images/Card/1.png
     m_ReadOnly: 0
@@ -47,6 +57,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 739018f22f98a22408f80e3c22a4ac5c
     m_Address: Assets/Images/Card/17.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 94d8ac6d586c4f14485e3fdc0db073d3
+    m_Address: Assets/Images/CardFrame/CardFrame_C.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

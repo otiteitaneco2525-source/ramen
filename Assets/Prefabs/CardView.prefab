@@ -220,7 +220,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4f33309a534fb094bbeafdb9e31605a3, type: 3}
+  m_Sprite: {fileID: -506601010558388533, guid: 4317b05a36e4d5042a78d149edef71a8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -244,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nameText: {fileID: 2744104714827046043}
   _cardImage: {fileID: 1671073595631766910}
+  _cardFrameImage: {fileID: 948391465598692311}
   _costText: {fileID: 1819826649772247283}
   _rectTransform: {fileID: 6697137434313185640}
   _imageList:
