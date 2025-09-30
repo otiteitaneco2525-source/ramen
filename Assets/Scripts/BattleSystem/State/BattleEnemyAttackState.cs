@@ -17,6 +17,11 @@ public class BattleEnemyAttackState : BattleStateBase
 
         if (Owner.IsEnemyWin())
         {
+            if (Owner.OnEnemyWin != null)
+            {
+                await Owner.OnEnemyWin.Invoke();
+            }
+
             Owner.ChangeState(Owner.ResultState);
             return;
         }

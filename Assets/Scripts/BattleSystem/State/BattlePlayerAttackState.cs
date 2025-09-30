@@ -14,6 +14,11 @@ public class BattlePlayerAttackState : BattleStateBase
 
         if (Owner.IsPlayerWin())
         {
+            if (Owner.OnPlayerWin != null)
+            {
+                await Owner.OnPlayerWin.Invoke();
+            }
+
             Owner.ChangeState(Owner.ResultState);
             return;
         }

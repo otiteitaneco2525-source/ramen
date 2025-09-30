@@ -45,9 +45,11 @@ public class BattlePresenter : IStartable, ITickable
     public void Start()
     {
         _battleSystem.Initialize();
-        _battleSystem.OnDrawCard = OnDrawCard;
+        _battleSystem.OnDrawCard = OnDrawCardAsync;
         _battleSystem.OnIsPlayerWin = IsPlayerWin;
         _battleSystem.OnIsEnemyWin = IsEnemyWin;
+        _battleSystem.OnPlayerWin = OnPlayerWinAsync;
+        _battleSystem.OnEnemyWin = OnEnemyWinAsync;
         _deckView.Initialize();
 
         _handView.Initialize(_battleSettings);
@@ -65,9 +67,9 @@ public class BattlePresenter : IStartable, ITickable
 
         _battleUiView.OnSkipButtonClicked = OnSkipButtonClicked;
 
-        _battleSystem.OnSetup = OnSetup;
-        _battleSystem.OnPlayerAttack = OnPlayerAttack;
-        _battleSystem.OnEnemyAttack = OnEnemyAttack;
+        _battleSystem.OnSetup = OnSetupAsync;
+        _battleSystem.OnPlayerAttack = OnPlayerAttackAsync;
+        _battleSystem.OnEnemyAttack = OnEnemyAttackAysnc;
 
         // R3でSelectedCardCountを監視し、3になったらイベントを発火
         _handView.SelectedCardCount
@@ -88,11 +90,9 @@ public class BattlePresenter : IStartable, ITickable
         _disposables?.Dispose();
     }
 
-    private async UniTask OnDrawCard()
+    private async UniTask OnDrawCardAsync()
     {
         _battleCore.DrawCards();
-
-        Debug.Log("OnDrawCard: " + _battleCore.HandCards.Count);
 
         foreach (var card in _battleCore.HandCards)
         {
@@ -114,22 +114,10 @@ public class BattlePresenter : IStartable, ITickable
 
     private void OnThreeCardsSelected()
     {
-        Debug.Log("Three cards selected! Changing to PlayerAttackState");
         _battleSystem.ChangeState(_battleSystem.PlayerAttackState);
     }
 
-    // private void OnCardSelected(CardView card)
-    // {
-    //     _battleCore.SelectedCards.Add(card.CardData);
-    //     Debug.Log("OnCardSelected: " + _battleCore.SelectedCards.Count);
-    // }
-
-    // private void OnCardDeselected(CardView card)
-    // {
-    //     _battleCore.SelectedCards.Remove(card.CardData);
-    // }
-
-    private async UniTask OnPlayerAttack()
+    private async UniTask OnPlayerAttackAsync()
     {
         await _handView.SelectedCard();
 
@@ -154,20 +142,26 @@ public class BattlePresenter : IStartable, ITickable
 
         var attackPower = selectedCards.Sum(x => x.Power);
 
-        attackPower += _battleCore.GetSerifBonusPower(selectedCards);
+        var bonusPower = _battleCore.GetSerifBonusPower(selectedCards);
 
         foreach (var cardFrom in selectedCards)
         {
             foreach (var cardTo in selectedCards)
             {
-                attackPower += _battleCore.GetComboBonusPower(cardFrom, cardTo);
+                bonusPower += _battleCore.GetComboBonusPower(cardFrom, cardTo);
             }
         }
+
+        attackPower += bonusPower;
 
         if (attackPower <= 0)
         {
             attackPower = 0;
         }
+
+        _effectView.SetDamageText(attackPower);
+        _effectView.SetBonusText(bonusPower);
+        await _effectView.ShowPlayerAttackAsync();
 
         Vector3 startPos = _heroView.GetTransform().position;
         Vector3 endPos = _heroView.GetTransform().position + new Vector3(-1.5f, 0, 0);
@@ -188,8 +182,11 @@ public class BattlePresenter : IStartable, ITickable
         await UniTask.Delay(500);
     }
 
-    private async UniTask OnEnemyAttack()
+    private async UniTask OnEnemyAttackAysnc()
     {
+        _effectView.SetEnemyTurnSprite();
+        await _effectView.ShowSlideAsync();
+
         var startPos = _enemyView.GetTransform().position;
         var endPos = _enemyView.GetTransform().position + new Vector3(1.5f, 0, 0);
         await LMotion.Create(startPos, endPos, 0.15f).WithEase(Ease.Linear).BindToPosition(_enemyView.GetTransform());
@@ -212,9 +209,20 @@ public class BattlePresenter : IStartable, ITickable
         return _enemyView.GetHp() <= 0;
     }
 
+    private async UniTask OnPlayerWinAsync()
+    {
+        _effectView.SetGameClearSprite();
+        await _effectView.ShowSlideAsync();
+    }
+
     private bool IsEnemyWin()
     {
         return _heroView.GetHp() <= 0;
+    }
+
+    private async UniTask OnEnemyWinAsync()
+    {
+        await _effectView.ShowGameOverAsync();
     }
 
     private void OnSkipButtonClicked()
@@ -234,10 +242,13 @@ public class BattlePresenter : IStartable, ITickable
         }
     }
 
-    private void OnSetup()
+    private async UniTask OnSetupAsync()
     {
         // セリフを取得
         _battleCore.SetCurrentSerif(_serifList.GetRandomNormalBattleSerif());
         _enemyView.SetSerif(_battleCore.CurrentSerif);
+
+        _effectView.SetYourTurnSprite();
+        await _effectView.ShowSlideAsync();
     }
 }

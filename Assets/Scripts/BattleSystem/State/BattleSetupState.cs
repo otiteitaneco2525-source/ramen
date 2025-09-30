@@ -6,10 +6,14 @@ public class BattleSetupState : BattleStateBase
     {
     }
 
-    public override void OnEnter()
+    public override async void OnEnter()
     {
         Debug.Log("Setup Enter");
-        Owner.OnSetup?.Invoke();
+
+        if (Owner.OnSetup != null)
+        {
+            await Owner.OnSetup.Invoke();
+        }
         Owner.ChangeState(Owner.PlayerDrawState);
     }
 }
