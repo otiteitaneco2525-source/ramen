@@ -8,6 +8,6 @@ public class BattleCardSelectionState : BattleStateBase
 
     public override void OnEnter()
     {
-        Debug.Log("CardSelection Enter");
+        
     }
 }

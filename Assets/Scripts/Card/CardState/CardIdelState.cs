@@ -8,6 +8,5 @@ public class CardIdelState : CardStateBase
 
     public override void OnEnter()
     {
-        Debug.Log("Idle");
     }
 }

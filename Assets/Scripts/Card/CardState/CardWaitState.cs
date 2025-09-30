@@ -10,7 +10,6 @@ public class CardWaitState : CardStateBase
 
     public override void OnEnter()
     {
-        Debug.Log("Wait");
     }
 
     public override void OnPointerClick(PointerEventData eventData)

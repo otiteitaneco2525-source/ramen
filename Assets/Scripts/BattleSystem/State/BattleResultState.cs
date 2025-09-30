@@ -8,7 +8,6 @@ public class BattleResultState : BattleStateBase
     
     public override void OnEnter()
     {
-        Debug.Log("Battle Result Enter");
         // 戦闘結果処理開始時の処理
         // 例: 勝利/敗北判定、経験値計算、報酬表示など
     }
@@ -21,7 +20,6 @@ public class BattleResultState : BattleStateBase
 
     public override void OnExit()
     {
-        Debug.Log("Battle Result Exit");
         // 戦闘結果処理終了時の処理
         // 例: 結果画面終了、次のシーンへの遷移など
     }

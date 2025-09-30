@@ -8,8 +8,6 @@ public class BattleEnemyAttackState : BattleStateBase
     
     public override async void OnEnter()
     {
-        Debug.Log("Enemy Attack Enter");
-
         if (Owner.OnEnemyAttack != null)
         {
             await Owner.OnEnemyAttack.Invoke();
@@ -37,7 +35,6 @@ public class BattleEnemyAttackState : BattleStateBase
 
     public override void OnExit()
     {
-        Debug.Log("Enemy Attack Exit");
         // 敵攻撃終了時の処理
         // 例: 攻撃アニメーション終了、次の状態への遷移など
     }

@@ -64,8 +64,6 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
 
         _enemyView.SetStatus(_enemyList.GetEnemyByID(1));
 
-        Debug.Log("BattlePresenter Start");
-
         _battleUiView.OnSkipButtonClicked = OnSkipButtonClicked;
 
         _battleSystem.OnSetup = OnSetupAsync;

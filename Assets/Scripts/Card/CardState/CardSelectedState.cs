@@ -12,8 +12,6 @@ public class CardSelectedState : CardStateBase
 
     public override void OnEnter()
     {
-        Debug.Log("Selected");
-
         _defaultY = Owner.transform.localPosition.y;
 
         // 真上に移動する

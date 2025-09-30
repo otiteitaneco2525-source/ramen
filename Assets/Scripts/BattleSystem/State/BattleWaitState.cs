@@ -8,11 +8,9 @@ public class BattleWaitState : BattleStateBase
     
     public override void OnEnter()
     {
-        Debug.Log("Wait Enter");
     }
 
     public override void OnExit()
     {
-        Debug.Log("Wait Exit");
     }
 }

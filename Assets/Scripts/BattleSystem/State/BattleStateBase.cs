@@ -20,6 +20,6 @@ public abstract class BattleStateBase
 
     public virtual void OnExit()
     {
-        Debug.Log("Exiting state: " + this.GetType().Name);
+
     }
 }

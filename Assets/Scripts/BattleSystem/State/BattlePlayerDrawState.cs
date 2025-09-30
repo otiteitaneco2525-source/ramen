@@ -9,8 +9,6 @@ public class BattlePlayerDrawState : BattleStateBase
 
     public override async void OnEnter()
     {
-        Debug.Log("PlayerDraw Enter");
-
         if (Owner.OnDrawCard != null)
         {
             await Owner.OnDrawCard.Invoke();
