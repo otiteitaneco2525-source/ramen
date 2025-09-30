@@ -2,13 +2,14 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using Ramen.Data;
+using System;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using LitMotion.Extensions;
 using R3;
 
-public class BattlePresenter : IStartable, ITickable
+public class BattlePresenter : IStartable, ITickable, IDisposable
 {
     [Inject]
     private readonly BattleSystem _battleSystem;
@@ -84,8 +85,8 @@ public class BattlePresenter : IStartable, ITickable
     {
 
     }
-
-    public void OnDestroy()
+    
+    public void Dispose()
     {
         _disposables?.Dispose();
     }
