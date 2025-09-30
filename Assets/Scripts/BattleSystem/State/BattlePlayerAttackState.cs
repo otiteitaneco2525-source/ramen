@@ -7,16 +7,18 @@ public class BattlePlayerAttackState : BattleStateBase
     
     public override async void OnEnter()
     {
+        if (Owner.OnPlayerAttack != null)
+        {
+            await Owner.OnPlayerAttack.Invoke();
+        }
+
         if (Owner.IsPlayerWin())
         {
             Owner.ChangeState(Owner.ResultState);
             return;
         }
 
-        if (Owner.OnPlayerAttack != null)
-        {
-            await Owner.OnPlayerAttack.Invoke();
-        }
+        Owner.ChangeState(Owner.EnemyAttackState);
     }
 
     public override void OnUpdate()

@@ -10,12 +10,12 @@ public class TestMoveManager : MonoBehaviour
     [SerializeField] private EffectView _effectView;
     [SerializeField] private Button _effectButton;
     [SerializeField] private Button _slideButton;
-
+    [SerializeField] private BattleSettings _battleSettings;
     void Start()
     {
-        _handView.Initialize();
+        _handView.Initialize(_battleSettings);
 
-        _drawButton.onClick.AddListener(async () => await _handView.DrawCard());
+        _drawButton.onClick.AddListener(async () => await _handView.DrawCardAsync());
 
         _selectedButton.onClick.AddListener(async () => await _handView.SelectedCard());
 

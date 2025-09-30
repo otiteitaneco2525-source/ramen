@@ -1,13 +1,12 @@
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using System.Collections.Generic;
 using Ramen.Data;
 using System.Linq;
-using System;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using LitMotion.Extensions;
+using R3;
 
 public class BattlePresenter : IStartable, ITickable
 {
@@ -37,10 +36,11 @@ public class BattlePresenter : IStartable, ITickable
     private readonly IEnemyView _enemyView;
     [Inject]
     private readonly IBattleUiView _battleUiView;
-
-    private readonly List<CardView> _cardViewList = new List<CardView>();
+    [Inject]
+    private readonly EffectView _effectView;
 
     private BattleCore _battleCore;
+    private CompositeDisposable _disposables = new CompositeDisposable();
 
     public void Start()
     {
@@ -50,19 +50,10 @@ public class BattlePresenter : IStartable, ITickable
         _battleSystem.OnIsEnemyWin = IsEnemyWin;
         _deckView.Initialize();
 
+        _handView.Initialize(_battleSettings);
+
         _battleCore = new BattleCore(_cardList, _battleSettings, _cardComboList, _serifList, _serifToCardList);
         _battleCore.DealCards();
-
-        for (int i = 0; i < _battleCore.DeckCards.Count; i++)
-        {
-            _cardViewList.Add(_deckView.CreateCard(_handView.GetTransform()));
-        }
-
-        foreach (var cardView in _cardViewList)
-        {
-            cardView.OnCardSelected = OnCardSelected;
-            cardView.OnCardDeselected = OnCardDeselected;
-        }
 
         _deckView.SetDeckCount(_battleCore.DeckCards.Count);
         _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
@@ -76,6 +67,13 @@ public class BattlePresenter : IStartable, ITickable
 
         _battleSystem.OnSetup = OnSetup;
         _battleSystem.OnPlayerAttack = OnPlayerAttack;
+        _battleSystem.OnEnemyAttack = OnEnemyAttack;
+
+        // R3でSelectedCardCountを監視し、3になったらイベントを発火
+        _handView.SelectedCardCount
+            .Where(count => count == 3)
+            .Subscribe(_ => OnThreeCardsSelected())
+            .AddTo(_disposables);
 
         _battleSystem.ChangeState(_battleSystem.SetupState);
     }
@@ -85,22 +83,20 @@ public class BattlePresenter : IStartable, ITickable
 
     }
 
-    private void OnDrawCard()
+    public void OnDestroy()
+    {
+        _disposables?.Dispose();
+    }
+
+    private async UniTask OnDrawCard()
     {
         _battleCore.DrawCards();
 
         Debug.Log("OnDrawCard: " + _battleCore.HandCards.Count);
 
-        foreach (var cardView in _cardViewList)
-        {
-            cardView.SetCardData(null);
-            cardView.Visible = false;
-            cardView.SetWaitState();
-        }
-
         foreach (var card in _battleCore.HandCards)
         {
-            var cardView = _cardViewList.FirstOrDefault(x => x.CardData == null);
+            var cardView = _handView.CardViewList.FirstOrDefault(x => x.CardData == null);
 
             if (cardView == null)
             {
@@ -108,57 +104,61 @@ public class BattlePresenter : IStartable, ITickable
             }
 
             cardView.SetCardData(card);
-            cardView.Visible = true;
-            cardView.SetWaitState();
         }
 
-        _handView.ArrangeCards(_cardViewList);
         _deckView.SetDeckCount(_battleCore.DeckCards.Count);
         _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
+
+        await _handView.DrawCardAsync();
     }
 
-    private void OnCardSelected(CardView card)
+    private void OnThreeCardsSelected()
     {
-        _battleCore.SelectedCards.Add(card.CardData);
-
-        Debug.Log("OnCardSelected: " + _battleCore.SelectedCards.Count);
-
-        if (_battleCore.SelectedCards.Count == 3)
-        {
-            _battleSystem.ChangeState(_battleSystem.PlayerAttackState);
-        }
+        Debug.Log("Three cards selected! Changing to PlayerAttackState");
+        _battleSystem.ChangeState(_battleSystem.PlayerAttackState);
     }
 
-    private void OnCardDeselected(CardView card)
-    {
-        _battleCore.SelectedCards.Remove(card.CardData);
-    }
+    // private void OnCardSelected(CardView card)
+    // {
+    //     _battleCore.SelectedCards.Add(card.CardData);
+    //     Debug.Log("OnCardSelected: " + _battleCore.SelectedCards.Count);
+    // }
+
+    // private void OnCardDeselected(CardView card)
+    // {
+    //     _battleCore.SelectedCards.Remove(card.CardData);
+    // }
 
     private async UniTask OnPlayerAttack()
     {
-        foreach (var selectedCard in _battleCore.SelectedCards)
+        await _handView.SelectedCard();
+
+        var selectedCards = _handView.SelectedCards.Where(x => x.Visible == true && x.CardData != null).ToList().Select(x => x.CardData).ToList();
+
+        // 自分の手札を削除
+        foreach (var cardView in _handView.SelectedCards)
         {
-            var cardView = _cardViewList.FirstOrDefault(x => x.CardData == selectedCard);
-
-            if (cardView == null)
-            {
-                continue;
-            }
-
+            cardView.SetCardData(null);
+            cardView.Visible = false;
             cardView.SetIdelState();
+            cardView.Reset();
         }
+        _handView.SelectedCards.Clear();
 
-        // await UniTask.Delay(500);
+        _battleCore.MoveCardsToDiscard(selectedCards);
+
+        _deckView.SetDeckCount(_battleCore.DeckCards.Count);
+        _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
 
         var currentSerifToCards = _serifToCardList.SerifToCards.Where(x => x.SelfID == _battleCore.CurrentSerif.SerifID).ToList();
 
-        var attackPower = _battleCore.SelectedCards.Sum(x => x.Power);
+        var attackPower = selectedCards.Sum(x => x.Power);
 
-        attackPower += _battleCore.GetSerifBonusPower(_battleCore.SelectedCards);
+        attackPower += _battleCore.GetSerifBonusPower(selectedCards);
 
-        foreach (var cardFrom in _battleCore.SelectedCards)
+        foreach (var cardFrom in selectedCards)
         {
-            foreach (var cardTo in _battleCore.SelectedCards)
+            foreach (var cardTo in selectedCards)
             {
                 attackPower += _battleCore.GetComboBonusPower(cardFrom, cardTo);
             }
@@ -186,11 +186,12 @@ public class BattlePresenter : IStartable, ITickable
         await LMotion.Create(endPos, startPos, 0.15f).WithEase(Ease.Linear).BindToPosition(_heroView.GetTransform());
 
         await UniTask.Delay(500);
+    }
 
-        _battleSystem.ChangeState(_battleSystem.EnemyAttackState);
-
-        startPos = _enemyView.GetTransform().position;
-        endPos = _enemyView.GetTransform().position + new Vector3(1.5f, 0, 0);
+    private async UniTask OnEnemyAttack()
+    {
+        var startPos = _enemyView.GetTransform().position;
+        var endPos = _enemyView.GetTransform().position + new Vector3(1.5f, 0, 0);
         await LMotion.Create(startPos, endPos, 0.15f).WithEase(Ease.Linear).BindToPosition(_enemyView.GetTransform());
 
         await UniTask.Delay(250);
@@ -204,32 +205,6 @@ public class BattlePresenter : IStartable, ITickable
             .WithDampingRatio(0f)
             .WithRandomSeed(180)
             .BindToPosition(_heroView.GetTransform());
-
-        // Debug.Log("攻撃力: " + attackPower);
-
-        // 自分の手札を削除
-        foreach (var selectedCard in _battleCore.SelectedCards)
-        {
-            var cardView = _cardViewList.FirstOrDefault(x => x.CardData == selectedCard);
-
-            if (cardView == null)
-            {
-                continue;
-            }
-
-            cardView.SetCardData(null);
-            cardView.Visible = false;
-            cardView.SetWaitState();
-            _battleCore.HandCards.Remove(selectedCard);
-        }
-
-        _battleCore.MoveCardsToDiscard();
-
-        _deckView.SetDeckCount(_battleCore.DeckCards.Count);
-        _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
-        _handView.ArrangeCards(_cardViewList);
-
-        _battleSystem.ChangeState(_battleSystem.SetupState);
     }
 
     private bool IsPlayerWin()
@@ -246,11 +221,13 @@ public class BattlePresenter : IStartable, ITickable
     {
         if (_battleSystem.CurrentState is BattleCardSelectionState)
         {
-            foreach (var cardView in _cardViewList)
+            foreach (var cardView in _handView.CardViewList)
             {
-                cardView.SetWaitState();
+                cardView.SetIdelState();
+                cardView.Reset();
             }
 
+            _handView.SelectedCards.Clear();
             _battleCore.SelectedCards.Clear();
 
             _battleSystem.ChangeState(_battleSystem.EnemyAttackState);

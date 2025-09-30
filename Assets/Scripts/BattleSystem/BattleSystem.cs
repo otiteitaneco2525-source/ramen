@@ -23,11 +23,12 @@ public sealed class BattleSystem : IInitializable
     public BattleResultState ResultState { get => _resultState; }
     public BattleStateBase CurrentState { get => _currentState; }
 
-    public UnityAction OnDrawCard;
+    public Func<UniTask> OnDrawCard;
     public Func<bool> OnIsPlayerWin;
     public Func<bool> OnIsEnemyWin;
     public UnityAction OnSetup;
     public Func<UniTask> OnPlayerAttack;
+    public Func<UniTask> OnEnemyAttack;
 
     public bool IsPlayerWin()
     {

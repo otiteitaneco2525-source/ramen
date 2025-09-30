@@ -15,6 +15,7 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField] private RectTransform _rectTransform;
     [SerializeField] private List<Image> _imageList;
     [SerializeField] private List<TextMeshProUGUI> _textList;
+    [SerializeField] private Color _defaultColor;
 
     private CardStateBase _currentState;
     public CardWaitState WaitState { get; private set; }
@@ -45,6 +46,26 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
         IdelState = new CardIdelState(this);
 
         ChangeState(IdelState);
+    }
+
+    public void Reset()
+    {
+        foreach (var image in ImageList)
+        {
+            Color color = image.color;
+            color.a = 1;
+            image.color = color;
+        }
+
+        foreach (var text in TextList)
+        {
+            Color color = text.color;
+            color.a = 1;
+            text.color = color;
+        }
+
+        SetDefaultPositionY();
+        SetDefaultScale();
     }
 
     public void SetDefaultPosition(Vector2 position)
@@ -93,10 +114,6 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 _cardImage.sprite = handle.Result;
             };
         }
-        // アイコンの設定（必要に応じて実装）
-        // if (_icon != null && CardData.Icon != null)
-        //     _icon.sprite = CardData.Icon;
-        
     }
 
     public void SetIdelState()

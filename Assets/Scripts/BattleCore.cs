@@ -117,10 +117,9 @@ public sealed class BattleCore
         return result;
     }
 
-    public void MoveCardsToDiscard()
+    public void MoveCardsToDiscard(List<Card> cards)
     {
-        _discardCards.AddRange(_selectedCards);
-        _selectedCards.Clear();
+        _discardCards.AddRange(cards);
     }
 
     public void SetDiscardCards(List<Card> cards)

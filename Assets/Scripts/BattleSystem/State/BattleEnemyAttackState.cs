@@ -6,15 +6,22 @@ public class BattleEnemyAttackState : BattleStateBase
     {
     }
     
-    public override void OnEnter()
+    public override async void OnEnter()
     {
         Debug.Log("Enemy Attack Enter");
+
+        if (Owner.OnEnemyAttack != null)
+        {
+            await Owner.OnEnemyAttack.Invoke();
+        }
 
         if (Owner.IsEnemyWin())
         {
             Owner.ChangeState(Owner.ResultState);
             return;
         }
+
+        Owner.ChangeState(Owner.SetupState);
     }
 
     public override void OnUpdate()

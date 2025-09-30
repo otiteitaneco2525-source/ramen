@@ -253,6 +253,7 @@ MonoBehaviour:
   _textList:
   - {fileID: 2744104714827046043}
   - {fileID: 1819826649772247283}
+  _defaultColor: {r: 0.20784314, g: 0.20784314, b: 0.20784314, a: 1}
   DefaultSiblingIndex: 0
 --- !u!1 &6287867578798342976
 GameObject:
