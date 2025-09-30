@@ -231,7 +231,5 @@ public sealed class HandView : MonoBehaviour, IHandView
         }
 
         await UniTask.WhenAll(taskList);
-
-        _cardViewList.Where(x => x.Visible == true).ToList().ForEach(x => x.SetWaitState());
     }
 }

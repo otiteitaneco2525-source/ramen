@@ -110,6 +110,8 @@ public class BattlePresenter : IStartable, ITickable
         _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
 
         await _handView.DrawCardAsync();
+
+        _handView.CardViewList.Where(x => x.Visible == true).ToList().ForEach(x => x.SetWaitState());
     }
 
     private void OnThreeCardsSelected()
