@@ -13,7 +13,7 @@ public interface IHandView
     void Initialize(BattleSettings battleSettings);
     List<CardView> CardViewList { get; }
     List<CardView> SelectedCards { get; }
-    ReadOnlyReactiveProperty<int> SelectedCardCount { get; }
+    BehaviorSubject<int> SelectedCardCount { get; }
     UniTask DrawCardAsync();
     UniTask SelectedCard();
 }
@@ -33,11 +33,11 @@ public sealed class HandView : MonoBehaviour, IHandView
     private readonly List<CardView> _cardViewList = new List<CardView>();
     private readonly List<CardView> _selectedCards = new List<CardView>();
     private BattleSettings _battleSettings;
-    private readonly ReactiveProperty<int> _selectedCardCount = new ReactiveProperty<int>(0);
+    private readonly BehaviorSubject<int> _selectedCardCount = new BehaviorSubject<int>(0);
 
     public List<CardView> CardViewList => _cardViewList;
     public List<CardView> SelectedCards => _selectedCards;
-    public ReadOnlyReactiveProperty<int> SelectedCardCount => _selectedCardCount;
+    public BehaviorSubject<int> SelectedCardCount => _selectedCardCount;
 
     public void Initialize(BattleSettings battleSettings)
     {
@@ -90,13 +90,13 @@ public sealed class HandView : MonoBehaviour, IHandView
     private void OnCardSelected(CardView card)
     {
         _selectedCards.Add(card);
-        _selectedCardCount.Value = _selectedCards.Count;
+        _selectedCardCount.OnNext(_selectedCards.Count);
     }
 
     private void OnCardDeselected(CardView card)
     {
         _selectedCards.Remove(card);
-        _selectedCardCount.Value = _selectedCards.Count;
+        _selectedCardCount.OnNext(_selectedCards.Count);
     }
 
     public async UniTask SelectedCard()
