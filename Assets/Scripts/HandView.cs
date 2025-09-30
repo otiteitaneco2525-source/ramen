@@ -105,10 +105,8 @@ public sealed class HandView : MonoBehaviour, IHandView
 
         List<UniTask> taskList = new List<UniTask>();
 
-        for (int i = 0; i < _selectedCards.Count; i++)
+        foreach (var cardView in _selectedCards)
         {
-            CardView cardView = _selectedCards[i];
-
             Vector2 endPosition = new Vector2(0, 0);
         
             // アニメーション実行
@@ -122,13 +120,10 @@ public sealed class HandView : MonoBehaviour, IHandView
 
         taskList.Clear();
 
-        for (int i = 0; i < _selectedCards.Count; i++)
+        foreach (var cardView in _selectedCards)
         {
-            CardView cardView = _selectedCards[i];
-
-            for (int j = 0; j < cardView.ImageList.Count; j++)
+            foreach (var image in cardView.ImageList)
             {
-                Image image = cardView.ImageList[j];
                 image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
 
                 var motion = LMotion.Create(image.color, new Color(image.color.r, image.color.g, image.color.b, 0), 0.25f)
@@ -137,9 +132,8 @@ public sealed class HandView : MonoBehaviour, IHandView
                 taskList.Add(motion.ToUniTask());
             }
 
-            for (int j = 0; j < cardView.TextList.Count; j++)
+            foreach (var text in cardView.TextList)
             {
-                TextMeshProUGUI text = cardView.TextList[j];
                 text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
 
                 var motion2 = LMotion.Create(text.color, new Color(text.color.r, text.color.g, text.color.b, 0), 0.25f)
