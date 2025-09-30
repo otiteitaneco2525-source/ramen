@@ -241,7 +241,6 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
             }
 
             _handView.SelectedCards.Clear();
-            _battleCore.SelectedCards.Clear();
 
             _battleSystem.ChangeState(_battleSystem.EnemyAttackState);
         }
