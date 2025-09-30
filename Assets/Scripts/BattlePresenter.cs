@@ -85,7 +85,7 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
     {
 
     }
-    
+
     public void Dispose()
     {
         _disposables?.Dispose();
@@ -109,6 +109,8 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
 
         _deckView.SetDeckCount(_battleCore.DeckCards.Count);
         _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
+
+        _handView.CardViewList.ForEach(x => x.SetIdelState());
 
         await _handView.DrawCardAsync();
 

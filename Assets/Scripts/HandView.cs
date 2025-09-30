@@ -168,8 +168,6 @@ public sealed class HandView : MonoBehaviour, IHandView
             return;
         }
 
-        _cardViewList.ForEach(x => x.SetIdelState());
-
         int visibleCount = _cardViewList.Where(x => x.Visible).Count();
 
         Vector2 startPosition = new Vector2(cardSize.x / 2 + (logicalCanvasSize.x / 2), cardSize.y / 2 + (logicalCanvasSize.y / 2) * -1 + _offsetY);
