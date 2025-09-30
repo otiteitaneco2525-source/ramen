@@ -16,3 +16,4 @@ MonoBehaviour:
   DrawCount: 3
   HeroHp: 15
   SerifBonusPower: 15
+  DefaultCardId: 1,2,10,11,14,15

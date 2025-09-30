@@ -55,7 +55,7 @@ public class BattlePresenter : IStartable, ITickable
         _handView.Initialize(_battleSettings);
 
         _battleCore = new BattleCore(_cardList, _battleSettings, _cardComboList, _serifList, _serifToCardList);
-        _battleCore.DealCards();
+        _battleCore.DealDefaultCard();
 
         _deckView.SetDeckCount(_battleCore.DeckCards.Count);
         _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
