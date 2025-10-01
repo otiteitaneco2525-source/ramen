@@ -124,6 +124,7 @@ public sealed class BattleCore
 
     public void MoveCardsToDiscard(List<Card> cards)
     {
+        _deckCards.RemoveAll(x => cards.Contains(x));
         _discardCards.AddRange(cards);
     }
 

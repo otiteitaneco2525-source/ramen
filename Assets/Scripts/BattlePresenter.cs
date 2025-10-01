@@ -95,6 +95,11 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
 
         foreach (var card in _battleCore.HandCards)
         {
+            if (_handView.CardViewList.Where(x => x.CardData != null && x.CardData.CardID == card.CardID).Count() > 0)
+            {
+                continue;
+            }
+            
             var cardView = _handView.CardViewList.FirstOrDefault(x => x.CardData == null);
 
             if (cardView == null)
