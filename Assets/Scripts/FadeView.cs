@@ -15,9 +15,15 @@ public class FadeView : MonoBehaviour
     {
         gameObject.SetActive(true);
         _fadeImage.gameObject.SetActive(true);
-        _fadeImage.color = new Color(1, 1, 1, 0);
 
-        var motion = LMotion.Create(_fadeImage.color, new Color(1, 1, 1, 1), _fadeTime)
+        var color = _fadeImage.color;
+        color.a = 0;
+        _fadeImage.color = color;
+
+        var toColor = color;
+        toColor.a = 1;
+
+        var motion = LMotion.Create(_fadeImage.color, toColor, _fadeTime)
             .WithEase(Ease.Linear)
             .BindToColor(_fadeImage);
         await motion.ToUniTask();
@@ -27,9 +33,14 @@ public class FadeView : MonoBehaviour
     {
         gameObject.SetActive(true);
         _fadeImage.gameObject.SetActive(true);
-        _fadeImage.color = new Color(1, 1, 1, 1);
+        var color = _fadeImage.color;
+        color.a = 1;
+        _fadeImage.color = color;
 
-        var motion = LMotion.Create(_fadeImage.color, new Color(1, 1, 1, 0), _fadeTime)
+        var toColor = color;
+        toColor.a = 0;
+
+        var motion = LMotion.Create(_fadeImage.color, toColor, _fadeTime)
             .WithEase(Ease.Linear)
             .BindToColor(_fadeImage);
         await motion.ToUniTask();

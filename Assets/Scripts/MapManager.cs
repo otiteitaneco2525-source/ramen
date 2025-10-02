@@ -2,12 +2,16 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using VContainer.Unity;
+using VContainer;
+using Cysharp.Threading.Tasks;
 
 public class MapManager : MonoBehaviour
 {
+    [Inject] private readonly FadeView _fadeView;
     private List<EventButton> _eventButtons = new List<EventButton>();
 
-    void Start()
+    async void Start()
     {
         _eventButtons = FindObjectsByType<EventButton>(FindObjectsSortMode.None).ToList();
 
@@ -15,6 +19,9 @@ public class MapManager : MonoBehaviour
         {
             eventButton.OnEventButtonClicked += OnEventButtonClicked;
         }
+
+        await _fadeView.FadeOutAsync();
+        _fadeView.Visible = false;
     }
 
     private void OnEventButtonClicked(EventButtonType eventButtonType, int enemyId)
