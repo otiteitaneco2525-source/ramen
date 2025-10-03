@@ -11,6 +11,6 @@ public class RootLifetimeScope : LifetimeScope
         Debug.Log("RootLifetimeScope Configure");
         
         // FadeViewのプレハブからインスタンスを作成して登録
-        builder.RegisterComponentInNewPrefab<FadeView>(_fadeViewPrefab, Lifetime.Singleton);
+        builder.RegisterComponentInNewPrefab<FadeView>(_fadeViewPrefab, Lifetime.Singleton).DontDestroyOnLoad();
     }
 }

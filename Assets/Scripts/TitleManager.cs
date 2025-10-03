@@ -1,20 +1,30 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using R3;
 using UnityEngine.SceneManagement;
+using VContainer;
+using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 
 public class TitleManager : MonoBehaviour
 {
+    [Inject] private readonly FadeView _fadeView;
     [SerializeField] private Button _titleButton;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    
+    async void Start()
     {
-        _titleButton.onClick.AddListener(OnTitleButtonClick);
+        await _fadeView.FadeOutAsync();
+        _fadeView.Visible = false;
+
+        _titleButton.onClick.AddListener(async () => await OnTitleButtonClick());
     }
 
-    private void OnTitleButtonClick()
+    private async UniTask OnTitleButtonClick()
     {
-        Debug.Log("TitleButton clicked");        
+        _titleButton.interactable = false;
+
+        List<UniTask> taskList = new List<UniTask>();
+        taskList.Add(SceneManager.LoadSceneAsync("MapScene").ToUniTask());
+        taskList.Add(_fadeView.FadeInAsync());
+        await UniTask.WhenAll(taskList);
     }
 }
