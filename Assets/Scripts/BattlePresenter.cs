@@ -39,11 +39,15 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
     private readonly IBattleUiView _battleUiView;
     [Inject]
     private readonly EffectView _effectView;
+    [Inject]
+    private readonly FadeView _fadeView;
+    [Inject]
+    private readonly GameEntity _gameEntity;
 
     private BattleCore _battleCore;
     private CompositeDisposable _disposables = new CompositeDisposable();
 
-    public void Start()
+    public async void Start()
     {
         _battleSystem.Initialize();
         _battleSystem.OnDrawCard = OnDrawCardAsync;
@@ -75,6 +79,9 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
             .Where(count => count == 3)
             .Subscribe(_ => OnThreeCardsSelected())
             .AddTo(_disposables);
+
+        await _fadeView.FadeOutAsync();
+        _fadeView.Visible = false;
 
         _battleSystem.ChangeState(_battleSystem.SetupState);
     }
