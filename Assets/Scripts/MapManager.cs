@@ -33,19 +33,25 @@ public class MapManager : MonoBehaviour
         foreach (var eventButton in _eventButtons)
         {
             eventButton.OnEventButtonClicked += OnEventButtonClicked;
+            eventButton.GetComponent<Image>().color = new Color(1, 1, 1, 0);
         }
 
         await _fadeView.FadeOutAsync();
         _fadeView.Visible = false;
     }
 
-    private void OnEventButtonClicked(EventButtonType eventButtonType, int enemyId)
+    private async void OnEventButtonClicked(EventButtonType eventButtonType, int enemyId)
     {
         Debug.Log("EventButton clicked: " + eventButtonType + " " + enemyId);
 
         switch (eventButtonType)
         {
             case EventButtonType.Battle:
+                List<UniTask> taskList = new List<UniTask>();
+                _gameEntity.EnemyID = enemyId;
+                taskList.Add(SceneManager.LoadSceneAsync("BattleScene").ToUniTask());
+                taskList.Add(_fadeView.FadeInAsync());
+                await UniTask.WhenAll(taskList);
                 break;
             case EventButtonType.CardSelect:
                 break;
