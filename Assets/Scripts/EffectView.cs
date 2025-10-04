@@ -5,6 +5,7 @@ using LitMotion.Extensions;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using TMPro;
+using UnityEngine.Events;
 
 public class EffectView : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class EffectView : MonoBehaviour
     [SerializeField] private Sprite _enemyTurnSprite;
     [SerializeField] private Sprite _gameClearSprite;
     [SerializeField] private Image _gameOverImage;
+    [SerializeField] private Button _gameOverButton;
+
+    public UnityAction OnGameOverButtonClicked { get; set; }
 
     public void SetDamageText(int damage)
     {
@@ -25,6 +29,11 @@ public class EffectView : MonoBehaviour
     public void SetBonusText(int bonus)
     {
         _bonusText.text = bonus.ToString();
+    }
+
+    void Start()
+    {
+        _gameOverButton.onClick.AddListener(() => OnGameOverButtonClicked?.Invoke());
     }
 
     public void SetYourTurnSprite()

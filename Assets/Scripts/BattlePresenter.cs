@@ -8,6 +8,8 @@ using Cysharp.Threading.Tasks;
 using LitMotion;
 using LitMotion.Extensions;
 using R3;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class BattlePresenter : IStartable, ITickable, IDisposable
 {
@@ -79,6 +81,8 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
             .Where(count => count == 3)
             .Subscribe(_ => OnThreeCardsSelected())
             .AddTo(_disposables);
+
+        _effectView.OnGameOverButtonClicked = OnGameOverButtonClicked;
 
         await _fadeView.FadeOutAsync();
         _fadeView.Visible = false;
@@ -264,5 +268,13 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
 
         _effectView.SetYourTurnSprite();
         await _effectView.ShowSlideAsync();
+    }
+
+    private async void OnGameOverButtonClicked()
+    {
+        List<UniTask> taskList = new List<UniTask>();
+        taskList.Add(_fadeView.FadeInAsync());
+        taskList.Add(SceneManager.LoadSceneAsync("TitleScene").ToUniTask());
+        await UniTask.WhenAll(taskList);
     }
 }
