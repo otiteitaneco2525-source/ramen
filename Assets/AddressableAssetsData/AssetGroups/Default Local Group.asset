@@ -40,6 +40,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3af34afe9437da348a2274262562a044
+    m_Address: Assets/Prefabs/EnemyView_4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4317b05a36e4d5042a78d149edef71a8
     m_Address: Assets/Images/CardFrame/CardFrame_A.png
     m_ReadOnly: 0
@@ -47,6 +52,26 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4480613e4cd73284cad401138f6c1702
     m_Address: Assets/Images/Card/1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4a52ddda1d6546147bac3167acd22e61
+    m_Address: Assets/Prefabs/EnemyView_2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4aaeb7ad517379149b2abefb6dc676f3
+    m_Address: Assets/Prefabs/EnemyView_3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 66b54c94a7bc1e54f9b4f83646500eca
+    m_Address: Assets/Images/Enemy2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6bc65c742e598e04592e6bb39c62f42d
+    m_Address: Assets/Images/Enemy1.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -62,6 +87,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 94d8ac6d586c4f14485e3fdc0db073d3
     m_Address: Assets/Images/CardFrame/CardFrame_C.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97f2159193ac83f4eb36a16e85a634f5
+    m_Address: Assets/Images/Enemy4.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -130,6 +160,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4685d6bda4e99a41b2dd390b451584c
+    m_Address: Assets/Images/Enemy3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e8a06913eaf0df9408de3f757b536efb
     m_Address: Assets/Images/Card/7.png
     m_ReadOnly: 0
@@ -137,6 +172,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e8c960552401c474485939e6abc2ce7c
     m_Address: Assets/Images/Card/11.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea0f76bfa375ac1448c748c22a0b5c43
+    m_Address: Assets/Prefabs/EnemyView_1.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

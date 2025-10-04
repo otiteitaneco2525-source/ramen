@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public interface IBattleUiView
 {
     UnityAction OnSkipButtonClicked { get; set; }
+    Transform GetTransform();
 }
 
 public class BattleUiView : MonoBehaviour, IBattleUiView
@@ -16,5 +17,10 @@ public class BattleUiView : MonoBehaviour, IBattleUiView
     void Start()
     {
         _skipButton.onClick.AddListener(() => OnSkipButtonClicked?.Invoke());
+    }
+
+    public Transform GetTransform()
+    {
+        return transform;
     }
 }

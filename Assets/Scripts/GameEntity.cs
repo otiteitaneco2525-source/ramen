@@ -7,12 +7,13 @@ public sealed class GameEntity
 
     public bool ShowTutorial { get; set; }
 
-
+    public int EnemyID { get; set; }
 
     public GameEntity()
     {
         GetCardList = new List<string>();
         ShowTutorial = true;
+        EnemyID = 1;
     }
 
     public bool HasCard(string cardId)

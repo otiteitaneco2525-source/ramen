@@ -10,6 +10,7 @@ using LitMotion.Extensions;
 using R3;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEngine.AddressableAssets;
 
 public class BattlePresenter : IStartable, ITickable, IDisposable
 {
@@ -19,8 +20,6 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
     private readonly CardComboList _cardComboList;
     [Inject]
     private readonly CardList _cardList;
-    [Inject]
-    private readonly EnemyList _enemyList;
     [Inject]
     private readonly SerifList _serifList;
     [Inject]
@@ -36,8 +35,6 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
     [Inject]
     private readonly IHeroView _heroView;
     [Inject]
-    private readonly IEnemyView _enemyView;
-    [Inject]
     private readonly IBattleUiView _battleUiView;
     [Inject]
     private readonly EffectView _effectView;
@@ -45,12 +42,19 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
     private readonly FadeView _fadeView;
     [Inject]
     private readonly GameEntity _gameEntity;
+    [Inject]
+    private readonly EnemyList _enemyList;
 
     private BattleCore _battleCore;
     private CompositeDisposable _disposables = new CompositeDisposable();
+    private EnemyView _enemyView;
 
     public async void Start()
     {
+        var enemyPrefab = Addressables.LoadAssetAsync<GameObject>($"Assets/Prefabs/EnemyView_{_gameEntity.EnemyID}.prefab").WaitForCompletion();
+        var enemyObject = GameObject.Instantiate(enemyPrefab, _battleUiView.GetTransform());
+        _enemyView = enemyObject.GetComponent<EnemyView>();
+
         _battleSystem.Initialize();
         _battleSystem.OnDrawCard = OnDrawCardAsync;
         _battleSystem.OnIsPlayerWin = IsPlayerWin;
@@ -84,6 +88,7 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
             .AddTo(_disposables);
 
         _effectView.OnGameOverButtonClicked = OnGameOverButtonClicked;
+        _effectView.SetAsLastSibling();
 
         await _fadeView.FadeOutAsync();
         _fadeView.Visible = false;

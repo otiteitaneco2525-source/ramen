@@ -117,4 +117,9 @@ public class EffectView : MonoBehaviour
 
         _playerAttackImage.gameObject.SetActive(false);
     }
+
+    public void SetAsLastSibling()
+    {
+        transform.SetAsLastSibling();
+    }
 }

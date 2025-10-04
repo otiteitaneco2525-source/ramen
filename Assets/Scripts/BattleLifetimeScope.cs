@@ -10,7 +10,6 @@ public class BattleLifetimeScope : LifetimeScope
     [SerializeField] DiscardView _discardView;
     [SerializeField] BattleSettings _battleSettings;
     [SerializeField] HeroView _heroView;
-    [SerializeField] EnemyView _enemyView;
     [SerializeField] CardComboList _cardComboList;
     [SerializeField] CardList _cardList;
     [SerializeField] EnemyList _enemyList;
@@ -27,7 +26,6 @@ public class BattleLifetimeScope : LifetimeScope
         builder.RegisterInstance<IDiscardView>(_discardView);
         builder.RegisterInstance(_battleSettings);
         builder.RegisterInstance<IHeroView>(_heroView);
-        builder.RegisterInstance<IEnemyView>(_enemyView);
         builder.RegisterInstance<CardComboList>(_cardComboList);
         builder.RegisterInstance<CardList>(_cardList);
         builder.RegisterInstance<EnemyList>(_enemyList);
