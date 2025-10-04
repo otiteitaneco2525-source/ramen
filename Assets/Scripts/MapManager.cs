@@ -13,10 +13,12 @@ public class MapManager : MonoBehaviour
     [Inject] private readonly GameEntity _gameEntity;
 
     [SerializeField] private Button _tutorialButton;
+    [SerializeField] private HealView _healView;
     private List<EventButton> _eventButtons = new List<EventButton>();
 
     async void Start()
     {
+        _healView.OnCloseButtonClicked += OnCloseButtonClicked;
         _tutorialButton.gameObject.SetActive(_gameEntity.ShowTutorial);
 
         if (_gameEntity.ShowTutorial)
@@ -56,7 +58,13 @@ public class MapManager : MonoBehaviour
             case EventButtonType.CardSelect:
                 break;
             case EventButtonType.Heal:
+                _healView.OnShowAsync().Forget();
                 break;
         }
+    }
+
+    private void OnCloseButtonClicked()
+    {
+        _healView.Visible = false;
     }
 }
