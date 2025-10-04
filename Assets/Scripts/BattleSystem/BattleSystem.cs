@@ -31,6 +31,7 @@ public sealed class BattleSystem : IInitializable
     public Func<UniTask> OnEnemyAttack;
     public Func<UniTask> OnPlayerWin;
     public Func<UniTask> OnEnemyWin;
+    public Func<UniTask> OnResult;
     public bool IsPlayerWin()
     {
         return OnIsPlayerWin != null && OnIsPlayerWin();

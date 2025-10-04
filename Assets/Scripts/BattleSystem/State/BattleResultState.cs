@@ -6,10 +6,14 @@ public class BattleResultState : BattleStateBase
     {
     }
     
-    public override void OnEnter()
+    public override async void OnEnter()
     {
         // 戦闘結果処理開始時の処理
         // 例: 勝利/敗北判定、経験値計算、報酬表示など
+        if (Owner.OnResult != null)
+        {
+            await Owner.OnResult.Invoke();
+        }
     }
 
     public override void OnUpdate()

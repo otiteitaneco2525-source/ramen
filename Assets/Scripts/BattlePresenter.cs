@@ -57,6 +57,7 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         _battleSystem.OnIsEnemyWin = IsEnemyWin;
         _battleSystem.OnPlayerWin = OnPlayerWinAsync;
         _battleSystem.OnEnemyWin = OnEnemyWinAsync;
+        _battleSystem.OnResult = OnResultAsync;
         _deckView.Initialize();
 
         _handView.Initialize(_battleSettings);
@@ -275,6 +276,14 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         List<UniTask> taskList = new List<UniTask>();
         taskList.Add(_fadeView.FadeInAsync());
         taskList.Add(SceneManager.LoadSceneAsync("TitleScene").ToUniTask());
+        await UniTask.WhenAll(taskList);
+    }
+
+    private async UniTask OnResultAsync()
+    {
+        List<UniTask> taskList = new List<UniTask>();
+        taskList.Add(_fadeView.FadeInAsync());
+        taskList.Add(SceneManager.LoadSceneAsync("MapScene").ToUniTask());
         await UniTask.WhenAll(taskList);
     }
 }
