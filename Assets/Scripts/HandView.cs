@@ -11,7 +11,7 @@ public interface IHandView
     void Initialize(BattleSettings battleSettings);
     List<CardView> CardViewList { get; }
     List<CardView> SelectedCards { get; }
-    BehaviorSubject<int> SelectedCardCount { get; }
+    Subject<int> SelectedCardCount { get; }
     UniTask DrawCardAsync();
     UniTask SelectedCard();
 }
@@ -31,17 +31,19 @@ public sealed class HandView : MonoBehaviour, IHandView
     private readonly List<CardView> _cardViewList = new List<CardView>();
     private readonly List<CardView> _selectedCards = new List<CardView>();
     private BattleSettings _battleSettings;
-    private readonly BehaviorSubject<int> _selectedCardCount = new BehaviorSubject<int>(0);
+    private readonly Subject<int> _selectedCardCount = new Subject<int>();
 
     public List<CardView> CardViewList => _cardViewList;
     public List<CardView> SelectedCards => _selectedCards;
-    public BehaviorSubject<int> SelectedCardCount => _selectedCardCount;
+    public Subject<int> SelectedCardCount => _selectedCardCount;
 
     public void Initialize(BattleSettings battleSettings)
     {
         if (_isInitialized) return;
 
         _isInitialized = true;
+
+        _selectedCardCount.OnNext(0);
 
         _battleSettings = battleSettings;
 
