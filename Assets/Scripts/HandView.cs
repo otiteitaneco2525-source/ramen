@@ -183,8 +183,6 @@ public sealed class HandView : MonoBehaviour, IHandView
 
                 Vector2 endPosition = new Vector2(centerX + i * (_offsetX + cardSize.x), startPosition.y);
             
-                cardView.RectTransform.localPosition = cardView.RectTransform.localPosition;
-            
                 // アニメーション実行
                 var motion = LMotion.Create((Vector3)cardView.RectTransform.localPosition, (Vector3)endPosition, 1.0f)
                     .WithEase(_ease)
@@ -210,8 +208,6 @@ public sealed class HandView : MonoBehaviour, IHandView
             
             // 各カードの終了位置を計算（中央に移動）
             Vector2 endPosition = new Vector2(centerX + (i + visibleCount) * (_offsetX + cardSize.x), startPosition.y);
-            
-            cardView.RectTransform.localPosition = startPosition;
             
             // アニメーション実行
             var motion = LMotion.Create((Vector3)startPosition, (Vector3)endPosition, 1.0f)
