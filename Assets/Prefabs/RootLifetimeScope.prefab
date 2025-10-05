@@ -49,3 +49,4 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   _fadeViewPrefab: {fileID: 7992337409778428357, guid: 2cd64607643fb3c4882694f464e37be3, type: 3}
+  _soundManagerPrefab: {fileID: 530104268408293957, guid: b9112d3c2b47f224e9463defe6f94c90, type: 3}

@@ -5,11 +5,12 @@ using UnityEngine;
 public class RootLifetimeScope : LifetimeScope
 {
     [SerializeField] private FadeView _fadeViewPrefab;
-    
+    [SerializeField] private SoundManager _soundManagerPrefab;
     protected override void Configure(IContainerBuilder builder)
     {       
         // FadeViewのプレハブからインスタンスを作成して登録
         builder.RegisterComponentInNewPrefab<FadeView>(_fadeViewPrefab, Lifetime.Singleton).DontDestroyOnLoad();
+        builder.RegisterComponentInNewPrefab<SoundManager>(_soundManagerPrefab, Lifetime.Singleton).DontDestroyOnLoad();
         builder.Register<GameEntity>(Lifetime.Singleton);
     }
 }
