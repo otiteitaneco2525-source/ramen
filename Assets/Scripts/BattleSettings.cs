@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "BattleSettings", menuName = "Scriptable Objects/BattleSettings")]
 public class BattleSettings : ScriptableObject
@@ -8,4 +10,14 @@ public class BattleSettings : ScriptableObject
     public int HeroHp;
     public int SerifBonusPower;
     public string DefaultCardId;
+
+    public void SetDefaultCardId(List<string> cardIdList)
+    {
+        if (cardIdList.Count == 0)
+        {
+            DefaultCardId.Split(',').ToList().ForEach(x => {
+                cardIdList.Add(x);
+            });
+        }
+    }
 }

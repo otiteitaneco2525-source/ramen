@@ -15,10 +15,13 @@ public class MapManager : MonoBehaviour
 
     [SerializeField] private Button _tutorialButton;
     [SerializeField] private HealView _healView;
+    [SerializeField] private BattleSettings _battleSettings;
     private List<EventButton> _eventButtons = new List<EventButton>();
 
     async void Start()
     {
+        _battleSettings.SetDefaultCardId(_gameEntity.CardIdList);
+
         _healView.OnCloseButtonClicked += OnCloseButtonClicked;
         _tutorialButton.gameObject.SetActive(_gameEntity.ShowTutorial);
 

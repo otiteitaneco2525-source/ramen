@@ -463,6 +463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tutorialButton: {fileID: 1952147951}
   _healView: {fileID: 43646202}
+  _battleSettings: {fileID: 11400000, guid: c3b6dac55134d824383c1c4bc816e12e, type: 2}
 --- !u!1 &1198931251
 GameObject:
   m_ObjectHideFlags: 0

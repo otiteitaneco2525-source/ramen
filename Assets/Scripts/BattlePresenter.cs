@@ -53,6 +53,8 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
 
     public async void Start()
     {
+        _battleSettings.SetDefaultCardId(_gameEntity.CardIdList);
+
         var enemyPrefab = Addressables.LoadAssetAsync<GameObject>($"Assets/Prefabs/EnemyView_{_gameEntity.EnemyID}.prefab").WaitForCompletion();
         var enemyObject = GameObject.Instantiate(enemyPrefab, _battleUiView.GetTransform());
         _enemyView = enemyObject.GetComponent<EnemyView>();
@@ -69,7 +71,7 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         _handView.Initialize(_battleSettings);
 
         _battleCore = new BattleCore(_cardList, _battleSettings, _cardComboList, _serifList, _serifToCardList);
-        _battleCore.DealDefaultCard();
+        _battleCore.DealDefaultCard(_gameEntity.CardIdList);
 
         _deckView.SetDeckCount(_battleCore.DeckCards.Count);
         _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);

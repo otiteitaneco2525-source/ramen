@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public sealed class GameEntity
 {
-    public List<string> GetCardList { get; private set; }
+    public List<string> CardIdList { get; private set; }
 
     public bool ShowTutorial { get; set; }
 
@@ -10,19 +10,19 @@ public sealed class GameEntity
 
     public GameEntity()
     {
-        GetCardList = new List<string>();
+        CardIdList = new List<string>();
         ShowTutorial = true;
         EnemyID = 1;
     }
 
     public bool HasCard(string cardId)
     {
-        return GetCardList.Contains(cardId);
+        return CardIdList.Contains(cardId);
     }
 
     public void AddCard(string cardId)
     {
-        GetCardList.Add(cardId);
+        CardIdList.Add(cardId);
     }
 
 }

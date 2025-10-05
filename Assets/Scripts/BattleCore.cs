@@ -46,9 +46,9 @@ public sealed class BattleCore
         _deckCards.AddRange(DealCards(_cardList));
     }
 
-    public void DealDefaultCard()
+    public void DealDefaultCard(List<string> cardIdList)
     {
-        _battleSettings.DefaultCardId.Split(',').ToList().ForEach(x => {
+        cardIdList.ForEach(x => {
             _deckCards.Add(_cardList.GetCardByID(x));
         });
     }
