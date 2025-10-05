@@ -1,4 +1,3 @@
-
 public class BattlePlayerAttackState : BattleStateBase
 {
     public BattlePlayerAttackState(BattleSystem battleSystem) : base(battleSystem)

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class BattlePlayerDrawState : BattleStateBase
+﻿public class BattlePlayerDrawState : BattleStateBase
 {
     public BattlePlayerDrawState(BattleSystem battleSystem) : base(battleSystem)
     {

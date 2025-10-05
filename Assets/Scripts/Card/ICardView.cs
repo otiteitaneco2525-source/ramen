@@ -4,5 +4,3 @@ public interface ICardView
 {
     void SetCardData(Card card);
 }
-
-

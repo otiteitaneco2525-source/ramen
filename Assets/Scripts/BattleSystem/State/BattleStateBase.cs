@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public abstract class BattleStateBase
+﻿public abstract class BattleStateBase
 {
     protected BattleSystem Owner;
 

@@ -4,8 +4,6 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using LitMotion.Extensions;
-using TMPro;
-using UnityEngine.UI;
 using R3;
 
 public interface IHandView

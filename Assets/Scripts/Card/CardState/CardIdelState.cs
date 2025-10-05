@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class CardIdelState : CardStateBase
+﻿public class CardIdelState : CardStateBase
 {
     public CardIdelState(CardView owner) : base(owner)
     {
