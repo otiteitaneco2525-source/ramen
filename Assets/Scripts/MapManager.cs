@@ -11,6 +11,7 @@ public class MapManager : MonoBehaviour
 {
     [Inject] private readonly FadeView _fadeView;
     [Inject] private readonly GameEntity _gameEntity;
+    [Inject] private readonly SoundManager _soundManager;
 
     [SerializeField] private Button _tutorialButton;
     [SerializeField] private HealView _healView;
@@ -38,7 +39,11 @@ public class MapManager : MonoBehaviour
             eventButton.GetComponent<Image>().color = new Color(1, 1, 1, 0);
         }
 
-        await _fadeView.FadeOutAsync();
+        List<UniTask> taskList = new List<UniTask>();
+        taskList.Add(_soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM_MAP));
+        taskList.Add(_fadeView.FadeOutAsync());
+        await UniTask.WhenAll(taskList);
+
         _fadeView.Visible = false;
     }
 
@@ -52,6 +57,7 @@ public class MapManager : MonoBehaviour
                 List<UniTask> taskList = new List<UniTask>();
                 _gameEntity.EnemyID = enemyId;
                 taskList.Add(SceneManager.LoadSceneAsync("BattleScene").ToUniTask());
+                taskList.Add(_soundManager.StopBgmAsync());
                 taskList.Add(_fadeView.FadeInAsync());
                 await UniTask.WhenAll(taskList);
                 break;

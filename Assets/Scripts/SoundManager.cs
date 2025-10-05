@@ -51,6 +51,14 @@ public sealed class SoundManager : MonoBehaviour
         _isFade = false;
     }
 
+    public async UniTask StopBgmAsync()
+    {
+        CancellationToken token = this.GetCancellationTokenOnDestroy();
+        await FadeBgnVolume(1f, 0f, token);
+        _bgmAudioSource.Stop();
+        _preveBgmName = string.Empty;
+    }
+
     async UniTask FadeBgnVolume(float fromVolume, float toVolume, CancellationToken token)
     {
         float timer = 0f;

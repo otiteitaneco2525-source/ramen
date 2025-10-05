@@ -44,6 +44,8 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
     private readonly GameEntity _gameEntity;
     [Inject]
     private readonly EnemyList _enemyList;
+    [Inject]
+    private readonly SoundManager _soundManager;
 
     private BattleCore _battleCore;
     private CompositeDisposable _disposables = new CompositeDisposable();
@@ -90,7 +92,11 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         _effectView.OnGameOverButtonClicked = OnGameOverButtonClicked;
         _effectView.SetAsLastSibling();
 
-        await _fadeView.FadeOutAsync();
+        List<UniTask> taskList = new List<UniTask>();
+        taskList.Add(_soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM_BATTLE));
+        taskList.Add(_fadeView.FadeOutAsync());
+        await UniTask.WhenAll(taskList);
+
         _fadeView.Visible = false;
 
         _battleSystem.ChangeState(_battleSystem.SetupState);
@@ -287,6 +293,7 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
     private async UniTask OnResultAsync()
     {
         List<UniTask> taskList = new List<UniTask>();
+        taskList.Add(_soundManager.StopBgmAsync());
         taskList.Add(_fadeView.FadeInAsync());
         taskList.Add(SceneManager.LoadSceneAsync("MapScene").ToUniTask());
         await UniTask.WhenAll(taskList);

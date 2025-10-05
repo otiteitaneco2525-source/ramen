@@ -45,10 +45,10 @@ namespace Ramen.Data
         public static readonly string SE13 = "12";
         public static readonly string SE14 = "13";
         public static readonly string SE15 = "14";
-        public static readonly string BGM01 = "15";
-        public static readonly string BGM02 = "16";
-        public static readonly string BGM03 = "17";
-        public static readonly string BGM04 = "18";
+        public static readonly string BGM_OP = "op";
+        public static readonly string BGM_MAP = "map";
+        public static readonly string BGM_BATTLE = "battle";
+        public static readonly string BGM_BOSS_WIN = "boss_win";
         public static readonly string BGM05 = "19";
         public static readonly string BGM06 = "20";
         public static readonly string BGM07 = "21";
