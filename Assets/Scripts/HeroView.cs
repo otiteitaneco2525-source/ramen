@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public interface IHeroView
 {
     void SetHp(int value);
+    void SetMaxHp(int value);
     void Damage(int value);
     int GetHp();
     Transform GetTransform();
@@ -22,8 +23,12 @@ public class HeroView : MonoBehaviour, IHeroView
     public void SetHp(int value)
     {
         _hp = value;
-        _hpSlider.maxValue = _hp;
         _hpSlider.value = _hp;
+    }
+
+    public void SetMaxHp(int value)
+    {
+        _hpSlider.maxValue = value;
     }
 
     public void Damage(int value)

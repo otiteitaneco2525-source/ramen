@@ -54,6 +54,11 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
     public async void Start()
     {
         _battleSettings.SetDefaultCardId(_gameEntity.CardIdList);
+        if (_gameEntity.Hp == 0)
+        {
+            _gameEntity.Hp = _battleSettings.HeroHp;
+            _gameEntity.MaxHp = _battleSettings.HeroHp;            
+        }
 
         var enemyPrefab = Addressables.LoadAssetAsync<GameObject>($"Assets/Prefabs/EnemyView_{_gameEntity.EnemyID}.prefab").WaitForCompletion();
         var enemyObject = GameObject.Instantiate(enemyPrefab, _battleUiView.GetTransform());
@@ -75,9 +80,10 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
 
         _deckView.SetDeckCount(_battleCore.DeckCards.Count);
         _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
-        _heroView.SetHp(_battleSettings.HeroHp);
+        _heroView.SetMaxHp(_gameEntity.MaxHp);
+        _heroView.SetHp(_gameEntity.Hp);
 
-        _enemyView.SetStatus(_enemyList.GetEnemyByID(1));
+        _enemyView.SetStatus(_enemyList.GetEnemyByID(_gameEntity.EnemyID));
 
         _battleUiView.OnSkipButtonClicked = OnSkipButtonClicked;
 
