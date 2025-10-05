@@ -6,6 +6,7 @@ using VContainer.Unity;
 using VContainer;
 using Cysharp.Threading.Tasks;
 using UnityEngine.UI;
+using Ramen.Data;
 
 public class MapManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private Button _tutorialButton;
     [SerializeField] private HealView _healView;
     [SerializeField] private BattleSettings _battleSettings;
+    [SerializeField] private CardSelectView _cardSelectView;
     private List<EventButton> _eventButtons = new List<EventButton>();
 
     async void Start()
@@ -24,6 +26,8 @@ public class MapManager : MonoBehaviour
 
         _healView.OnCloseButtonClicked += OnCloseButtonClicked;
         _tutorialButton.gameObject.SetActive(_gameEntity.ShowTutorial);
+
+        _cardSelectView.OnCardBuy += OnCardBuy;
 
         if (_gameEntity.ShowTutorial)
         {
@@ -65,6 +69,8 @@ public class MapManager : MonoBehaviour
                 await UniTask.WhenAll(taskList);
                 break;
             case EventButtonType.CardSelect:
+                _cardSelectView.DealCards(_gameEntity.CardIdList);
+                _cardSelectView.OnShowAsync().Forget();
                 break;
             case EventButtonType.Heal:
                 _healView.OnShowAsync().Forget();
@@ -75,5 +81,11 @@ public class MapManager : MonoBehaviour
     private void OnCloseButtonClicked()
     {
         _healView.Visible = false;
+    }
+
+    private void OnCardBuy(Card card)
+    {
+        _gameEntity.CardIdList.Add(card.CardID);
+        _cardSelectView.Visible = false;
     }
 }

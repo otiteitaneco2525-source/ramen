@@ -61,7 +61,7 @@ public class CardSelectView : MonoBehaviour
         _logicalCanvasSize = GetLogicalCanvasSize(_canvas);
     }
 
-    public async UniTask ShowAsync()
+    public async UniTask OnShowAsync()
     {
         List<UniTask> taskList = new List<UniTask>();
         gameObject.SetActive(true);

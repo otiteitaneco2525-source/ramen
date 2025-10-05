@@ -11,7 +11,7 @@ public class CardSelectManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             _cardSelectView.DealCards(new List<string> { "1", "2", "10", "11", "14", "15" });
-            _cardSelectView.ShowAsync().Forget();
+            _cardSelectView.OnShowAsync().Forget();
         }
     }
 }
