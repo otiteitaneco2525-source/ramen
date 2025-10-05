@@ -8,9 +8,9 @@ public class BattleResultState : BattleStateBase
     {
         // 戦闘結果処理開始時の処理
         // 例: 勝利/敗北判定、経験値計算、報酬表示など
-        if (Owner.OnResult != null)
+        if (Owner.OnLose != null)
         {
-            await Owner.OnResult.Invoke();
+            await Owner.OnLose.Invoke();
         }
     }
 

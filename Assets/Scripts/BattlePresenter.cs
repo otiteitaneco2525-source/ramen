@@ -70,7 +70,7 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         _battleSystem.OnIsEnemyWin = IsEnemyWin;
         _battleSystem.OnPlayerWin = OnPlayerWinAsync;
         _battleSystem.OnEnemyWin = OnEnemyWinAsync;
-        _battleSystem.OnResult = OnResultAsync;
+        _battleSystem.OnLose = OnLoseAsync;
         _deckView.Initialize();
 
         _handView.Initialize(_battleSettings);
@@ -252,6 +252,14 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
     {
         _effectView.SetGameClearSprite();
         await _effectView.ShowSlideAsync();
+
+        await UniTask.Delay(1500);
+
+        List<UniTask> taskList = new List<UniTask>();
+        taskList.Add(_soundManager.StopBgmAsync());
+        taskList.Add(_fadeView.FadeInAsync());
+        taskList.Add(SceneManager.LoadSceneAsync("MapScene").ToUniTask());
+        await UniTask.WhenAll(taskList);
     }
 
     private bool IsEnemyWin()
@@ -298,12 +306,13 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         await UniTask.WhenAll(taskList);
     }
 
-    private async UniTask OnResultAsync()
+    private async UniTask OnLoseAsync()
     {
+        await UniTask.Delay(3000);
         List<UniTask> taskList = new List<UniTask>();
         taskList.Add(_soundManager.StopBgmAsync());
         taskList.Add(_fadeView.FadeInAsync());
-        taskList.Add(SceneManager.LoadSceneAsync("MapScene").ToUniTask());
+        taskList.Add(SceneManager.LoadSceneAsync("TitleScene").ToUniTask());
         await UniTask.WhenAll(taskList);
     }
 }

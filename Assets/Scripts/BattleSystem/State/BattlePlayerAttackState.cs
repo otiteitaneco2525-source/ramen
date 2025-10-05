@@ -17,8 +17,6 @@ public class BattlePlayerAttackState : BattleStateBase
             {
                 await Owner.OnPlayerWin.Invoke();
             }
-
-            Owner.ChangeState(Owner.ResultState);
             return;
         }
 
