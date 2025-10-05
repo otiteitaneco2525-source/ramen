@@ -23,6 +23,7 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public CardSelectedState SelectedState { get; private set; }
     public CardDraggingState DraggingState { get; private set; }
     public CardIdelState IdelState { get; private set; }
+    public CardShopState ShopState { get; private set; }
     public int DefaultSiblingIndex;
 
     // カードデータ
@@ -30,6 +31,7 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public bool Visible { get { return gameObject.activeSelf; } set { gameObject.SetActive(value); } }
     public UnityAction<CardView> OnCardSelected;
     public UnityAction<CardView> OnCardDeselected;
+    public UnityAction OnCardBuy;
     public float CardWidth => _rectTransform.rect.width;
     public float CardHeight => _rectTransform.rect.height;
     public RectTransform RectTransform => _rectTransform;
@@ -45,6 +47,7 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
         SelectedState = new CardSelectedState(this);
         DraggingState = new CardDraggingState(this);
         IdelState = new CardIdelState(this);
+        ShopState = new CardShopState(this);
 
         ChangeState(IdelState);
     }

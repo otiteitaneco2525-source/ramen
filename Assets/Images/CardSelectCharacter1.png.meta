@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: b2169cf2ff0e72e429dacfd67f110f99
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1364201467036390170
+    second: CardSelectCharacter1_0
+  - first:
+      213: -3111172175325205205
+    second: CardSelectCharacter1_1
+  - first:
+      213: -3790496710568012654
+    second: CardSelectCharacter1_2
+  - first:
+      213: -1032922192744957537
+    second: CardSelectCharacter1_3
+  - first:
+      213: -4332014451353899375
+    second: CardSelectCharacter1_4
+  - first:
+      213: 929932682857485352
+    second: CardSelectCharacter1_5
+  - first:
+      213: -2696968813178873841
+    second: CardSelectCharacter1_6
+  - first:
+      213: -8861385458758469249
+    second: CardSelectCharacter1_7
+  - first:
+      213: -7556078159729304946
+    second: CardSelectCharacter1_8
+  - first:
+      213: -1610894777138673764
+    second: CardSelectCharacter1_9
+  - first:
+      213: -8372491365223415985
+    second: CardSelectCharacter1_10
+  - first:
+      213: -2723714584822430649
+    second: CardSelectCharacter1_11
+  - first:
+      213: 9166064759490034988
+    second: CardSelectCharacter1_12
+  - first:
+      213: 4033389287275330293
+    second: CardSelectCharacter1_13
+  - first:
+      213: -7173229304371002188
+    second: CardSelectCharacter1_14
+  - first:
+      213: 7867116890756735111
+    second: CardSelectCharacter1_15
+  - first:
+      213: 6921722525034526333
+    second: CardSelectCharacter1_16
+  - first:
+      213: 2478685702284796735
+    second: CardSelectCharacter1_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CardSelectCharacter1_0
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 65
+        width: 71
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ecaa3b5ef1611de0800000000000000
+      internalID: -1364201467036390170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_1
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 59
+        width: 52
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2d69a6e365e2d4d0800000000000000
+      internalID: -3111172175325205205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_2
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 67
+        width: 114
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2949e4c1353756bc0800000000000000
+      internalID: -3790496710568012654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_3
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 77
+        width: 73
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f99b1d40db25aa1f0800000000000000
+      internalID: -1032922192744957537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_4
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 57
+        width: 20
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19e2139fec791e3c0800000000000000
+      internalID: -4332014451353899375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_5
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 69
+        width: 58
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8241fba19d8c7ec00800000000000000
+      internalID: 929932682857485352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_6
+      rect:
+        serializedVersion: 2
+        x: 983
+        y: 73
+        width: 16
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f089a205721729ad0800000000000000
+      internalID: -2696968813178873841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_7
+      rect:
+        serializedVersion: 2
+        x: 999
+        y: 70
+        width: 67
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f79b3e8ffd8060580800000000000000
+      internalID: -8861385458758469249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_8
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 83
+        width: 35
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8a5f3292fa632790800000000000000
+      internalID: -7556078159729304946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_9
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 115
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c970e1e2cb3f4a9e0800000000000000
+      internalID: -1610894777138673764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_10
+      rect:
+        serializedVersion: 2
+        x: 1187
+        y: 112
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4f35d2767feecb80800000000000000
+      internalID: -8372491365223415985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_11
+      rect:
+        serializedVersion: 2
+        x: 1284
+        y: 73
+        width: 71
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 744cb16140c633ad0800000000000000
+      internalID: -2723714584822430649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_12
+      rect:
+        serializedVersion: 2
+        x: 1374
+        y: 84
+        width: 72
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2d31a9b557643f70800000000000000
+      internalID: 9166064759490034988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_13
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 127
+        width: 30
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fa79ecdf2a79f730800000000000000
+      internalID: 4033389287275330293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_14
+      rect:
+        serializedVersion: 2
+        x: 1128
+        y: 70
+        width: 36
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b44b8cf3f1937c90800000000000000
+      internalID: -7173229304371002188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_15
+      rect:
+        serializedVersion: 2
+        x: 1186
+        y: 47
+        width: 43
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 780e700612d9d2d60800000000000000
+      internalID: 7867116890756735111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_16
+      rect:
+        serializedVersion: 2
+        x: 1457
+        y: 61
+        width: 61
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d76b082b6f5ee0060800000000000000
+      internalID: 6921722525034526333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSelectCharacter1_17
+      rect:
+        serializedVersion: 2
+        x: 1522
+        y: 79
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f33668a738f066220800000000000000
+      internalID: 2478685702284796735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CardSelectCharacter1_0: -1364201467036390170
+      CardSelectCharacter1_1: -3111172175325205205
+      CardSelectCharacter1_10: -8372491365223415985
+      CardSelectCharacter1_11: -2723714584822430649
+      CardSelectCharacter1_12: 9166064759490034988
+      CardSelectCharacter1_13: 4033389287275330293
+      CardSelectCharacter1_14: -7173229304371002188
+      CardSelectCharacter1_15: 7867116890756735111
+      CardSelectCharacter1_16: 6921722525034526333
+      CardSelectCharacter1_17: 2478685702284796735
+      CardSelectCharacter1_2: -3790496710568012654
+      CardSelectCharacter1_3: -1032922192744957537
+      CardSelectCharacter1_4: -4332014451353899375
+      CardSelectCharacter1_5: 929932682857485352
+      CardSelectCharacter1_6: -2696968813178873841
+      CardSelectCharacter1_7: -8861385458758469249
+      CardSelectCharacter1_8: -7556078159729304946
+      CardSelectCharacter1_9: -1610894777138673764
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
