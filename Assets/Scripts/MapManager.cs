@@ -44,7 +44,17 @@ public class MapManager : MonoBehaviour
         foreach (var eventButton in _eventButtons)
         {
             eventButton.OnEventButtonClicked += OnEventButtonClicked;
-            eventButton.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            if (!eventButton.IsDebug)
+            {
+                eventButton.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            }
+
+#if !UNITY_EDITOR
+            if (eventButton.IsDebug)
+            {
+                eventButton.gameObject.SetActive(false);
+            }
+#endif
         }
 
         List<UniTask> taskList = new List<UniTask>();
