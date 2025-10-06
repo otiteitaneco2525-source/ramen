@@ -17,15 +17,19 @@ MonoBehaviour:
     EnemyName: "\u30B9\u30E9\u30A4\u30E0"
     HP: 30
     AttackPower: 2
+    IsBoss: 0
   - EnemyID: 2
     EnemyName: "\u30B1\u30E2\u30CE"
     HP: 35
     AttackPower: 5
+    IsBoss: 0
   - EnemyID: 3
     EnemyName: "\u9B54\u5973"
     HP: 50
     AttackPower: 5
+    IsBoss: 0
   - EnemyID: 4
     EnemyName: "\u30DC\u30B9"
     HP: 80
     AttackPower: 7
+    IsBoss: 1

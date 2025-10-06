@@ -96,7 +96,7 @@ namespace Ramen.Editor
                 "2. CSVファイルを選択\n" +
                 "3. プレビューで内容を確認\n" +
                 "4. 『取り込む』ボタンでインポート\n\n" +
-                "CSV形式: EnemyID,EnemyName,HP,AttackPower (タブ/カンマ対応)",
+                "CSV形式: EnemyID,EnemyName,HP,AttackPower,IsBoss (タブ/カンマ対応)",
                 MessageType.Info
             );
         }
@@ -119,14 +119,15 @@ namespace Ramen.Editor
                     if (string.IsNullOrEmpty(line)) continue;
 
                     string[] values = ParseCSVLine(line);
-                    if (values.Length >= 4)
+                    if (values.Length >= 5)
                     {
                         var enemy = new Enemy
                         {
                             EnemyID = int.TryParse(values[0].Trim(), out int id) ? id : 0,
                             EnemyName = values[1].Trim(),
                             HP = int.TryParse(values[2].Trim(), out int hp) ? hp : 0,
-                            AttackPower = int.TryParse(values[3].Trim(), out int atk) ? atk : 0
+                            AttackPower = int.TryParse(values[3].Trim(), out int atk) ? atk : 0,
+                            IsBoss = bool.TryParse(values[4].Trim(), out bool isBoss) ? isBoss : false
                         };
                         previewEnemies.Add(enemy);
                     }
@@ -174,14 +175,15 @@ namespace Ramen.Editor
                     if (string.IsNullOrEmpty(line)) continue;
 
                     string[] values = ParseCSVLine(line);
-                    if (values.Length >= 4)
+                    if (values.Length >= 5)
                     {
                         var enemy = new Enemy
                         {
                             EnemyID = int.TryParse(values[0].Trim(), out int id) ? id : 0,
                             EnemyName = values[1].Trim(),
                             HP = int.TryParse(values[2].Trim(), out int hp) ? hp : 0,
-                            AttackPower = int.TryParse(values[3].Trim(), out int atk) ? atk : 0
+                            AttackPower = int.TryParse(values[3].Trim(), out int atk) ? atk : 0,
+                            IsBoss = bool.TryParse(values[4].Trim(), out bool isBoss) ? isBoss : false
                         };
                         targetEnemyList.AddEnemy(enemy);
                         importedCount++;

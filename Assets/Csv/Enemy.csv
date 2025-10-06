@@ -1,5 +1,5 @@
-EnemyID	EnemyName	HP	AttackPower
-1	スライム	30	2
-2	ケモノ	35	5
-3	魔女	50	5
-4	ボス	80	7
+EnemyID	EnemyName	HP	AttackPower	IsBoss
+1	スライム	30	2	FALSE
+2	ケモノ	35	5	FALSE
+3	魔女	50	5	FALSE
+4	ボス	80	7	TRUE

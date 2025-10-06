@@ -28,6 +28,8 @@ namespace Ramen.Data
         /// </summary>
         public int AttackPower;
 
+        public bool IsBoss;
+
         /// <summary>
         /// デフォルトコンストラクタ
         /// </summary>
@@ -42,12 +44,13 @@ namespace Ramen.Data
         /// <param name="enemyName">敵名</param>
         /// <param name="hp">体力</param>
         /// <param name="attackPower">攻撃力</param>
-        public Enemy(int enemyID, string enemyName, int hp, int attackPower)
+        public Enemy(int enemyID, string enemyName, int hp, int attackPower, bool isBoss)
         {
             EnemyID = enemyID;
             EnemyName = enemyName;
             HP = hp;
             AttackPower = attackPower;
+            IsBoss = isBoss;
         }
 
         /// <summary>
@@ -55,7 +58,7 @@ namespace Ramen.Data
         /// </summary>
         public override string ToString()
         {
-            return $"ID: {EnemyID}, Name: {EnemyName}, HP: {HP}, ATK: {AttackPower}";
+            return $"ID: {EnemyID}, Name: {EnemyName}, HP: {HP}, ATK: {AttackPower}, IsBoss: {IsBoss}";
         }
 
         /// <summary>
