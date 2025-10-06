@@ -7,7 +7,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using LitMotion.Extensions;
-using R3;
+using UniRx;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
