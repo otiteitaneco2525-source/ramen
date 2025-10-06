@@ -7,6 +7,7 @@ using Cysharp.Threading.Tasks;
 using LitMotion;
 using LitMotion.Extensions;
 using UnityEngine.Events;
+using TMPro;
 
 public class CardSelectView : MonoBehaviour
 {
@@ -15,9 +16,9 @@ public class CardSelectView : MonoBehaviour
     [SerializeField] private Transform _cardContainer;
     [SerializeField] private Image _backgroundImage;
     [SerializeField] private Image _frontFrontImage;
-    [SerializeField] private Image _character1Image;
     [SerializeField] private float _offsetX;
     [SerializeField] private float _offsetY;
+    [SerializeField] private TextMeshProUGUI _character1Text;
 
     public bool Visible { get { return gameObject.activeSelf; } set { gameObject.SetActive(value); } }
 
@@ -68,7 +69,7 @@ public class CardSelectView : MonoBehaviour
 
         _frontFrontImage.gameObject.SetActive(true);
         _frontFrontImage.gameObject.SetActive(false);
-        _character1Image.gameObject.SetActive(false);
+        _character1Text.gameObject.SetActive(false);
 
         var backgroundImageFromColor = _backgroundImage.color;
         backgroundImageFromColor.a = 0;
@@ -90,15 +91,15 @@ public class CardSelectView : MonoBehaviour
             .BindToColor(_frontFrontImage);
         taskList.Add(motion2.ToUniTask());
 
-        _character1Image.gameObject.SetActive(true);
-        var character1ImageColor = _character1Image.color;
-        character1ImageColor.a = 0;
-        var character1ImageToColor = character1ImageColor;
-        character1ImageToColor.a = 1;
-        var motion3 = LMotion.Create(character1ImageColor, character1ImageToColor, 0.25f)
+        _character1Text.gameObject.SetActive(true);
+        var character1TextColor = _character1Text.color;
+        character1TextColor.a = 0;
+        var character1TextToColor = character1TextColor;
+        character1TextToColor.a = 1;
+        var motion4 = LMotion.Create(character1TextColor, character1TextToColor, 0.25f)
             .WithEase(Ease.Linear)
-            .BindToColor(_character1Image);
-        taskList.Add(motion3.ToUniTask());
+            .BindToColor(_character1Text);
+        taskList.Add(motion4.ToUniTask());
 
         await UniTask.WhenAll(taskList);
 
