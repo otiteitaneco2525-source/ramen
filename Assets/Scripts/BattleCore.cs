@@ -106,16 +106,9 @@ public sealed class BattleCore
     {
         var result = new List<Card>();
 
-        // CardTypeごとに1枚ずつ合計3枚のカードを引く
-        CardType[] cardTypes = Enum.GetValues(typeof(CardType)).Cast<CardType>().ToArray();
-
-        foreach (var cardType in cardTypes)
-        {
-            // ランダムにカードを選択
-            var availableCards = cards.Where(x => x.CardType == cardType).ToList();
-            Card selectedCard = availableCards[UnityEngine.Random.Range(0, availableCards.Count)];
-            result.Add(selectedCard);
-        }
+        // ランダムに合計3枚のカードを引く
+        var shuffledCards = cards.OrderBy(x => UnityEngine.Random.value).Take(3).ToList();
+        result.AddRange(shuffledCards);
 
         cards.RemoveAll(x => result.Contains(x));
 
