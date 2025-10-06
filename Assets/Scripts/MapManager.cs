@@ -18,6 +18,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private HealView _healView;
     [SerializeField] private BattleSettings _battleSettings;
     [SerializeField] private CardSelectView _cardSelectView;
+    [SerializeField] private EnemyList _enemyList;
     private List<EventButton> _eventButtons = new List<EventButton>();
 
     async void Start()
@@ -62,6 +63,17 @@ public class MapManager : MonoBehaviour
         {
             case EventButtonType.Battle:
                 List<UniTask> taskList = new List<UniTask>();
+
+                // 敵IDが0の場合、ボス以外の敵をランダムで選択する
+                if (enemyId == 0)
+                {
+                    var candidates = _enemyList.Enemies.Where(enemy => !enemy.IsBoss).ToList();
+                    if (candidates.Count > 0)
+                    {
+                        var randomIndex = UnityEngine.Random.Range(0, candidates.Count);
+                        enemyId = candidates[randomIndex].EnemyID;
+                    }
+                }
                 _gameEntity.EnemyID = enemyId;
                 taskList.Add(SceneManager.LoadSceneAsync("BattleScene").ToUniTask());
                 taskList.Add(_soundManager.StopBgmAsync());
