@@ -14,6 +14,7 @@ public interface IHandView
     Subject<int> SelectedCardCount { get; }
     UniTask DrawCardAsync();
     UniTask SelectedCard();
+    UniTask ResetSelectedCards();
 }
 
 public sealed class HandView : MonoBehaviour, IHandView
@@ -144,6 +145,39 @@ public sealed class HandView : MonoBehaviour, IHandView
         }
 
         await UniTask.WhenAll(taskList);
+    }
+
+    // 選択したカードを元の位置に戻す
+    public async UniTask ResetSelectedCards()
+    {
+        List<UniTask> taskList = new List<UniTask>();
+
+        foreach (var cardView in _selectedCards)
+        {
+            cardView.SetIdelState();
+        }
+
+        // 選択したカードを元の位置に戻す
+        foreach (var cardView in _selectedCards)
+        {
+            // 元の位置に戻すアニメーションを再生する
+            var motion = LMotion.Create((Vector3)cardView.RectTransform.localPosition, (Vector3)new Vector2(cardView.RectTransform.localPosition.x, cardView.DefaultY), 0.25f)
+                .WithEase(Ease.Linear)
+                .BindToLocalPosition(cardView.RectTransform);
+            taskList.Add(motion.ToUniTask());
+
+            cardView.SetDefaultScale();
+        }
+
+        await UniTask.WhenAll(taskList);
+
+        foreach (var cardView in _selectedCards)
+        {
+            cardView.SetWaitState();
+        }
+
+        _selectedCards.Clear();
+        _selectedCardCount.OnNext(0);
     }
 
     public async UniTask DrawCardAsync()

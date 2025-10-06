@@ -151,8 +151,17 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         _handView.CardViewList.Where(x => x.Visible == true).ToList().ForEach(x => x.SetWaitState());
     }
 
-    private void OnThreeCardsSelected()
+    private async void OnThreeCardsSelected()
     {
+        // 選択した手札のカードタイプが全て違うかどうかを確認する
+        var selectedCards = _handView.SelectedCards.Where(x => x.Visible == true && x.CardData != null).ToList().Select(x => x.CardData).ToList();
+        var selectedCardTypes = selectedCards.Select(x => x.CardType).ToList();
+        if (selectedCardTypes.Distinct().Count() != selectedCardTypes.Count)
+        {
+            await _handView.ResetSelectedCards();
+            return;
+        }
+        
         _battleSystem.ChangeState(_battleSystem.PlayerAttackState);
     }
 

@@ -39,6 +39,7 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public List<TextMeshProUGUI> TextList => _textList;
     public Image CardImage => _cardImage;
     private Vector2 _defaultPosition;
+    public float DefaultY => _defaultPosition.y;
 
     public void Initialize()
     {
