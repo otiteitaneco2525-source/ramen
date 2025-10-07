@@ -50,6 +50,7 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
     private BattleCore _battleCore;
     private CompositeDisposable _disposables = new CompositeDisposable();
     private EnemyView _enemyView;
+    private Enemy _enemy;
 
     public async void Start()
     {
@@ -83,7 +84,8 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         _heroView.SetMaxHp(_gameEntity.MaxHp);
         _heroView.SetHp(_gameEntity.Hp);
 
-        _enemyView.SetStatus(_enemyList.GetEnemyByID(_gameEntity.EnemyID));
+        _enemy = _enemyList.GetEnemyByID(_gameEntity.EnemyID);
+        _enemyView.SetStatus(_enemy);
 
         _battleUiView.OnSkipButtonClicked = OnSkipButtonClicked;
 
@@ -98,6 +100,7 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
             .AddTo(_disposables);
 
         _effectView.OnGameOverButtonClicked = OnGameOverButtonClicked;
+        _effectView.OnEndingButtonClicked = OnEndingButtonClicked;
         _effectView.SetAsLastSibling();
 
         List<UniTask> taskList = new List<UniTask>();
@@ -264,10 +267,26 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
 
         await UniTask.Delay(1500);
 
+        if (_enemy.IsBoss)
+        {
+            await _effectView.ShowEndingAsync();
+        }
+        else
+        {
+            List<UniTask> taskList = new List<UniTask>();
+            taskList.Add(_soundManager.StopBgmAsync());
+            taskList.Add(_fadeView.FadeInAsync());
+            taskList.Add(SceneManager.LoadSceneAsync("MapScene").ToUniTask());
+            await UniTask.WhenAll(taskList);
+        }
+    }
+
+    private async void OnEndingButtonClicked()
+    {
         List<UniTask> taskList = new List<UniTask>();
         taskList.Add(_soundManager.StopBgmAsync());
         taskList.Add(_fadeView.FadeInAsync());
-        taskList.Add(SceneManager.LoadSceneAsync("MapScene").ToUniTask());
+        taskList.Add(SceneManager.LoadSceneAsync("TitleScene").ToUniTask());
         await UniTask.WhenAll(taskList);
     }
 

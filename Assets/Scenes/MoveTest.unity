@@ -384,13 +384,13 @@ MonoBehaviour:
   _discardView: {fileID: 106874097}
   _battleSettings: {fileID: 11400000, guid: c3b6dac55134d824383c1c4bc816e12e, type: 2}
   _heroView: {fileID: 1374287578}
-  _enemyView: {fileID: 900985632}
   _cardComboList: {fileID: 11400000, guid: f9e8086efb90cf742aef8ca0398b7cb1, type: 2}
   _cardList: {fileID: 11400000, guid: bfbc08a96ba0a7144a90a3ff45de0353, type: 2}
   _enemyList: {fileID: 11400000, guid: 2549202a76e711b4ca114aaf13585b19, type: 2}
   _serifList: {fileID: 11400000, guid: 6f424177e40152145843306d1ee805ff, type: 2}
   _serifToCardList: {fileID: 11400000, guid: e33d18940deb88246864a7e611e1b503, type: 2}
   _battleUiView: {fileID: 1880965832}
+  _effectView: {fileID: 0}
 --- !u!4 &259584505
 Transform:
   m_ObjectHideFlags: 0
@@ -2134,6 +2134,7 @@ MonoBehaviour:
   _effectView: {fileID: 949172444}
   _effectButton: {fileID: 788683056}
   _slideButton: {fileID: 177616526}
+  _battleSettings: {fileID: 11400000, guid: c3b6dac55134d824383c1c4bc816e12e, type: 2}
 --- !u!4 &870279663
 Transform:
   m_ObjectHideFlags: 0

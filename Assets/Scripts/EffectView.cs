@@ -18,8 +18,10 @@ public class EffectView : MonoBehaviour
     [SerializeField] private Sprite _gameClearSprite;
     [SerializeField] private Image _gameOverImage;
     [SerializeField] private Button _gameOverButton;
+    [SerializeField] private Button _endingButton;
 
     public UnityAction OnGameOverButtonClicked { get; set; }
+    public UnityAction OnEndingButtonClicked { get; set; }
 
     public void SetDamageText(int damage)
     {
@@ -34,6 +36,7 @@ public class EffectView : MonoBehaviour
     void Start()
     {
         _gameOverButton.onClick.AddListener(() => OnGameOverButtonClicked?.Invoke());
+        _endingButton.onClick.AddListener(() => OnEndingButtonClicked?.Invoke());
     }
 
     public void SetYourTurnSprite()
@@ -116,6 +119,29 @@ public class EffectView : MonoBehaviour
         await UniTask.Delay(1000);
 
         _playerAttackImage.gameObject.SetActive(false);
+    }
+
+    public async UniTask ShowEndingAsync()
+    {
+        List<UniTask> taskList = new List<UniTask>();
+
+        _endingButton.gameObject.SetActive(true);
+        _endingButton.interactable = false;
+
+        var image = _endingButton.GetComponent<Image>();
+        var fromColor = image.color;
+        fromColor.a = 0;
+        image.color = fromColor;
+        var toColor = fromColor;
+        toColor.a = 1;
+        var motion = LMotion.Create(fromColor, toColor, 0.25f)
+            .WithEase(Ease.Linear)
+            .BindToColor(image);
+        taskList.Add(motion.ToUniTask());
+
+        _endingButton.interactable = true;
+
+        await UniTask.WhenAll(taskList);
     }
 
     public void SetAsLastSibling()

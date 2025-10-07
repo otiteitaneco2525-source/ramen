@@ -26,7 +26,7 @@ public class TestMoveManager : MonoBehaviour
             // _effectView.SetEnemyTurnSprite();
             // _effectView.SetGameClearSprite();
             // _effectView.ShowSlideAsync();
-            _effectView.ShowGameOverAsync().Forget();
+            _effectView.ShowEndingAsync().Forget();
         });
     }
 }
