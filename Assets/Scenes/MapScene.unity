@@ -359,6 +359,14 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1129622174}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (17)
@@ -453,6 +461,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 70113443}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &70113445 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 70113443}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &91974399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -469,6 +488,14 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1034314691}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (6)
@@ -563,6 +590,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 91974399}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &91974401 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 91974399}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &109817914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -579,6 +617,14 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 296275648}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (10)
@@ -673,6 +719,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 109817914}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &109817916 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 109817914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &110378263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -802,6 +859,18 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1649122878}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1831761617}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (14)
@@ -896,6 +965,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 296275646}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &296275648 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 296275646}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &340064971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,6 +1116,14 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 70113445}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (12)
@@ -1130,6 +1218,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 513427863}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &513427865 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 513427863}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &549130130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1142,6 +1241,18 @@ PrefabInstance:
       propertyPath: _enemyId
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1034314691}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1722858374}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (5)
@@ -1236,6 +1347,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 549130130}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &549130132 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 549130130}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &715819447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1252,6 +1374,18 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 109817916}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1367427468}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (9)
@@ -1346,6 +1480,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 715819447}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &715819449 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 715819447}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &760498137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1362,6 +1507,14 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1680345023}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (22)
@@ -1456,6 +1609,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 760498137}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &760498139 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 760498137}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &791420697
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1472,6 +1636,18 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1226802624}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1226802624}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (15)
@@ -1566,6 +1742,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 791420697}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &791420699 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 791420697}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &833265645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1582,6 +1769,14 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1226802624}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (16)
@@ -1676,6 +1871,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 833265645}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &833265647 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 833265645}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1034314689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1692,6 +1898,18 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 513427865}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2066412778}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (7)
@@ -1786,6 +2004,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 1034314689}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1034314691 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 1034314689}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1110309812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1938,6 +2167,14 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1680345023}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (21)
@@ -2032,6 +2269,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 1129622172}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1129622174 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 1129622172}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1198931251
 GameObject:
   m_ObjectHideFlags: 0
@@ -2276,6 +2524,14 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 760498139}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (20)
@@ -2370,6 +2626,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 1226802622}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1226802624 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 1226802622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1242348876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2499,6 +2766,18 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 791420699}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 833265647}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (11)
@@ -2593,6 +2872,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 1367427466}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1367427468 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 1367427466}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1384406003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2609,6 +2899,14 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1722858374}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (4)
@@ -2703,6 +3001,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 1384406003}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1384406005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 1384406003}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1494071772
 GameObject:
   m_ObjectHideFlags: 0
@@ -2822,6 +3131,14 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 91974401}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (1)
@@ -2916,6 +3233,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 1531108280}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1531108282 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 1531108280}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1649122876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2932,6 +3260,14 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1129622174}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (18)
@@ -3026,6 +3362,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 1649122876}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1649122878 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 1649122876}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1680345021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3136,6 +3483,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 1680345021}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1680345023 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 1680345021}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1722858372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3152,6 +3510,18 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2066412778}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 296275648}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (8)
@@ -3246,6 +3616,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 1722858372}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1722858374 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 1722858372}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1744722963
 GameObject:
   m_ObjectHideFlags: 0
@@ -3398,6 +3779,18 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 549130132}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1384406005}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (3)
@@ -3492,6 +3885,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 1783883757}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1783883759 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 1783883757}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1797783495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3508,6 +3912,18 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1384406005}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 715819449}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (2)
@@ -3602,6 +4018,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 1797783495}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1797783497 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 1797783495}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1816704218
 GameObject:
   m_ObjectHideFlags: 0
@@ -3806,6 +4233,18 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 760498139}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 760498139}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (19)
@@ -3900,6 +4339,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 1831761615}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1831761617 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 1831761615}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1889635729
 GameObject:
   m_ObjectHideFlags: 0
@@ -4620,6 +5070,18 @@ PrefabInstance:
       propertyPath: _eventButtonType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 70113445}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1649122878}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton (13)
@@ -4714,6 +5176,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 2066412776}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2066412778 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 2066412776}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9198807825806651936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4726,6 +5199,22 @@ PrefabInstance:
       propertyPath: _enemyId
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: _nextEventButtonList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1531108282}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1797783497}
+    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+      propertyPath: '_nextEventButtonList.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1783883759}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
       value: EventButton
