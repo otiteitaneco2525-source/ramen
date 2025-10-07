@@ -18,11 +18,30 @@ public class EventButton : MonoBehaviour
     [SerializeField] private bool _isDebug;
     [SerializeField] private List<EventButton> _nextEventButtonList;
     public bool IsDebug => _isDebug;
+    public UnityAction<EventButton> OnEventButtonClicked;
+    public List<EventButton> NextEventButtonList => _nextEventButtonList;
+    public Image Image => _image;
+    public EventButtonType EventButtonType => _eventButtonType;
+    public int EnemyId => _enemyId;
 
-    public UnityAction<EventButtonType, int> OnEventButtonClicked;
+    private Image _image;
+    private bool _isInitialized;
 
     void Start()
     {
-        _eventButton.onClick.AddListener(() => OnEventButtonClicked?.Invoke(_eventButtonType, _enemyId));
+        Initialize();
+    }
+
+    public void Initialize()
+    {
+        if (_isInitialized)
+        {
+            return;
+        }
+
+        _isInitialized = true;
+
+        _image = GetComponent<Image>();
+        _eventButton.onClick.AddListener(() => OnEventButtonClicked?.Invoke(this));
     }
 }

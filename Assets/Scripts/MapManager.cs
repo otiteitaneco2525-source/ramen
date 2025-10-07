@@ -19,6 +19,8 @@ public class MapManager : MonoBehaviour
     [SerializeField] private BattleSettings _battleSettings;
     [SerializeField] private CardSelectView _cardSelectView;
     [SerializeField] private EnemyList _enemyList;
+    [SerializeField] private bool _isDebug;
+
     private List<EventButton> _eventButtons = new List<EventButton>();
 
     async void Start()
@@ -43,10 +45,11 @@ public class MapManager : MonoBehaviour
 
         foreach (var eventButton in _eventButtons)
         {
+            eventButton.Initialize();
             eventButton.OnEventButtonClicked += OnEventButtonClicked;
             if (!eventButton.IsDebug)
             {
-                eventButton.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+                eventButton.Image.color = new Color(1, 1, 1, 0);
             }
 
 #if !UNITY_EDITOR
@@ -65,14 +68,31 @@ public class MapManager : MonoBehaviour
         _fadeView.Visible = false;
     }
 
-    private async void OnEventButtonClicked(EventButtonType eventButtonType, int enemyId)
+    private async void OnEventButtonClicked(EventButton eventButton)
     {
-        Debug.Log("EventButton clicked: " + eventButtonType + " " + enemyId);
+        Debug.Log("EventButton clicked: " + eventButton.EventButtonType + " " + eventButton.EnemyId);
 
-        switch (eventButtonType)
+        if (_isDebug)
+        {
+            foreach (var e in _eventButtons)
+            {
+                e.Image.color = new Color(1, 1, 1, 0);
+            }
+
+            foreach (var e in eventButton.NextEventButtonList)
+            {
+                e.Image.color = new Color(1, 1, 1, 0.5f);
+            }
+
+            return;
+        }
+
+        switch (eventButton.EventButtonType)
         {
             case EventButtonType.Battle:
                 List<UniTask> taskList = new List<UniTask>();
+
+                int enemyId = eventButton.EnemyId;
 
                 // 敵IDが0の場合、ボス以外の敵をランダムで選択する
                 if (enemyId == 0)
