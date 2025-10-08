@@ -21,6 +21,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private EnemyList _enemyList;
     [SerializeField] private bool _isDebug;
     [SerializeField] private MapScrollView _mapScrollView;
+    [SerializeField] private EventButton _firstEventButton;
 
     private List<EventButton> _eventButtons = new List<EventButton>();
 
@@ -60,6 +61,8 @@ public class MapManager : MonoBehaviour
             }
 #endif
         }
+
+        _mapScrollView.OnScroll(_firstEventButton);
 
         List<UniTask> taskList = new List<UniTask>();
         taskList.Add(_soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM_MAP));

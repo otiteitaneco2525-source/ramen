@@ -1177,6 +1177,7 @@ MonoBehaviour:
   _enemyList: {fileID: 11400000, guid: 2549202a76e711b4ca114aaf13585b19, type: 2}
   _isDebug: 0
   _mapScrollView: {fileID: 1889635733}
+  _firstEventButton: {fileID: 1981231145}
 --- !u!1001 &513427863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4787,6 +4788,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
   m_PrefabInstance: {fileID: 9198807825806651936}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1981231145 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
+  m_PrefabInstance: {fileID: 9198807825806651936}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2018585015
 GameObject:
   m_ObjectHideFlags: 0
