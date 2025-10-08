@@ -20,6 +20,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private CardSelectView _cardSelectView;
     [SerializeField] private EnemyList _enemyList;
     [SerializeField] private bool _isDebug;
+    [SerializeField] private MapScrollView _mapScrollView;
 
     private List<EventButton> _eventButtons = new List<EventButton>();
 
@@ -74,13 +75,23 @@ public class MapManager : MonoBehaviour
 
         if (_isDebug)
         {
+            _mapScrollView.OnScroll(eventButton);
+
             foreach (var e in _eventButtons)
             {
+                if (e.IsDebug)
+                {
+                    continue;
+                }
                 e.Image.color = new Color(1, 1, 1, 0);
             }
 
             foreach (var e in eventButton.NextEventButtonList)
             {
+                if (e.IsDebug)
+                {
+                    continue;
+                }
                 e.Image.color = new Color(1, 1, 1, 0.5f);
             }
 
