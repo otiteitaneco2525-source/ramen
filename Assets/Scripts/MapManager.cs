@@ -78,6 +78,21 @@ public class MapManager : MonoBehaviour
 
         if (_isDebug)
         {
+            // GameEntityのCurrentEventButtonがNullの場合、引数のeventButtonが_firstEventButtonであるかチェックする
+            if (_gameEntity.CurrentEventButton == null && eventButton == _firstEventButton)
+            {
+                _gameEntity.CurrentEventButton = eventButton;
+            }
+            // GameEntityのCurrentEventButtonがNullでない場合、引数のeventButtonがCurrentEventButtonのNextEventButtonListに含まれているかチェックする
+            else if (_gameEntity.CurrentEventButton != null && _gameEntity.CurrentEventButton.NextEventButtonList.Contains(eventButton))
+            {
+                _gameEntity.CurrentEventButton = eventButton;
+            }
+            else
+            {
+                return;
+            }
+
             _mapScrollView.OnScroll(eventButton);
 
             foreach (var e in _eventButtons)

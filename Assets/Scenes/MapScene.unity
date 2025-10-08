@@ -1175,7 +1175,7 @@ MonoBehaviour:
   _battleSettings: {fileID: 11400000, guid: c3b6dac55134d824383c1c4bc816e12e, type: 2}
   _cardSelectView: {fileID: 1827557883}
   _enemyList: {fileID: 11400000, guid: 2549202a76e711b4ca114aaf13585b19, type: 2}
-  _isDebug: 0
+  _isDebug: 1
   _mapScrollView: {fileID: 1889635733}
   _firstEventButton: {fileID: 1981231145}
 --- !u!1001 &513427863
