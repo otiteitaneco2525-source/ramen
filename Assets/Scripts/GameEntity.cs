@@ -7,7 +7,7 @@ public sealed class GameEntity
     public int EnemyID { get; set; }
     public int Hp { get; set; }
     public int MaxHp { get; set; }
-    public EventButton CurrentEventButton { get; set; }
+    public string CurrentEventButtonId { get; set; } // EventButtonのIDを保存
 
     public GameEntity()
     {
@@ -16,7 +16,7 @@ public sealed class GameEntity
         EnemyID = 1;
         Hp = 0;
         MaxHp = 0;
-        CurrentEventButton = null;
+        CurrentEventButtonId = null;
     }
 
     public bool HasCard(string cardId)

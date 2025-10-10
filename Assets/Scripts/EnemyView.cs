@@ -30,15 +30,10 @@ public class EnemyView : MonoBehaviour, IEnemyView
         _hp -= value;
         _hpSlider.value = _hp;
 
-        // 自身を揺らしたい
-        //transform.DOShakePosition(0.3f, 10f, 10, 90f, false, true);
-
         if (_hp <= 0)
         {
             _hp = 0;
             _hpSlider.value = _hp;
-            Debug.Log("EnemyObjがやられた");
-            // Destroy(gameObject);
         }
     }
 

@@ -444,7 +444,7 @@ PrefabInstance:
       objectReference: {fileID: 1129622174}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (17)
+      value: EventButton_18
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -573,7 +573,7 @@ PrefabInstance:
       objectReference: {fileID: 1034314691}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (6)
+      value: EventButton_7
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -702,7 +702,7 @@ PrefabInstance:
       objectReference: {fileID: 296275648}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (10)
+      value: EventButton_11
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -823,7 +823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton_debug2
+      value: EventButton_92
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -948,7 +948,7 @@ PrefabInstance:
       objectReference: {fileID: 1831761617}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (14)
+      value: EventButton_15
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -1175,7 +1175,7 @@ MonoBehaviour:
   _battleSettings: {fileID: 11400000, guid: c3b6dac55134d824383c1c4bc816e12e, type: 2}
   _cardSelectView: {fileID: 1827557883}
   _enemyList: {fileID: 11400000, guid: 2549202a76e711b4ca114aaf13585b19, type: 2}
-  _isDebug: 1
+  _isDebug: 0
   _mapScrollView: {fileID: 1889635733}
   _firstEventButton: {fileID: 1981231145}
 --- !u!1001 &513427863
@@ -1204,7 +1204,7 @@ PrefabInstance:
       objectReference: {fileID: 70113445}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (12)
+      value: EventButton_13
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -1333,7 +1333,7 @@ PrefabInstance:
       objectReference: {fileID: 1722858374}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (5)
+      value: EventButton_6
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -1466,7 +1466,7 @@ PrefabInstance:
       objectReference: {fileID: 1367427468}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (9)
+      value: EventButton_10
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -1595,7 +1595,7 @@ PrefabInstance:
       objectReference: {fileID: 1680345023}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (22)
+      value: EventButton_23
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -1728,7 +1728,7 @@ PrefabInstance:
       objectReference: {fileID: 1226802624}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (15)
+      value: EventButton_16
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -1857,7 +1857,7 @@ PrefabInstance:
       objectReference: {fileID: 1226802624}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (16)
+      value: EventButton_17
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -1990,7 +1990,7 @@ PrefabInstance:
       objectReference: {fileID: 2066412778}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (7)
+      value: EventButton_8
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -2093,6 +2093,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86cd6a97e4c7e54ebd3464ca850e921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1039827864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1039827865}
+  - component: {fileID: 1039827867}
+  - component: {fileID: 1039827866}
+  m_Layer: 5
+  m_Name: CurrentImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1039827865
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039827864}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1494071773}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 861, y: -18}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1039827866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039827864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 95721de2610f87f4981c656bfb2a5031, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1039827867
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039827864}
+  m_CullTransparentMesh: 1
 --- !u!1 &1110309812
 GameObject:
   m_ObjectHideFlags: 0
@@ -2255,7 +2330,7 @@ PrefabInstance:
       objectReference: {fileID: 1680345023}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (21)
+      value: EventButton_22
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -2612,7 +2687,7 @@ PrefabInstance:
       objectReference: {fileID: 760498139}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (20)
+      value: EventButton_21
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -2733,7 +2808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton_debug4
+      value: EventButton_94
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -2858,7 +2933,7 @@ PrefabInstance:
       objectReference: {fileID: 833265647}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (11)
+      value: EventButton_12
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -2987,7 +3062,7 @@ PrefabInstance:
       objectReference: {fileID: 1722858374}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (4)
+      value: EventButton_5
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -3149,6 +3224,7 @@ RectTransform:
   - {fileID: 110378264}
   - {fileID: 2046609795}
   - {fileID: 1242348877}
+  - {fileID: 1039827865}
   m_Father: {fileID: 1889635730}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3190,7 +3266,7 @@ PrefabInstance:
       objectReference: {fileID: 91974401}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (1)
+      value: EventButton_2
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -3319,7 +3395,7 @@ PrefabInstance:
       objectReference: {fileID: 1129622174}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (18)
+      value: EventButton_19
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -3440,7 +3516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (23)
+      value: EventButton_24
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -3573,7 +3649,7 @@ PrefabInstance:
       objectReference: {fileID: 296275648}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (8)
+      value: EventButton_9
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -3917,7 +3993,7 @@ PrefabInstance:
       objectReference: {fileID: 1384406005}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (3)
+      value: EventButton_4
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -4050,7 +4126,7 @@ PrefabInstance:
       objectReference: {fileID: 715819449}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (2)
+      value: EventButton_3
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -4371,7 +4447,7 @@ PrefabInstance:
       objectReference: {fileID: 760498139}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (19)
+      value: EventButton_20
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -4535,6 +4611,7 @@ MonoBehaviour:
   _centerX: 690
   _maxOffsetX: 635
   _scrollRectTransform: {fileID: 1494071773}
+  _currentImage: {fileID: 1039827866}
 --- !u!1 &1896029119
 GameObject:
   m_ObjectHideFlags: 0
@@ -4953,7 +5030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton_debug1
+      value: EventButton_91
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -5066,7 +5143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton_debug3
+      value: EventButton_93
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -5191,7 +5268,7 @@ PrefabInstance:
       objectReference: {fileID: 1649122878}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton (13)
+      value: EventButton_14
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x
@@ -5324,7 +5401,7 @@ PrefabInstance:
       objectReference: {fileID: 1783883759}
     - target: {fileID: 7834562582182649650, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Name
-      value: EventButton
+      value: EventButton_1
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_Pivot.x

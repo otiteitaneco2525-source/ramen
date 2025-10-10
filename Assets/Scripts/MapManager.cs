@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.SceneManagement;
-using VContainer.Unity;
 using VContainer;
 using Cysharp.Threading.Tasks;
 using UnityEngine.UI;
@@ -19,7 +18,6 @@ public class MapManager : MonoBehaviour
     [SerializeField] private BattleSettings _battleSettings;
     [SerializeField] private CardSelectView _cardSelectView;
     [SerializeField] private EnemyList _enemyList;
-    [SerializeField] private bool _isDebug;
     [SerializeField] private MapScrollView _mapScrollView;
     [SerializeField] private EventButton _firstEventButton;
 
@@ -48,12 +46,17 @@ public class MapManager : MonoBehaviour
         foreach (var eventButton in _eventButtons)
         {
             eventButton.Initialize();
-            eventButton.OnEventButtonClicked += OnEventButtonClicked;
+            eventButton.OnEventButtonClicked = OnEventButtonClicked;
             if (!eventButton.IsDebug)
             {
                 eventButton.Image.color = new Color(1, 1, 1, 0);
             }
 
+            if (eventButton.IsDebug)
+            {
+                eventButton.OnEventButtonClicked = OnDebugEventButtonClicked;
+            }
+            
 #if !UNITY_EDITOR
             if (eventButton.IsDebug)
             {
@@ -62,7 +65,20 @@ public class MapManager : MonoBehaviour
 #endif
         }
 
-        _mapScrollView.OnScroll(_firstEventButton);
+        // 前回のEventButtonを復元するか、初回なら_firstEventButtonを使う
+        EventButton currentEventButton = null;
+        if (!string.IsNullOrWhiteSpace(_gameEntity.CurrentEventButtonId))
+        {
+            currentEventButton = _eventButtons.FirstOrDefault(eb => eb.EventButtonId == _gameEntity.CurrentEventButtonId);
+        }
+        
+        if (currentEventButton == null)
+        {
+            currentEventButton = _firstEventButton;
+        }
+
+        _mapScrollView.MoveToCurrentImage(currentEventButton);
+        _mapScrollView.OnScroll(currentEventButton);
 
         List<UniTask> taskList = new List<UniTask>();
         taskList.Add(_soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM_MAP));
@@ -72,54 +88,60 @@ public class MapManager : MonoBehaviour
         _fadeView.Visible = false;
     }
 
+    // デバッグ用のeventButtonをクリックした時の処理
+    private async void OnDebugEventButtonClicked(EventButton eventButton)
+    {
+        Debug.Log("DebugEventButton clicked: " + eventButton.EventButtonType + " " + eventButton.EnemyId);
+
+        List<UniTask> taskList = new List<UniTask>();
+        _gameEntity.EnemyID = eventButton.EnemyId;
+        taskList.Add(SceneManager.LoadSceneAsync("BattleScene").ToUniTask());
+        taskList.Add(_soundManager.StopBgmAsync());
+        taskList.Add(_fadeView.FadeInAsync());
+        await UniTask.WhenAll(taskList);
+    }
+
     private async void OnEventButtonClicked(EventButton eventButton)
     {
         Debug.Log("EventButton clicked: " + eventButton.EventButtonType + " " + eventButton.EnemyId);
 
-        if (_isDebug)
+        // GameEntityのCurrentEventButtonIdがNullの場合、引数のeventButtonが_firstEventButtonであるかチェックする
+        if (string.IsNullOrWhiteSpace(_gameEntity.CurrentEventButtonId) && eventButton == _firstEventButton)
         {
-            // GameEntityのCurrentEventButtonがNullの場合、引数のeventButtonが_firstEventButtonであるかチェックする
-            if (_gameEntity.CurrentEventButton == null && eventButton == _firstEventButton)
+            _gameEntity.CurrentEventButtonId = eventButton.EventButtonId;
+        }
+        // GameEntityのCurrentEventButtonIdがNullでない場合、引数のeventButtonがCurrentEventButtonのNextEventButtonListに含まれているかチェックする
+        else if (!string.IsNullOrWhiteSpace(_gameEntity.CurrentEventButtonId))
+        {
+            var currentEventButton = _eventButtons.FirstOrDefault(eb => eb.EventButtonId == _gameEntity.CurrentEventButtonId);
+            if (currentEventButton != null && currentEventButton.NextEventButtonList.Contains(eventButton))
             {
-                _gameEntity.CurrentEventButton = eventButton;
-            }
-            // GameEntityのCurrentEventButtonがNullでない場合、引数のeventButtonがCurrentEventButtonのNextEventButtonListに含まれているかチェックする
-            else if (_gameEntity.CurrentEventButton != null && _gameEntity.CurrentEventButton.NextEventButtonList.Contains(eventButton))
-            {
-                _gameEntity.CurrentEventButton = eventButton;
+                _gameEntity.CurrentEventButtonId = eventButton.EventButtonId;
             }
             else
             {
                 return;
             }
-
-            _mapScrollView.OnScroll(eventButton);
-
-            foreach (var e in _eventButtons)
-            {
-                if (e.IsDebug)
-                {
-                    continue;
-                }
-                e.Image.color = new Color(1, 1, 1, 0);
-            }
-
-            foreach (var e in eventButton.NextEventButtonList)
-            {
-                if (e.IsDebug)
-                {
-                    continue;
-                }
-                e.Image.color = new Color(1, 1, 1, 0.5f);
-            }
-
+        }
+        else
+        {
             return;
         }
+
+        foreach (var e in _eventButtons)
+        {
+            e.Interactable = false;
+        }
+
+        List<UniTask> taskList = new List<UniTask>();
+        taskList.Add(_mapScrollView.MoveToCurrentImageAsync(eventButton));
+        taskList.Add(_mapScrollView.OnScrollAsync(eventButton));
+        await UniTask.WhenAll(taskList);
 
         switch (eventButton.EventButtonType)
         {
             case EventButtonType.Battle:
-                List<UniTask> taskList = new List<UniTask>();
+                taskList.Clear();
 
                 int enemyId = eventButton.EnemyId;
 
@@ -138,14 +160,20 @@ public class MapManager : MonoBehaviour
                 taskList.Add(_soundManager.StopBgmAsync());
                 taskList.Add(_fadeView.FadeInAsync());
                 await UniTask.WhenAll(taskList);
-                break;
+                // シーン遷移するため、この後の処理はスキップ
+                return;
             case EventButtonType.CardSelect:
                 _cardSelectView.DealCards(_gameEntity.CardIdList);
-                _cardSelectView.OnShowAsync().Forget();
+                await _cardSelectView.OnShowAsync();
                 break;
             case EventButtonType.Heal:
-                _healView.OnShowAsync().Forget();
+                await _healView.OnShowAsync();
                 break;
+        }
+
+        foreach (var e in _eventButtons)
+        {
+            e.Interactable = true;
         }
     }
 

@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 11ac9577d8b6877488cb1f89ed1578c3
+    m_Address: Assets/Images/CardFrame/CardCount_C.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1f44622d798309f4aafdc1fd9e9d8280
     m_Address: Assets/Images/Card/12.png
     m_ReadOnly: 0
@@ -42,6 +47,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3af34afe9437da348a2274262562a044
     m_Address: Assets/Prefabs/EnemyView_4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c107b40920838a46911018b5780f31c
+    m_Address: Assets/Images/CardFrame/CardCount_B.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -142,6 +152,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c3b6dac55134d824383c1c4bc816e12e
     m_Address: Assets/ScriptableObjects/BattleSettings.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8665d8bc1d0f544093e5ec35f4fc611
+    m_Address: Assets/Images/CardFrame/CardCount_A.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
