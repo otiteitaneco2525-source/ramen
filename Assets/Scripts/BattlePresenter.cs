@@ -46,6 +46,8 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
     private readonly EnemyList _enemyList;
     [Inject]
     private readonly SoundManager _soundManager;
+    [Inject]
+    private readonly EnemyRoot _enemyRoot;
 
     private BattleCore _battleCore;
     private CompositeDisposable _disposables = new CompositeDisposable();
@@ -64,7 +66,7 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         Debug.Log("BattlePresenter Start: " + _gameEntity.ToString());
 
         var enemyPrefab = Addressables.LoadAssetAsync<GameObject>($"Assets/Prefabs/EnemyView_{_gameEntity.EnemyID}.prefab").WaitForCompletion();
-        var enemyObject = GameObject.Instantiate(enemyPrefab, _battleUiView.GetTransform());
+        var enemyObject = GameObject.Instantiate(enemyPrefab, _enemyRoot.transform);
         _enemyView = enemyObject.GetComponent<EnemyView>();
 
         _battleSystem.Initialize();
