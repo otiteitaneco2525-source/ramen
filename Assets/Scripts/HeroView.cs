@@ -40,8 +40,6 @@ public class HeroView : MonoBehaviour, IHeroView
         {
             _hp = 0;
             _hpSlider.value = _hp;
-            Debug.Log("HeroObjがやられた");
-            // Destroy(gameObject);
         }
     }
 

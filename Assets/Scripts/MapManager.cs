@@ -56,7 +56,7 @@ public class MapManager : MonoBehaviour
             {
                 eventButton.OnEventButtonClicked = OnDebugEventButtonClicked;
             }
-            
+
 #if !UNITY_EDITOR
             if (eventButton.IsDebug)
             {
@@ -167,6 +167,8 @@ public class MapManager : MonoBehaviour
                 await _cardSelectView.OnShowAsync();
                 break;
             case EventButtonType.Heal:
+                _gameEntity.MaxHp += _battleSettings.AddMaxHp;
+                _gameEntity.Hp = _gameEntity.MaxHp;
                 await _healView.OnShowAsync();
                 break;
         }

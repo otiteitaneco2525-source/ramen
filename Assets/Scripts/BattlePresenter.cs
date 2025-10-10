@@ -61,6 +61,8 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
             _gameEntity.MaxHp = _battleSettings.HeroHp;            
         }
 
+        Debug.Log("BattlePresenter Start: " + _gameEntity.ToString());
+
         var enemyPrefab = Addressables.LoadAssetAsync<GameObject>($"Assets/Prefabs/EnemyView_{_gameEntity.EnemyID}.prefab").WaitForCompletion();
         var enemyObject = GameObject.Instantiate(enemyPrefab, _battleUiView.GetTransform());
         _enemyView = enemyObject.GetComponent<EnemyView>();
@@ -269,10 +271,13 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
 
         if (_enemy.IsBoss)
         {
+            _gameEntity.Reset();
             await _effectView.ShowEndingAsync();
         }
         else
         {
+            // 戦闘終了後に_gameEntityのHpを現在のHpにする
+            _gameEntity.Hp = _heroView.GetHp();
             List<UniTask> taskList = new List<UniTask>();
             taskList.Add(_soundManager.StopBgmAsync());
             taskList.Add(_fadeView.FadeInAsync());
@@ -328,6 +333,7 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
 
     private async void OnGameOverButtonClicked()
     {
+        _gameEntity.Reset();
         List<UniTask> taskList = new List<UniTask>();
         taskList.Add(_fadeView.FadeInAsync());
         taskList.Add(SceneManager.LoadSceneAsync("TitleScene").ToUniTask());
@@ -336,6 +342,7 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
 
     private async UniTask OnLoseAsync()
     {
+        _gameEntity.Reset();
         await UniTask.Delay(3000);
         List<UniTask> taskList = new List<UniTask>();
         taskList.Add(_soundManager.StopBgmAsync());

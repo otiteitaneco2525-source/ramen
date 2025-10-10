@@ -10,6 +10,7 @@ public class BattleSettings : ScriptableObject
     public int HeroHp;
     public int SerifBonusPower;
     public string DefaultCardId;
+    public int AddMaxHp;
 
     public void SetDefaultCardId(List<string> cardIdList)
     {

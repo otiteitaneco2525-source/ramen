@@ -19,6 +19,16 @@ public sealed class GameEntity
         CurrentEventButtonId = null;
     }
 
+    public void Reset()
+    {
+        CardIdList.Clear();
+        ShowTutorial = false;
+        EnemyID = 1;
+        Hp = 0;
+        MaxHp = 0;
+        CurrentEventButtonId = null;
+    }
+
     public bool HasCard(string cardId)
     {
         return CardIdList.Contains(cardId);
@@ -29,4 +39,9 @@ public sealed class GameEntity
         CardIdList.Add(cardId);
     }
 
+    // ToString
+    public override string ToString()
+    {
+        return $"EnemyID: {EnemyID}, Hp: {Hp}, MaxHp: {MaxHp}, CurrentEventButtonId: {CurrentEventButtonId}, CardCount: {CardIdList.Count}, CardIdList: {string.Join(", ", CardIdList)}";
+    }
 }
