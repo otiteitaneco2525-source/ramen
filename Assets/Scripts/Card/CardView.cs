@@ -17,6 +17,7 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField] private List<Image> _imageList;
     [SerializeField] private List<TextMeshProUGUI> _textList;
     [SerializeField] private Color _defaultColor;
+    [SerializeField] private Image _costImage;
 
     private CardStateBase _currentState;
     public CardWaitState WaitState { get; private set; }
@@ -126,6 +127,15 @@ public sealed class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExit
             Addressables.LoadAssetAsync<Sprite>($"Assets/Images/CardFrame/CardFrame_{card.CardType.ToLetter()}.png").Completed += (handle) =>
             {
                 _cardFrameImage.sprite = handle.Result;
+            };
+        }
+
+        if (_costImage != null)
+        {
+            _costImage.sprite = null;
+            Addressables.LoadAssetAsync<Sprite>($"Assets/Images/CardFrame/CardCount_{card.CardType.ToLetter()}.png").Completed += (handle) =>
+            {
+                _costImage.sprite = handle.Result;
             };
         }
     }
