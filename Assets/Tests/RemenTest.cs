@@ -29,7 +29,7 @@ public class RemenTest
 
 
         BattleCore battleCore = new BattleCore(cardList, battleSettings, cardComboList, serifList, serifToCardList);
-        battleCore.DealCards();
+        battleCore.DrawCards();
         Assert.IsNotNull(battleCore.DeckCards);
         Assert.IsNotEmpty(battleCore.DeckCards);
 

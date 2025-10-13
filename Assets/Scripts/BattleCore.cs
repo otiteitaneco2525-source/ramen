@@ -1,7 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
 using Ramen.Data;
-using System;
 using System.Linq;
 
 public sealed class BattleCore
@@ -31,21 +29,19 @@ public sealed class BattleCore
         _battleSettings = battleSettings;
     }
 
+    /// <summary>
+    /// シリフを設定する
+    /// </summary>
+    /// <param name="serif">シリフ</param>
     public void SetCurrentSerif(Serif serif)
     {
         _currentSerif = serif;
     }
 
-    public Serif GetRandomNormalBattleSerif()
-    {
-        return _serifList.GetRandomNormalBattleSerif();
-    }
-
-    public void DealCards()
-    {
-        _deckCards.AddRange(DealCards(_cardList));
-    }
-
+    /// <summary>
+    /// デフォルトのカードを設定する
+    /// </summary>
+    /// <param name="cardIdList">カードIDリスト</param>
     public void DealDefaultCard(List<string> cardIdList)
     {
         cardIdList.ForEach(x => {
@@ -53,39 +49,29 @@ public sealed class BattleCore
         });
     }
 
-    private List<Card> DealCards(CardList cardList)
-    {
-        var result = new List<Card>();
-
-        // CardTypeごとに最大2つかつランダムで2つカードデータを取得して配列に格納
-        CardType[] cardTypes = Enum.GetValues(typeof(CardType)).Cast<CardType>().ToArray();
-        foreach (var cardType in cardTypes)
-        {
-            var list = cardList.GetCardsByType(cardType);
-            if (list == null || list.Count == 0)
-            {
-                continue;
-            }
-            
-            // 最大2つまで取得し、ランダムに選択
-            int count = Mathf.Min(2, list.Count);
-            var shuffledCardList = list.OrderBy(x => UnityEngine.Random.value).Take(count).ToList();
-            result.AddRange(shuffledCardList);
-        }
-
-        return result;
-    }
-
+    /// <summary>
+    /// 引けるカードがあるかどうかを判定する
+    /// </summary>
+    /// <returns>引けるカードがあるかどうか</returns>
     public bool IsDrawableCards()
     {
         return IsDrawableCards(_deckCards, _battleSettings.DrawCount);
     }
 
+    /// <summary>
+    /// 引けるカードがあるかどうかを判定する
+    /// </summary>
+    /// <param name="cards">カードリスト</param>
+    /// <param name="drawCount">引くカードの枚数</param>
+    /// <returns>引けるカードがあるかどうか</returns>
     private bool IsDrawableCards(List<Card> cards, int drawCount)
     {
         return cards.Count >= drawCount;
     }
 
+    /// <summary>
+    /// カードを引く
+    /// </summary>
     public void DrawCards()
     {
         if (!IsDrawableCards())
@@ -102,12 +88,17 @@ public sealed class BattleCore
         _handCards.AddRange(DrawCards(_deckCards));
     }
 
+    /// <summary>
+    /// カードを引く
+    /// </summary>
+    /// <param name="cards">カードリスト</param>
+    /// <returns>引いたカードリスト</returns>
     private List<Card> DrawCards(List<Card> cards)
     {
         var result = new List<Card>();
 
-        // ランダムに合計3枚のカードを引く
-        var shuffledCards = cards.OrderBy(x => UnityEngine.Random.value).Take(3).ToList();
+        // ランダムに合計DrawCount枚のカードを引く
+        var shuffledCards = cards.OrderBy(x => UnityEngine.Random.value).Take(_battleSettings.DrawCount).ToList();
         result.AddRange(shuffledCards);
 
         cards.RemoveAll(x => result.Contains(x));
@@ -115,22 +106,34 @@ public sealed class BattleCore
         return result;
     }
 
+    /// <summary>
+    /// カードを墓地に移動する
+    /// </summary>
+    /// <param name="cards">カードリスト</param>
     public void MoveCardsToDiscard(List<Card> cards)
     {
         _deckCards.RemoveAll(x => cards.Contains(x));
         _discardCards.AddRange(cards);
     }
 
-    public void SetDiscardCards(List<Card> cards)
-    {
-        _discardCards.AddRange(cards);
-    }
-
+    /// <summary>
+    /// セリフのボーナスパワーを取得する
+    /// </summary>
+    /// <param name="selectedCards">選択したカードリスト</param>
+    /// <returns>セリフのボーナスパワー</returns>
     public int GetSerifBonusPower(List<Card> selectedCards)
     {
         return GetSerifBonusPower(selectedCards, _serifToCardList.SerifToCards.Where(x => x.IsForSerifID(_currentSerif.SerifID)).ToList(), _battleSettings.SerifBonusPower, _battleSettings.DrawCount);
     }
 
+    /// <summary>
+    /// セリフのボーナスパワーを取得する
+    /// </summary>
+    /// <param name="selectedCards">選択したカードリスト</param>
+    /// <param name="serifToCards">シリフとカードの関係リスト</param>
+    /// <param name="serifBonusPower">セリフのボーナスパワー</param>
+    /// <param name="drawCount">引くカードの枚数</param>
+    /// <returns>セリフのボーナスパワー</returns>
     private int GetSerifBonusPower(List<Card> selectedCards, List<SerifToCard> serifToCards, int serifBonusPower, int drawCount)
     {
         List<bool> conditionMets = new List<bool>();
@@ -145,6 +148,12 @@ public sealed class BattleCore
         return conditionMets.Count(x => x) >= count ? serifBonusPower : 0;
     }
 
+    /// <summary>
+    /// コンボのボーナスパワーを取得する
+    /// </summary>
+    /// <param name="cardFrom">カード1</param>
+    /// <param name="cardTo">カード2</param>
+    /// <returns>コンボのボーナスパワー</returns>
     public int GetComboBonusPower(Card cardFrom, Card cardTo)
     {
         List<CardCombo> combos = new List<CardCombo>();

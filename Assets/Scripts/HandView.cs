@@ -12,9 +12,9 @@ public interface IHandView
     List<CardView> CardViewList { get; }
     List<CardView> SelectedCards { get; }
     Subject<int> SelectedCardCount { get; }
-    UniTask DrawCardAsync();
-    UniTask SelectedCard();
-    UniTask ResetSelectedCards();
+    UniTask DrawCardAnimationAsync();
+    UniTask SelectedCardAnimationAsync();
+    UniTask ResetSelectedCardsAnimationAsync();
 }
 
 public sealed class HandView : MonoBehaviour, IHandView
@@ -74,6 +74,12 @@ public sealed class HandView : MonoBehaviour, IHandView
         return new Vector2(cardWidth, cardHeight);
     }
 
+    /// <summary>
+    /// カードを作成する
+    /// </summary>
+    /// <param name="count">作成するカードの枚数</param>
+    /// <param name="cardSize">カードのサイズ</param>
+    /// <param name="logicalCanvasSize">論理キャンバスのサイズ</param>
     public void CreateCard(int count, Vector2 cardSize, Vector2 logicalCanvasSize)
     {
         Vector2 startPosition = new Vector2(cardSize.x / 2 + (logicalCanvasSize.x / 2), cardSize.y / 2 + (logicalCanvasSize.y / 2) * -1 + _offsetY);
@@ -88,19 +94,31 @@ public sealed class HandView : MonoBehaviour, IHandView
         }
     }
 
+    /// <summary>
+    /// カードを選択した時の処理
+    /// </summary>
+    /// <param name="card">選択したカード</param>
     private void OnCardSelected(CardView card)
     {
         _selectedCards.Add(card);
         _selectedCardCount.OnNext(_selectedCards.Count);
     }
 
+    /// <summary>
+    /// カードを選択解除した時の処理
+    /// </summary>
+    /// <param name="card">選択解除したカード</param>
     private void OnCardDeselected(CardView card)
     {
         _selectedCards.Remove(card);
         _selectedCardCount.OnNext(_selectedCards.Count);
     }
 
-    public async UniTask SelectedCard()
+    /// <summary>
+    /// 選択したカードを中央に移動するアニメーションを再生する
+    /// </summary>
+    /// <returns>アニメーションを再生する</returns>
+    public async UniTask SelectedCardAnimationAsync()
     {
         _cardViewList.Where(x => x.Visible == true).ToList().ForEach(x => x.SetIdelState());
 
@@ -147,8 +165,11 @@ public sealed class HandView : MonoBehaviour, IHandView
         await UniTask.WhenAll(taskList);
     }
 
-    // 選択したカードを元の位置に戻す
-    public async UniTask ResetSelectedCards()
+    /// <summary>
+    /// 選択したカードを元の位置に戻すアニメーションを再生する
+    /// </summary>
+    /// <returns>アニメーションを再生する</returns>
+    public async UniTask ResetSelectedCardsAnimationAsync()
     {
         List<UniTask> taskList = new List<UniTask>();
 
@@ -180,12 +201,23 @@ public sealed class HandView : MonoBehaviour, IHandView
         _selectedCardCount.OnNext(0);
     }
 
-    public async UniTask DrawCardAsync()
+    /// <summary>
+    /// カードを引くアニメーションを再生する
+    /// </summary>
+    /// <returns>アニメーションを再生する</returns>
+    public async UniTask DrawCardAnimationAsync()
     {
-        await DrawCardAsync(_battleSettings.DrawCount, _cardSize, _logicalCanvasSize);
+        await DrawCardAnimationAsync(_battleSettings.DrawCount, _cardSize, _logicalCanvasSize);
     }
 
-    public async UniTask DrawCardAsync(int drawCount, Vector2 cardSize, Vector2 logicalCanvasSize)
+    /// <summary>
+    /// カードを引くアニメーションを再生する
+    /// </summary>
+    /// <param name="drawCount">引くカードの枚数</param>
+    /// <param name="cardSize">カードのサイズ</param>
+    /// <param name="logicalCanvasSize">論理キャンバスのサイズ</param>
+    /// <returns>アニメーションを再生する</returns>
+    private async UniTask DrawCardAnimationAsync(int drawCount, Vector2 cardSize, Vector2 logicalCanvasSize)
     {
         List<UniTask> taskList = new List<UniTask>();
         

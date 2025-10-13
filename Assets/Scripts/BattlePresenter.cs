@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
 
-public class BattlePresenter : IStartable, ITickable, IDisposable
+public class BattlePresenter : IStartable, IDisposable
 {
     [Inject]
     private readonly BattleSystem _battleSystem;
@@ -100,7 +100,7 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         // R3でSelectedCardCountを監視し、3になったらイベントを発火
         _handView.SelectedCardCount
             .Where(count => count == 3)
-            .Subscribe(_ => OnThreeCardsSelected())
+            .Subscribe(_ => OnCardsSelectedAsync().Forget())
             .AddTo(_disposables);
 
         _effectView.OnGameOverButtonClicked = OnGameOverButtonClicked;
@@ -117,11 +117,6 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         _battleSystem.ChangeState(_battleSystem.SetupState);
     }
 
-    public void Tick()
-    {
-
-    }
-
     public void Dispose()
     {
         _disposables?.Dispose();
@@ -129,8 +124,10 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
 
     private async UniTask OnDrawCardAsync()
     {
+        // カードを引く
         _battleCore.DrawCards();
 
+        // 引いたカードを手札に反映する
         foreach (var card in _battleCore.HandCards)
         {
             if (_handView.CardViewList.Where(x => x.CardData != null && x.CardData.CardID == card.CardID).Count() > 0)
@@ -148,37 +145,53 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
             cardView.SetCardData(card);
         }
 
+        // デッキの枚数を反映する
         _deckView.SetDeckCount(_battleCore.DeckCards.Count);
+
+        // 捨てたカードの枚数を反映する
         _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
 
+        // 手札のカードを待機状態にする
         _handView.CardViewList.ForEach(x => x.SetIdelState());
 
-        await _handView.DrawCardAsync();
+        // カードを引くアニメーションを再生する
+        await _handView.DrawCardAnimationAsync();
 
+        // 手札のカードを待機状態にする
         _handView.CardViewList.Where(x => x.Visible == true).ToList().ForEach(x => x.SetWaitState());
     }
 
-    private async void OnThreeCardsSelected()
+    /// <summary>
+    /// カードを選択した時の処理
+    /// </summary>
+    private async UniTask OnCardsSelectedAsync()
     {
         // 選択した手札のカードタイプが全て違うかどうかを確認する
         var selectedCards = _handView.SelectedCards.Where(x => x.Visible == true && x.CardData != null).ToList().Select(x => x.CardData).ToList();
         var selectedCardTypes = selectedCards.Select(x => x.CardType).ToList();
         if (selectedCardTypes.Distinct().Count() != selectedCardTypes.Count)
         {
-            await _handView.ResetSelectedCards();
+            // 選択したカードを元の位置に戻すアニメーションを再生する
+            await _handView.ResetSelectedCardsAnimationAsync();
             return;
         }
         
         _battleSystem.ChangeState(_battleSystem.PlayerAttackState);
     }
 
+    /// <summary>
+    /// プレイヤーの攻撃処理
+    /// </summary>
+    /// <returns>アニメーションを再生する</returns>
     private async UniTask OnPlayerAttackAsync()
     {
-        await _handView.SelectedCard();
+        // 選択したカードを中央に移動するアニメーションを再生する
+        await _handView.SelectedCardAnimationAsync();
 
+        // 選択したカードを取得する
         var selectedCards = _handView.SelectedCards.Where(x => x.Visible == true && x.CardData != null).ToList().Select(x => x.CardData).ToList();
 
-        // 自分の手札を削除
+        // 選択したカードを非表示にする
         foreach (var cardView in _handView.SelectedCards)
         {
             cardView.SetCardData(null);
@@ -188,17 +201,22 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         }
         _handView.SelectedCards.Clear();
 
+        // 選択したカードを墓地に移動する
         _battleCore.MoveCardsToDiscard(selectedCards);
 
+        // デッキの枚数を反映する
         _deckView.SetDeckCount(_battleCore.DeckCards.Count);
+
+        // 捨てたカードの枚数を反映する
         _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
 
-        var currentSerifToCards = _serifToCardList.SerifToCards.Where(x => x.SelfID == _battleCore.CurrentSerif.SerifID).ToList();
-
+        // 選択したカードの攻撃力を計算する
         var attackPower = selectedCards.Sum(x => x.Power);
 
+        // セリフのボーナスパワーを取得する
         var bonusPower = _battleCore.GetSerifBonusPower(selectedCards);
 
+        // コンボのボーナスパワーを取得する
         foreach (var cardFrom in selectedCards)
         {
             foreach (var cardTo in selectedCards)
@@ -207,6 +225,7 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
             }
         }
 
+        // 攻撃力を計算する
         attackPower += bonusPower;
 
         if (attackPower <= 0)
@@ -214,6 +233,18 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
             attackPower = 0;
         }
 
+        // プレイヤーの攻撃アニメーションを再生する
+        await OnPlayerAttackAnimationAsync(attackPower, bonusPower);
+    }
+
+    /// <summary>
+    /// プレイヤーの攻撃アニメーションを再生する
+    /// </summary>
+    /// <param name="attackPower">攻撃力</param>
+    /// <param name="bonusPower">ボーナスパワー</param>
+    /// <returns>アニメーションを再生する</returns>
+    private async UniTask OnPlayerAttackAnimationAsync(int attackPower, int bonusPower)
+    {
         _effectView.SetDamageText(attackPower);
         _effectView.SetBonusText(bonusPower);
         await _effectView.ShowPlayerAttackAsync();
@@ -237,6 +268,10 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         await UniTask.Delay(500);
     }
 
+    /// <summary>
+    /// 敵の攻撃アニメーションを再生する
+    /// </summary>
+    /// <returns>アニメーションを再生する</returns>
     private async UniTask OnEnemyAttackAysnc()
     {
         _effectView.SetEnemyTurnSprite();
@@ -259,11 +294,19 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
             .BindToPosition(_heroView.GetTransform());
     }
 
+    /// <summary>
+    /// プレイヤーが勝ったかどうかを判定する
+    /// </summary>
+    /// <returns>プレイヤーが勝ったかどうか</returns>
     private bool IsPlayerWin()
     {
         return _enemyView.GetHp() <= 0;
     }
 
+    /// <summary>
+    /// プレイヤーが勝った時の処理
+    /// </summary>
+    /// <returns>アニメーションを再生する</returns>
     private async UniTask OnPlayerWinAsync()
     {
         _effectView.SetGameClearSprite();
@@ -288,6 +331,10 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         }
     }
 
+    /// <summary>
+    /// エンディングボタンがクリックされた時の処理
+    /// </summary>
+    /// <returns>アニメーションを再生する</returns>
     private async void OnEndingButtonClicked()
     {
         List<UniTask> taskList = new List<UniTask>();
@@ -297,16 +344,28 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         await UniTask.WhenAll(taskList);
     }
 
+    /// <summary>
+    /// 敵が勝ったかどうかを判定する
+    /// </summary>
+    /// <returns>敵が勝ったかどうか</returns>
     private bool IsEnemyWin()
     {
         return _heroView.GetHp() <= 0;
     }
 
+    /// <summary>
+    /// 敵が勝った時の処理
+    /// </summary>
+    /// <returns>アニメーションを再生する</returns>
     private async UniTask OnEnemyWinAsync()
     {
         await _effectView.ShowGameOverAsync();
     }
 
+    /// <summary>
+    /// スキップボタンがクリックされた時の処理
+    /// </summary>
+    /// <returns>アニメーションを再生する</returns>
     private void OnSkipButtonClicked()
     {
         if (_battleSystem.CurrentState is BattleCardSelectionState)
@@ -323,6 +382,10 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         }
     }
 
+    /// <summary>
+    /// セットアップ処理
+    /// </summary>
+    /// <returns>アニメーションを再生する</returns>
     private async UniTask OnSetupAsync()
     {
         // セリフを取得
@@ -333,6 +396,10 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         await _effectView.ShowSlideAsync();
     }
 
+    /// <summary>
+    /// ゲームオーバーボタンがクリックされた時の処理
+    /// </summary>
+    /// <returns>アニメーションを再生する</returns>
     private async void OnGameOverButtonClicked()
     {
         _gameEntity.Reset();
@@ -342,6 +409,10 @@ public class BattlePresenter : IStartable, ITickable, IDisposable
         await UniTask.WhenAll(taskList);
     }
 
+    /// <summary>
+    /// 負けた時の処理
+    /// </summary>
+    /// <returns>アニメーションを再生する</returns>
     private async UniTask OnLoseAsync()
     {
         _gameEntity.Reset();

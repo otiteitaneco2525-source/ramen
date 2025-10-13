@@ -15,9 +15,9 @@ public class TestMoveManager : MonoBehaviour
     {
         _handView.Initialize(_battleSettings);
 
-        _drawButton.onClick.AddListener(async () => await _handView.DrawCardAsync());
+        _drawButton.onClick.AddListener(async () => await _handView.DrawCardAnimationAsync());
 
-        _selectedButton.onClick.AddListener(async () => await _handView.SelectedCard());
+        _selectedButton.onClick.AddListener(async () => await _handView.SelectedCardAnimationAsync());
 
         _effectButton.onClick.AddListener(() => _effectView.ShowPlayerAttackAsync().Forget());
 
