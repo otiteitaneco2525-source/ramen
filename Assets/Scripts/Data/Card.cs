@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Ramen.Data
 {
@@ -32,6 +33,11 @@ namespace Ramen.Data
         /// パワー値（1-12の範囲）
         /// </summary>
         public int Power;
+
+        /// <summary>
+        /// パワーリスト
+        /// </summary>
+        public List<CardPower> PowerList;
 
         /// <summary>
         /// デフォルトコンストラクタ
