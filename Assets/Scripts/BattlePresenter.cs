@@ -211,21 +211,47 @@ public class BattlePresenter : IStartable, IDisposable
         _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
 
         // 選択したカードの攻撃力を計算する
-        var attackPower = selectedCards.Sum(x => x.Power);
+        List<CardPower> cardPowers = new List<CardPower>();
+        cardPowers.Add(new CardPower() { Attribute = CardAttribute.Light, Power = 0 });
+        cardPowers.Add(new CardPower() { Attribute = CardAttribute.Rich, Power = 0 });
+        cardPowers.Add(new CardPower() { Attribute = CardAttribute.Seafood, Power = 0 });
+        cardPowers.Add(new CardPower() { Attribute = CardAttribute.Animal, Power = 0 });
+        cardPowers.Add(new CardPower() { Attribute = CardAttribute.Stimulation, Power = 0 });
+        cardPowers.Add(new CardPower() { Attribute = CardAttribute.Odor, Power = 0 });
+        cardPowers.Add(new CardPower() { Attribute = CardAttribute.Rare, Power = 0 });
 
-        // セリフのボーナスパワーを取得する
-        var bonusPower = _battleCore.GetSerifBonusPower(selectedCards);
-
-        // コンボのボーナスパワーを取得する
-        foreach (var cardFrom in selectedCards)
+        foreach (var power in cardPowers)
         {
-            foreach (var cardTo in selectedCards)
+            foreach (var selectedCard in selectedCards)
             {
-                bonusPower += _battleCore.GetComboBonusPower(cardFrom, cardTo);
+                foreach (var selectedCardPower in selectedCard.PowerList)
+                {
+                    if (selectedCardPower.Attribute == power.Attribute)
+                    {
+                        power.Power += selectedCardPower.Power;
+                    }
+                }
             }
         }
 
+        var maxPower = cardPowers.OrderByDescending(x => x.Power);
+        Debug.Log("Max Power: " + maxPower.First().Attribute + " " + maxPower.First().Power);
+
+        // セリフのボーナスパワーを取得する
+        var bonusPower = 0;
+        //var bonusPower = _battleCore.GetSerifBonusPower(selectedCards);
+
+        //// コンボのボーナスパワーを取得する
+        //foreach (var cardFrom in selectedCards)
+        //{
+        //    foreach (var cardTo in selectedCards)
+        //    {
+        //        bonusPower += _battleCore.GetComboBonusPower(cardFrom, cardTo);
+        //    }
+        //}
+
         // 攻撃力を計算する
+        var attackPower = maxPower.First().Power;
         attackPower += bonusPower;
 
         if (attackPower <= 0)
