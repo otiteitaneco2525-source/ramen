@@ -33,6 +33,12 @@ MonoBehaviour:
       Power: 0
     - Attribute: 7
       Power: 0
+    PlusCardNameList:
+    - "\u306D\u304E"
+    - "\u91A4\u6CB9"
+    - "\u5869"
+    - "\u30EC\u30E2\u30F3"
+    MinusCardNameList: []
   - CardID: 2
     CardType: 0
     CardTypeName: "\u51FA\u6C41"
@@ -53,6 +59,12 @@ MonoBehaviour:
       Power: 15
     - Attribute: 7
       Power: 0
+    PlusCardNameList:
+    - "\u30C8\u30DE\u30C8"
+    - "\u306D\u304E"
+    - "\u30B7\u30E7\u30A6\u30AC"
+    MinusCardNameList:
+    - "\u30EC\u30E2\u30F3"
   - CardID: 3
     CardType: 0
     CardTypeName: "\u51FA\u6C41"
@@ -73,6 +85,11 @@ MonoBehaviour:
       Power: 0
     - Attribute: 7
       Power: 0
+    PlusCardNameList: []
+    MinusCardNameList:
+    - "\u5473\u564C"
+    - "\u30C8\u30DE\u30C8"
+    - "\u30EC\u30E2\u30F3"
   - CardID: 4
     CardType: 0
     CardTypeName: "\u51FA\u6C41"
@@ -93,6 +110,11 @@ MonoBehaviour:
       Power: 15
     - Attribute: 7
       Power: 0
+    PlusCardNameList:
+    - "\u725B\u4E73"
+    - "\u8D64\u5510\u8F9B\u5B50"
+    - "\u30C8\u30DE\u30C8"
+    MinusCardNameList: []
   - CardID: 5
     CardType: 0
     CardTypeName: "\u51FA\u6C41"
@@ -113,6 +135,12 @@ MonoBehaviour:
       Power: 0
     - Attribute: 7
       Power: 0
+    PlusCardNameList:
+    - "\u306D\u304E"
+    MinusCardNameList:
+    - "\u5473\u564C"
+    - "\u30C8\u30DE\u30C8"
+    - "\u8D64\u5510\u8F9B\u5B50"
   - CardID: 6
     CardType: 0
     CardTypeName: "\u51FA\u6C41"
@@ -133,6 +161,14 @@ MonoBehaviour:
       Power: 0
     - Attribute: 7
       Power: 15
+    PlusCardNameList:
+    - "\u8D64\u5510\u8F9B\u5B50"
+    - "\u30EC\u30E2\u30F3"
+    - "\u91A4\u6CB9"
+    MinusCardNameList:
+    - "\u30C8\u30DE\u30C8"
+    - "\u5473\u564C"
+    - "\u5869"
   - CardID: 7
     CardType: 0
     CardTypeName: "\u51FA\u6C41"
@@ -153,6 +189,13 @@ MonoBehaviour:
       Power: 0
     - Attribute: 7
       Power: 0
+    PlusCardNameList:
+    - "\u91A4\u6CB9"
+    - "\u30EC\u30E2\u30F3"
+    MinusCardNameList:
+    - "\u5473\u564C"
+    - "\u30C8\u30DE\u30C8"
+    - "\u8D64\u5510\u8F9B\u5B50"
   - CardID: 8
     CardType: 1
     CardTypeName: "\u9999\u5473\u91CE\u83DC"
@@ -173,6 +216,9 @@ MonoBehaviour:
       Power: 0
     - Attribute: 7
       Power: 0
+    PlusCardNameList:
+    - "\u3076\u305F"
+    MinusCardNameList: []
   - CardID: 9
     CardType: 1
     CardTypeName: "\u9999\u5473\u91CE\u83DC"
@@ -193,6 +239,10 @@ MonoBehaviour:
       Power: 0
     - Attribute: 7
       Power: 0
+    PlusCardNameList:
+    - "\u3076\u305F"
+    - "\u8C9D"
+    MinusCardNameList: []
   - CardID: 10
     CardType: 1
     CardTypeName: "\u9999\u5473\u91CE\u83DC"
@@ -213,6 +263,8 @@ MonoBehaviour:
       Power: 15
     - Attribute: 7
       Power: 0
+    PlusCardNameList: []
+    MinusCardNameList: []
   - CardID: 11
     CardType: 1
     CardTypeName: "\u9999\u5473\u91CE\u83DC"
@@ -233,6 +285,8 @@ MonoBehaviour:
       Power: 0
     - Attribute: 7
       Power: 0
+    PlusCardNameList: []
+    MinusCardNameList: []
   - CardID: 12
     CardType: 1
     CardTypeName: "\u9999\u5473\u91CE\u83DC"
@@ -253,6 +307,11 @@ MonoBehaviour:
       Power: 0
     - Attribute: 7
       Power: 0
+    PlusCardNameList:
+    - "\u6606\u5E03"
+    MinusCardNameList:
+    - "\u3076\u305F"
+    - "\u3055\u304B\u306A"
   - CardID: 13
     CardType: 2
     CardTypeName: "\u8ABF\u5473\u6599"
@@ -273,6 +332,9 @@ MonoBehaviour:
       Power: 0
     - Attribute: 7
       Power: 15
+    PlusCardNameList:
+    - "\u30AB\u30EC\u30FC"
+    MinusCardNameList: []
   - CardID: 14
     CardType: 2
     CardTypeName: "\u8ABF\u5473\u6599"
@@ -293,6 +355,8 @@ MonoBehaviour:
       Power: 0
     - Attribute: 7
       Power: 0
+    PlusCardNameList: []
+    MinusCardNameList: []
   - CardID: 15
     CardType: 2
     CardTypeName: "\u8ABF\u5473\u6599"
@@ -313,6 +377,9 @@ MonoBehaviour:
       Power: 0
     - Attribute: 7
       Power: 0
+    PlusCardNameList: []
+    MinusCardNameList:
+    - "\u725B\u8089"
   - CardID: 16
     CardType: 2
     CardTypeName: "\u8ABF\u5473\u6599"
@@ -333,6 +400,11 @@ MonoBehaviour:
       Power: 0
     - Attribute: 7
       Power: 0
+    PlusCardNameList: []
+    MinusCardNameList:
+    - "\u3055\u304B\u306A"
+    - "\u8C9D"
+    - "\u725B\u8089"
   - CardID: 17
     CardType: 2
     CardTypeName: "\u8ABF\u5473\u6599"
@@ -353,6 +425,13 @@ MonoBehaviour:
       Power: 0
     - Attribute: 7
       Power: 15
+    PlusCardNameList:
+    - "\u30AB\u30EC\u30FC"
+    MinusCardNameList:
+    - "\u8C9D"
+    - "\u6606\u5E03"
+    - "\u3055\u304B\u306A"
+    - "\u725B\u8089"
   - CardID: 18
     CardType: 2
     CardTypeName: "\u8ABF\u5473\u6599"
@@ -373,3 +452,8 @@ MonoBehaviour:
       Power: 0
     - Attribute: 7
       Power: 0
+    PlusCardNameList:
+    - "\u30AB\u30EC\u30FC"
+    MinusCardNameList:
+    - "\u6606\u5E03"
+    - "\u8C9D"

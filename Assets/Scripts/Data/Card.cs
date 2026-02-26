@@ -39,6 +39,11 @@ namespace Ramen.Data
         /// </summary>
         public List<CardPower> PowerList;
 
+        public List<String> PlusCardNameList;
+
+        public List<String> MinusCardNameList;
+
+
         /// <summary>
         /// デフォルトコンストラクタ
         /// </summary>
