@@ -334,7 +334,23 @@ MonoBehaviour:
       Power: 15
     PlusCardNameList:
     - "\u30AB\u30EC\u30FC"
-    MinusCardNameList: []
+    MinusCardNameList:
+    - "\u3068\u308A"
+    - "\u3076\u305F"
+    - "\u3055\u304B\u306A"
+    - "\u8C9D"
+    - "\u725B\u8089"
+    - "\u6606\u5E03"
+    - "\u30B7\u30E7\u30A6\u30AC"
+    - "\u306D\u304E"
+    - "\u306B\u3093\u306B\u304F"
+    - "\u7389\u306D\u304E"
+    - "\u30EC\u30E2\u30F3"
+    - "\u91A4\u6CB9"
+    - "\u5869"
+    - "\u5473\u564C"
+    - "\u30C8\u30DE\u30C8"
+    - "\u8D64\u5510\u8F9B\u5B50"
   - CardID: 14
     CardType: 2
     CardTypeName: "\u8ABF\u5473\u6599"
