@@ -14,5 +14,15 @@ namespace Ramen.Data
         /// パワー値
         /// </summary>
         public int Power;
+
+        public int Count;
+
+
+        public CardPower(CardAttribute cardAttribute)
+        {
+            Attribute = cardAttribute;
+            Power = 0;
+            Count = 0;
+        }  
     }
 }

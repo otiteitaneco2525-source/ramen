@@ -212,33 +212,34 @@ public class BattlePresenter : IStartable, IDisposable
 
         // 選択したカードの攻撃力を計算する
         List<CardPower> cardPowers = new List<CardPower>();
-        cardPowers.Add(new CardPower() { Attribute = CardAttribute.Light, Power = 0 });
-        cardPowers.Add(new CardPower() { Attribute = CardAttribute.Rich, Power = 0 });
-        cardPowers.Add(new CardPower() { Attribute = CardAttribute.Seafood, Power = 0 });
-        cardPowers.Add(new CardPower() { Attribute = CardAttribute.Animal, Power = 0 });
-        cardPowers.Add(new CardPower() { Attribute = CardAttribute.Stimulation, Power = 0 });
-        cardPowers.Add(new CardPower() { Attribute = CardAttribute.Odor, Power = 0 });
-        cardPowers.Add(new CardPower() { Attribute = CardAttribute.Rare, Power = 0 });
+        cardPowers.Add(new CardPower(CardAttribute.Light));
+        cardPowers.Add(new CardPower(CardAttribute.Rich));
+        cardPowers.Add(new CardPower(CardAttribute.Seafood));
+        cardPowers.Add(new CardPower(CardAttribute.Animal));
+        cardPowers.Add(new CardPower(CardAttribute.Stimulation));
+        cardPowers.Add(new CardPower(CardAttribute.Odor));
+        cardPowers.Add(new CardPower(CardAttribute.Rare));
 
-        foreach (var power in cardPowers)
+        foreach (CardPower cardPower in cardPowers)
         {
-            foreach (var selectedCard in selectedCards)
+            foreach (Card selectedCard in selectedCards)
             {
-                foreach (var selectedCardPower in selectedCard.PowerList)
+                foreach (CardPower selectedCardPower in selectedCard.PowerList)
                 {
-                    if (selectedCardPower.Attribute == power.Attribute)
+                    if (selectedCardPower.Attribute == cardPower.Attribute)
                     {
-                        power.Power += selectedCardPower.Power;
+                        cardPower.Power += selectedCardPower.Power;
+                        cardPower.Count++;
                     }
                 }
             }
         }
 
         var maxPower = cardPowers.OrderByDescending(x => x.Power);
-        Debug.Log("Max Power: " + maxPower.First().Attribute + " " + maxPower.First().Power);
+        //Debug.Log("Max Power: " + maxPower.First().Attribute + " " + maxPower.First().Power);
 
         // セリフのボーナスパワーを取得する
-        var bonusPower = 0;
+        var bonusPower = maxPower.First().Power;
         //var bonusPower = _battleCore.GetSerifBonusPower(selectedCards);
 
         //// コンボのボーナスパワーを取得する
@@ -251,7 +252,7 @@ public class BattlePresenter : IStartable, IDisposable
         //}
 
         // 攻撃力を計算する
-        var attackPower = maxPower.First().Power;
+        var attackPower = selectedCards.Sum(x => x.Power);
         attackPower += bonusPower;
 
         if (attackPower <= 0)
