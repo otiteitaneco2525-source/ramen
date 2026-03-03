@@ -28,6 +28,8 @@ namespace Ramen.Data
         /// </summary>
         public int BossBattleRate;
 
+        public CardAttribute CardAttribute;
+
         /// <summary>
         /// デフォルトコンストラクタ
         /// </summary>
