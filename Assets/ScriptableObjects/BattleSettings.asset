@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f2260370e8ca24d89144eabcec782d, type: 3}
   m_Name: BattleSettings
   m_EditorClassIdentifier: 
-  MaxCardCount: 6
+  MaxCardCount: 18
   DrawCount: 3
   HeroHp: 15
   SerifBonusPower: 15
