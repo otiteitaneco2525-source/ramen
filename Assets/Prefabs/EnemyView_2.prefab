@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 2134330350059329712}
   - component: {fileID: 5399187464332813022}
   m_Layer: 5
-  m_Name: Fukidashi
+  m_Name: Serif
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -500,6 +500,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -821,3 +822,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hpSlider: {fileID: 5169359859714081342}
   _serifText: {fileID: 3048110062517490965}
+  _serifGameObject: {fileID: 2519937208961672164}

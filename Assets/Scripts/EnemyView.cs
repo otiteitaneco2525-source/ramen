@@ -17,8 +17,15 @@ public class EnemyView : MonoBehaviour, IEnemyView
 {
     [SerializeField] Slider _hpSlider;
     [SerializeField] TextMeshProUGUI _serifText;
+    [SerializeField] private GameObject _serifGameObject;
     private int _hp;
     private Enemy _enemy;
+
+    private void Start()
+    {
+        _serifGameObject.SetActive(false);
+        _serifText.text = string.Empty;
+    }
 
     public int GetHp()
     {
@@ -53,6 +60,7 @@ public class EnemyView : MonoBehaviour, IEnemyView
     public void SetSerif(Serif serif)
     {
         _serifText.text = serif.SerifName;
+        _serifGameObject.SetActive(true);
     }
 
     public Transform GetTransform()
