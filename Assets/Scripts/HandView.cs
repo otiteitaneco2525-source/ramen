@@ -127,7 +127,7 @@ public sealed class HandView : MonoBehaviour, IHandView
 
         foreach (var cardView in _selectedCards)
         {
-            Vector2 endPosition = new Vector2(0, 0);
+            Vector2 endPosition = new Vector2((_logicalCanvasSize.x / 2) - (_cardSize.x / 2), 0);
         
             // アニメーション実行
             var motion = LMotion.Create((Vector3)cardView.RectTransform.localPosition, (Vector3)endPosition, 0.25f)
