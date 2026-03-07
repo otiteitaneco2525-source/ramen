@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Cysharp.Threading.Tasks;
@@ -24,6 +24,7 @@ public sealed class HandView : MonoBehaviour, IHandView
     [SerializeField] private float _offsetX;
     [SerializeField] private float _offsetY;
     [SerializeField] private LitMotion.Ease _ease;
+    [SerializeField] private float _canvasXsize;
 
     private Canvas _canvas;
     private bool _isInitialized = false;
@@ -230,11 +231,25 @@ public sealed class HandView : MonoBehaviour, IHandView
 
         int visibleCount = _cardViewList.Where(x => x.Visible).Count();
 
-        Vector2 startPosition = new Vector2(cardSize.x / 2 + (logicalCanvasSize.x / 2), cardSize.y / 2 + (logicalCanvasSize.y / 2) * -1 + _offsetY);
-        
-        // 全カードの総幅を計算
-        float totalWidth = (drawCount + visibleCount - 1) * (_offsetX + cardSize.x);
-        float centerX = -totalWidth / 2f; // 中央揃えの開始位置
+        if (drawCardViewList.Count < drawCount)
+        {
+            drawCount = drawCardViewList.Count;
+        }
+
+        float startX = cardSize.x + logicalCanvasSize.x;
+        float startY = cardSize.y / 2 + (logicalCanvasSize.y / 2) * -1 + _offsetY;
+        float offsetX = _offsetX;
+
+        // 全カードの総幅を計算（カード幅 + OffsetX間隔）
+        int totalCardCount = drawCount + visibleCount;
+        // 表示領域が_canvasXsizeを超える場合、offsetXを調整してカードが重なるようにする
+        if (totalCardCount > 1)
+        {
+            float maxOffsetX = (_canvasXsize - totalCardCount * cardSize.x) / (totalCardCount - 1);
+            offsetX = Mathf.Min(offsetX, maxOffsetX);
+        }
+        float totalWidth = totalCardCount * cardSize.x + (totalCardCount - 1) * offsetX;
+        float drawCardStartX = (logicalCanvasSize.x / 2) - (totalWidth / 2);
 
         // 既にカードが表示されている場合は移動する
         if (visibleCount > 0)
@@ -246,8 +261,10 @@ public sealed class HandView : MonoBehaviour, IHandView
                 CardView cardView = movdCardViewList[i];
                 cardView.SetDefaultPositionY();
                 cardView.SetDefaultScale();
+                // 左のカードが前面、右のカードが背面になるように表示順を設定
+                cardView.transform.SetSiblingIndex(totalCardCount - 1 - i);
 
-                Vector2 endPosition = new Vector2(centerX + i * (_offsetX + cardSize.x), startPosition.y);
+                Vector2 endPosition = new Vector2(drawCardStartX + (i * (offsetX + cardSize.x)), startY);
             
                 // アニメーション実行
                 var motion = LMotion.Create((Vector3)cardView.RectTransform.localPosition, (Vector3)endPosition, 1.0f)
@@ -265,18 +282,20 @@ public sealed class HandView : MonoBehaviour, IHandView
         }
 
         // 新しいカードの移動処理を行う
-        for (int i = 0; i < drawCount; i++)
+        for (int i = visibleCount; i < drawCount + visibleCount; i++)
         {
-            CardView cardView = drawCardViewList[i];
+            CardView cardView = drawCardViewList[i - visibleCount];
             cardView.SetDefaultPosition();
             cardView.SetDefaultScale();
             cardView.Visible = true;
+            // 左のカードが前面、右のカードが背面になるように表示順を設定
+            cardView.transform.SetSiblingIndex(totalCardCount - 1 - i);
             
-            // 各カードの終了位置を計算（中央に移動）
-            Vector2 endPosition = new Vector2(centerX + (i + visibleCount) * (_offsetX + cardSize.x), startPosition.y);
+            // 各カードの終了位置を計算（offsetX分の間隔で横に並べる）
+            Vector2 endPosition = new Vector2(drawCardStartX + (i * (offsetX + cardSize.x)), startY);
             
             // アニメーション実行
-            var motion = LMotion.Create((Vector3)startPosition, (Vector3)endPosition, 1.0f)
+            var motion = LMotion.Create(new Vector3(startX, startY), (Vector3)endPosition, 1.0f)
                 .WithEase(_ease)
                 .BindToLocalPosition(cardView.RectTransform);
             taskList.Add(motion.ToUniTask());
