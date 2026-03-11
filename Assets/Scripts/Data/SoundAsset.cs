@@ -52,6 +52,7 @@ namespace Ramen.Data
         public static readonly string BGM05 = "audiostock_1063805_敗北曲";
         public static readonly string BGM06 = "audiostock_1117041_ボス戦曲";
         public static readonly string BGM07 = "audiostock_789442_戦闘終了曲";
-        public static readonly string BGM08 = "22";   
+        public static readonly string BGM08 = "audiostock_217868_回復曲";
+        public static readonly string BGM09 = "audiostock_1616157_ショップ曲";
     }
 }

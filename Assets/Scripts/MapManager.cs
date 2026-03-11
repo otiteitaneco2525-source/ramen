@@ -163,12 +163,14 @@ public class MapManager : MonoBehaviour
                 // シーン遷移するため、この後の処理はスキップ
                 return;
             case EventButtonType.CardSelect:
+                _soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM09).Forget();
                 _cardSelectView.DealCards(_gameEntity.CardIdList);
                 await _cardSelectView.OnShowAsync();
                 break;
             case EventButtonType.Heal:
                 _gameEntity.MaxHp += _battleSettings.AddMaxHp;
                 _gameEntity.Hp = _gameEntity.MaxHp;
+                _soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM08).Forget();
                 await _healView.OnShowAsync();
                 break;
         }
@@ -181,11 +183,13 @@ public class MapManager : MonoBehaviour
 
     private void OnCloseButtonClicked()
     {
+        _soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM_MAP).Forget();
         _healView.Visible = false;
     }
 
     private void OnCardBuy(Card card)
     {
+        _soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM_MAP).Forget();
         _gameEntity.CardIdList.Add(card.CardID);
         _cardSelectView.Visible = false;
     }
