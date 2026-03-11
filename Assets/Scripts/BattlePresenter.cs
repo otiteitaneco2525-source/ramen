@@ -108,7 +108,16 @@ public class BattlePresenter : IStartable, IDisposable
         _effectView.SetAsLastSibling();
 
         List<UniTask> taskList = new List<UniTask>();
-        taskList.Add(_soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM_BATTLE));
+
+        if (_enemy.IsBoss)
+        {
+            taskList.Add(_soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM06));
+        }
+        else
+        {
+            taskList.Add(_soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM_BATTLE));
+        }
+
         taskList.Add(_fadeView.FadeOutAsync());
         await UniTask.WhenAll(taskList);
 
@@ -171,6 +180,8 @@ public class BattlePresenter : IStartable, IDisposable
         var selectedCardTypes = selectedCards.Select(x => x.CardType).ToList();
         if (selectedCardTypes.Distinct().Count() != selectedCardTypes.Count)
         {
+            _soundManager.StopSe();
+            _soundManager.PlaySe(Ramen.Data.SoundAsset.SE03);
             // 選択したカードを元の位置に戻すアニメーションを再生する
             await _handView.ResetSelectedCardsAnimationAsync();
             return;
@@ -289,6 +300,9 @@ public class BattlePresenter : IStartable, IDisposable
             attackPower = 0;
         }
 
+        _soundManager.StopSe();
+        _soundManager.PlaySe(Ramen.Data.SoundAsset.SE04);
+
         // プレイヤーの攻撃アニメーションを再生する
         await OnPlayerAttackAnimationAsync(attackPower, cardAttributeMaxPower + orderPower);
     }
@@ -330,6 +344,8 @@ public class BattlePresenter : IStartable, IDisposable
     /// <returns>アニメーションを再生する</returns>
     private async UniTask OnEnemyAttackAysnc()
     {
+        _soundManager.StopSe();
+        _soundManager.PlaySe(Ramen.Data.SoundAsset.SE02);
         _effectView.SetEnemyTurnSprite();
         await _effectView.ShowSlideAsync();
 
@@ -365,14 +381,15 @@ public class BattlePresenter : IStartable, IDisposable
     /// <returns>アニメーションを再生する</returns>
     private async UniTask OnPlayerWinAsync()
     {
+        _soundManager.StopSe();
+        _soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM07).Forget();
         _effectView.SetGameClearSprite();
-        await _effectView.ShowSlideAsync();
-
-        await UniTask.Delay(1500);
+        await _effectView.ShowSlideAsync(4500);
 
         if (_enemy.IsBoss)
         {
             _gameEntity.Reset();
+            _soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM_BOSS_WIN).Forget();
             await _effectView.ShowEndingAsync();
         }
         else
@@ -422,10 +439,12 @@ public class BattlePresenter : IStartable, IDisposable
     /// スキップボタンがクリックされた時の処理
     /// </summary>
     /// <returns>アニメーションを再生する</returns>
-    private void OnSkipButtonClicked()
+    private async void OnSkipButtonClicked()
     {
         if (_battleSystem.CurrentState is BattleCardSelectionState)
         {
+            _soundManager.PlaySe(Ramen.Data.SoundAsset.SE01);
+
             foreach (var cardView in _handView.CardViewList)
             {
                 cardView.SetIdelState();
@@ -435,6 +454,8 @@ public class BattlePresenter : IStartable, IDisposable
             _handView.SelectedCards.Clear();
 
             _battleSystem.ChangeState(_battleSystem.EnemyAttackState);
+
+            await UniTask.Delay(500);
         }
     }
 
@@ -447,6 +468,9 @@ public class BattlePresenter : IStartable, IDisposable
         // セリフを取得
         _battleCore.SetCurrentSerif(_serifList.GetRandomNormalBattleSerif());
         _enemyView.SetSerif(_battleCore.CurrentSerif);
+
+        _soundManager.StopSe();
+        _soundManager.PlaySe(Ramen.Data.SoundAsset.SE02);
 
         _effectView.SetYourTurnSprite();
         await _effectView.ShowSlideAsync();
@@ -472,11 +496,7 @@ public class BattlePresenter : IStartable, IDisposable
     private async UniTask OnLoseAsync()
     {
         _gameEntity.Reset();
-        await UniTask.Delay(3000);
-        List<UniTask> taskList = new List<UniTask>();
-        taskList.Add(_soundManager.StopBgmAsync());
-        taskList.Add(_fadeView.FadeInAsync());
-        taskList.Add(SceneManager.LoadSceneAsync("TitleScene").ToUniTask());
-        await UniTask.WhenAll(taskList);
+        _soundManager.StopSe();       
+        await _soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM05);
     }
 }

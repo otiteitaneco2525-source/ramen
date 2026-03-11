@@ -30,10 +30,10 @@ namespace Ramen.Data
             return _audioClipDictionary[name];
         }
 
-        public static readonly string SE01 = "01";
-        public static readonly string SE02 = "02";
-        public static readonly string SE03 = "03";
-        public static readonly string SE04 = "04";
+        public static readonly string SE01 = "audiostock_470221_決定音";
+        public static readonly string SE02 = "audiostock_328352_ターン切替わり音";
+        public static readonly string SE03 = "audiostock_1142483_ラーメン失敗音";
+        public static readonly string SE04 = "audiostock_1077826_ラーメン完成音";
         public static readonly string SE05 = "05";
         public static readonly string SE06 = "06";
         public static readonly string SE07 = "07";
@@ -49,9 +49,9 @@ namespace Ramen.Data
         public static readonly string BGM_MAP = "map";
         public static readonly string BGM_BATTLE = "battle";
         public static readonly string BGM_BOSS_WIN = "boss_win";
-        public static readonly string BGM05 = "19";
-        public static readonly string BGM06 = "20";
-        public static readonly string BGM07 = "21";
+        public static readonly string BGM05 = "audiostock_1063805_敗北曲";
+        public static readonly string BGM06 = "audiostock_1117041_ボス戦曲";
+        public static readonly string BGM07 = "audiostock_789442_戦闘終了曲";
         public static readonly string BGM08 = "22";   
     }
 }

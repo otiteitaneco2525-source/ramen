@@ -54,7 +54,7 @@ public class EffectView : MonoBehaviour
         _slideImage.sprite = _gameClearSprite;
     }
 
-    public async UniTask ShowSlideAsync()
+    public async UniTask ShowSlideAsync(int delayTime = 1000)
     {
         List<UniTask> taskList = new List<UniTask>();
 
@@ -75,7 +75,7 @@ public class EffectView : MonoBehaviour
 
         await UniTask.WhenAll(taskList);
 
-        await UniTask.Delay(1000);
+        await UniTask.Delay(delayTime);
 
         _slideImage.gameObject.SetActive(false);
     }
