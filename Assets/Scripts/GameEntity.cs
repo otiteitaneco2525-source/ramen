@@ -8,6 +8,7 @@ public sealed class GameEntity
     public int Hp { get; set; }
     public int MaxHp { get; set; }
     public string CurrentEventButtonId { get; set; } // EventButtonのIDを保存
+    public int BattleClearCount { get; set; }
 
     public GameEntity()
     {
@@ -17,6 +18,7 @@ public sealed class GameEntity
         Hp = 0;
         MaxHp = 0;
         CurrentEventButtonId = null;
+        BattleClearCount = 0;
     }
 
     public void Reset()

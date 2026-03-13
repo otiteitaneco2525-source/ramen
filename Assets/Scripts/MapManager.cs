@@ -23,6 +23,8 @@ public class MapManager : MonoBehaviour
 
     private List<EventButton> _eventButtons = new List<EventButton>();
 
+    private readonly int BattleBonusMaxCount = 2;
+
     async void Start()
     {
         _battleSettings.SetDefaultCardId(_gameEntity.CardIdList);
@@ -81,7 +83,19 @@ public class MapManager : MonoBehaviour
         _mapScrollView.OnScroll(currentEventButton);
 
         List<UniTask> taskList = new List<UniTask>();
-        taskList.Add(_soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM_MAP));
+
+        if (_gameEntity.BattleClearCount >= BattleBonusMaxCount)
+        {
+            _gameEntity.BattleClearCount = 0;
+            _soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM09).Forget();
+            _cardSelectView.DealCards(_gameEntity.CardIdList);
+            taskList.Add(_cardSelectView.OnShowAsync());        
+        }
+        else
+        {
+            taskList.Add(_soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM_MAP));
+        }
+
         taskList.Add(_fadeView.FadeOutAsync());
         await UniTask.WhenAll(taskList);
 

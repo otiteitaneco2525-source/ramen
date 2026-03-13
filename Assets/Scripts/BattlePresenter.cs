@@ -394,6 +394,8 @@ public class BattlePresenter : IStartable, IDisposable
         }
         else
         {
+            _gameEntity.BattleClearCount++;
+
             // 戦闘終了後に_gameEntityのHpを現在のHpにする
             _gameEntity.Hp = _heroView.GetHp();
             List<UniTask> taskList = new List<UniTask>();
