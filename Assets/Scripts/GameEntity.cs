@@ -29,6 +29,7 @@ public sealed class GameEntity
         Hp = 0;
         MaxHp = 0;
         CurrentEventButtonId = null;
+        BattleClearCount = 0;
     }
 
     public bool HasCard(string cardId)
