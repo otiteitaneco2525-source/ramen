@@ -400,7 +400,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 76ae5e12778127a4892c5d6c295e468e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e808a2210526804418e87ba5a8b9467a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -932,7 +932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: _eventButtonType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: _nextEventButtonList.Array.size
@@ -1016,7 +1016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -5
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1175,6 +1175,7 @@ MonoBehaviour:
   _battleSettings: {fileID: 11400000, guid: c3b6dac55134d824383c1c4bc816e12e, type: 2}
   _cardSelectView: {fileID: 1827557883}
   _enemyList: {fileID: 11400000, guid: 2549202a76e711b4ca114aaf13585b19, type: 2}
+  _isDebug: 0
   _mapScrollView: {fileID: 1889635733}
   _firstEventButton: {fileID: 1981231145}
 --- !u!1001 &513427863
@@ -1191,7 +1192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: _eventButtonType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: _nextEventButtonList.Array.size
@@ -1317,10 +1318,6 @@ PrefabInstance:
     - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: _enemyId
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
-      propertyPath: _eventButtonType
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: _nextEventButtonList.Array.size
@@ -1453,7 +1450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: _eventButtonType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: _nextEventButtonList.Array.size
@@ -1537,7 +1534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -400
+      value: -406
       objectReference: {fileID: 0}
     - target: {fileID: 8887100221774657320, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2266,7 +2263,6 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2624,7 +2620,6 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -3638,7 +3633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: _eventButtonType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 306049257430863400, guid: d650496c05e1c3f4383a0e1930949c79, type: 3}
       propertyPath: _nextEventButtonList.Array.size
@@ -3852,7 +3847,6 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -4977,7 +4971,6 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
