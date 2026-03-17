@@ -80,7 +80,7 @@ public class BattlePresenter : IStartable, IDisposable
 
         _handView.Initialize(_battleSettings);
 
-        _battleCore = new BattleCore(_cardList, _battleSettings, _cardComboList, _serifList, _serifToCardList);
+        _battleCore = new BattleCore(_cardList, _battleSettings);
         _battleCore.DealDefaultCard(_gameEntity.CardIdList);
 
         _deckView.SetDeckCount(_battleCore.DeckCards.Count);
