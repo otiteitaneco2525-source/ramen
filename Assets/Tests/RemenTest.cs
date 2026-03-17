@@ -11,6 +11,231 @@ using System.Linq;
 public class RemenTest
 {
     [Test]
+    public void CheckCardPowerTest()
+    {
+        BattleSettings battleSettings = LoadAsset<BattleSettings>("Assets/ScriptableObjects/BattleSettings.asset");
+        CardList cardList = LoadAsset<CardList>("Assets/ScriptableObjects/CardList.asset");
+        EnemyList enemyList = LoadAsset<EnemyList>("Assets/ScriptableObjects/EnemyList.asset");
+        SerifList serifList = LoadAsset<SerifList>("Assets/ScriptableObjects/SerifList.asset");
+        SerifToCardList serifToCardList = LoadAsset<SerifToCardList>("Assets/ScriptableObjects/SerifToCardList.asset");
+
+        // CardListを最初から参照し、カード名とパワーが一致するか確認する
+        foreach (var card in cardList.Cards)
+        {
+            Assert.IsNotNull(card.Name);
+
+            switch (card.Name)
+            {
+                /* 下記のカード名ごとにパワーが一致するか確認する
+                    とり
+                    ぶた
+                    さかな
+                    カレー
+                    貝
+                    牛肉
+                    昆布
+                    ショウガ
+                    ねぎ
+                    にんにく
+                    玉ねぎ
+                    レモン
+                    牛乳
+                    醤油
+                    塩
+                    味噌
+                    トマト
+                    赤唐辛子
+
+                */
+                case "とり":
+                    Assert.AreEqual(card.Power, 10);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, -15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 0);
+                    break;
+                case "ぶた":
+                    Assert.AreEqual(card.Power, 8);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, -15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, -15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 0);
+                    break;
+                case "さかな":
+                    Assert.AreEqual(card.Power, 8);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, -15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, -15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 0);
+                    break;
+                case "カレー":
+                    Assert.AreEqual(card.Power, 8);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, -15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 0);
+                    break;
+                case "貝":
+                    Assert.AreEqual(card.Power, 10);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, -15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, -15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 0);
+                    break;
+                case "牛肉":
+                    Assert.AreEqual(card.Power, 12);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, -15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, -15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 15);
+                    break;
+                case "昆布":
+                    Assert.AreEqual(card.Power, 10);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, -15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, -15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 0);
+                    break;
+                case "ショウガ":
+                    Assert.AreEqual(card.Power, 2);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 0);
+                    break;
+                case "ねぎ":
+                    Assert.AreEqual(card.Power, 1);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 0);
+                    break;
+                case "にんにく":
+                    Assert.AreEqual(card.Power, 2);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 0);
+                    break;
+                case "玉ねぎ":
+                    Assert.AreEqual(card.Power, 2);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 0);
+                    break;
+                case "レモン":
+                    Assert.AreEqual(card.Power, 4);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 0);
+                    break;
+                case "牛乳":
+                    Assert.AreEqual(card.Power, 12);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, -15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 15);
+                    break;
+                case "醤油":
+                    Assert.AreEqual(card.Power, 6);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 0);
+                    break;
+                case "塩":
+                    Assert.AreEqual(card.Power, 8);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 0);
+                    break;
+                case "味噌":
+                    Assert.AreEqual(card.Power, 8);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 0);
+                    break;
+                case "トマト":
+                    Assert.AreEqual(card.Power, 10);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 15);
+                    break;
+                case "赤唐辛子":
+                    Assert.AreEqual(card.Power, 6);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Light).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rich).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Seafood).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Animal).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Stimulation).First().Power, 15);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Odor).First().Power, 0);
+                    Assert.AreEqual(card.PowerList.Where(x => x.Attribute == CardAttribute.Rare).First().Power, 0);
+                    break;
+                default:
+                    Assert.Fail($"カード名: {card.Name} が見つかりません");
+                    break;
+            }
+        }
+    }
+
+
+    [Test]
     public void RemenScriptableObjectTest()
     {
         BattleSettings battleSettings = LoadAsset<BattleSettings>("Assets/ScriptableObjects/BattleSettings.asset");
