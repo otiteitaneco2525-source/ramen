@@ -293,12 +293,7 @@ public class BattlePresenter : IStartable, IDisposable
         // カードの右上にある数値を合計する
         int attackPower = selectedCards.Sum(x => x.Power);
 
-        attackPower += cardAttributeMaxPower + orderPower;
-
-        if (attackPower <= 0)
-        {
-            attackPower = 0;
-        }
+        attackPower = Math.Max(0, attackPower + cardAttributeMaxPower + orderPower);
 
         _soundManager.StopSe();
         _soundManager.PlaySe(Ramen.Data.SoundAsset.SE04);
