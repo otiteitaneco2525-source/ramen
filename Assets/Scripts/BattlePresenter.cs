@@ -221,85 +221,25 @@ public class BattlePresenter : IStartable, IDisposable
         // 捨てたカードの枚数を反映する
         _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
 
-        // 選択したカードの属性値を計算する
-        List<CardPower> cardPowers = new List<CardPower>();
-        cardPowers.Add(new CardPower(CardAttribute.Light));
-        cardPowers.Add(new CardPower(CardAttribute.Rich));
-        cardPowers.Add(new CardPower(CardAttribute.Seafood));
-        cardPowers.Add(new CardPower(CardAttribute.Animal));
-        cardPowers.Add(new CardPower(CardAttribute.Stimulation));
-        cardPowers.Add(new CardPower(CardAttribute.Odor));
-        cardPowers.Add(new CardPower(CardAttribute.Rare));
-
-        foreach (CardPower cardPower in cardPowers)
-        {
-            foreach (Card selectedCard in selectedCards)
-            {
-                foreach (CardPower selectedCardPower in selectedCard.PowerList)
-                {
-                    if (selectedCardPower.Attribute == cardPower.Attribute)
-                    {
-                        cardPower.Power += selectedCardPower.Power;
-                        cardPower.Count++;
-                    }
-                }
-            }
-        }
-
-        int orderPower = 0;
-        var maxPowers = cardPowers.OrderByDescending(x => x.Power);
-
-        // カードの属性の中で、最も数値が高いものを取得する
-        int cardAttributeMaxPower = maxPowers.First().Power;
-
-        // 最も数値が高いものが複数ある場合は、カードの属性の数値は0になる
-        int maxPowerCount = cardPowers.Where(x => x.Power == cardAttributeMaxPower).Count();
-
-        if (maxPowerCount > 1)
-        {
-            cardAttributeMaxPower = 0;
-        }
-        else
-        {
-            // 最も数値が高いものが1つだけある場合は、注文ボーナスを計算する
-            CardAttribute cardAttribute = cardPowers.Where(x => x.Power == cardAttributeMaxPower).First().Attribute;
-
-            switch (cardAttribute)
-            {
-                case CardAttribute.Light:
-                case CardAttribute.Rich:
-                case CardAttribute.Seafood:
-                case CardAttribute.Animal:
-                    if (_battleCore.CurrentSerif.CardAttribute == cardAttribute)
-                    {
-                        orderPower = 15;
-                    }
-                    else
-                    {
-                        orderPower = -15;
-                    }
-                    break;
-                case CardAttribute.Stimulation:
-                case CardAttribute.Odor:
-                case CardAttribute.Rare:
-                    if (_battleCore.CurrentSerif.CardAttribute == cardAttribute)
-                    {
-                        orderPower = 15;
-                    }
-                    break;
-            }
-        }
-
         // カードの右上にある数値を合計する
-        int attackPower = selectedCards.Sum(x => x.Power);
+        int attackPower = _battleCore.GetAttackPower(selectedCards);
+        int questionEvaluation = _battleCore.GetQuestionEvaluation(selectedCards);
+        int compatibilityEvaluation = _battleCore.GetCompatibilityEvaluation(selectedCards);
+        int totalPower = Math.Max(0, attackPower + questionEvaluation + compatibilityEvaluation);
 
-        attackPower = Math.Max(0, attackPower + cardAttributeMaxPower + orderPower);
+        // 現在のセリフを表示する
+        Debug.Log("現在のセリフ: " + _battleCore.CurrentSerif.SerifName);
+        Debug.Log("選択したカードの名前: " + string.Join(", ", selectedCards.Select(x => x.Name)));
+        Debug.Log("カードの数値合計: " + attackPower);
+        Debug.Log("質問評価: " + questionEvaluation);
+        Debug.Log("相性評価: " + compatibilityEvaluation);
+        Debug.Log("合計: " + totalPower);
 
         _soundManager.StopSe();
         _soundManager.PlaySe(Ramen.Data.SoundAsset.SE04);
 
         // プレイヤーの攻撃アニメーションを再生する
-        await OnPlayerAttackAnimationAsync(attackPower, cardAttributeMaxPower + orderPower);
+        await OnPlayerAttackAnimationAsync(totalPower, questionEvaluation + compatibilityEvaluation);
     }
 
     /// <summary>

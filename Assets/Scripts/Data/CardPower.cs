@@ -17,6 +17,10 @@ namespace Ramen.Data
 
         public int Count;
 
+        public int PlusPower;
+
+        public int MinusPower;
+
 
         public CardPower(CardAttribute cardAttribute)
         {

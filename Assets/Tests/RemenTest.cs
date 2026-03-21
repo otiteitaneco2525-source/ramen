@@ -11,6 +11,74 @@ using System.Linq;
 public class RemenTest
 {
     [Test]
+    public void CheckTotalCardPowerTest()
+    {
+        BattleSettings battleSettings = LoadAsset<BattleSettings>("Assets/ScriptableObjects/BattleSettings.asset");
+        CardList cardList = LoadAsset<CardList>("Assets/ScriptableObjects/CardList.asset");
+        SerifList serifList = LoadAsset<SerifList>("Assets/ScriptableObjects/SerifList.asset");
+
+        List<string> cardNameList = new List<string> { "とり", "玉ねぎ", "醤油" };
+
+        List<Card> selectedCardList = cardList.Cards.Where(x => cardNameList.Contains(x.Name)).ToList();
+
+        BattleCore battleCore = new BattleCore(cardList, battleSettings);
+
+        battleCore.SetCurrentSerif(serifList.Serifs.Where(x => x.SerifID == "5").First());
+
+        // セリフのCardAttributeと一致するselectedCardListのPowerListのPowerの合計値を取得する
+        int cardAttributePower = selectedCardList.Where(x => x.PowerList.Any(y => y.Attribute == battleCore.CurrentSerif.CardAttribute)).Sum(y => y.PowerList.Where(z => z.Attribute == battleCore.CurrentSerif.CardAttribute).Sum(z => z.Power));
+
+        Debug.Log("cardAttributePower: " + cardAttributePower);
+
+        // int orderPower = battleCore.GetOrderPower(selectedCardList);
+
+        // foreach (CardPower cardPower in battleCore.CardAttributePowers)
+        // {
+        //     Debug.Log(cardPower.Attribute + ": " + cardPower.Power + " (" + cardPower.Count + ")");
+        // }
+
+
+        int plusCount = 0;
+        int minusCount = 0;
+
+        foreach (Card card in selectedCardList)
+        {
+            foreach (string plusCardName in card.PlusCardNameList)
+            {
+                if (selectedCardList.Select(y => y.Name).Contains(plusCardName))
+                {
+                    plusCount++;
+                }
+            }
+            foreach (string minusCardName in card.MinusCardNameList)
+            {
+                if (selectedCardList.Select(y => y.Name).Contains(minusCardName))
+                {
+                    minusCount++;
+                }
+            }
+        }
+
+
+
+        Debug.Log("plusCount: " + plusCount);
+        Debug.Log("minusCount: " + minusCount);
+
+        // orderPower += plusCount * 10;
+        // orderPower -= minusCount * 10;
+
+        // Debug.Log(orderPower);
+
+
+        // Assert.AreEqual(battleCore.CurrentSerif.SerifName, "肉や骨のコクがしっかり出たのが食べたい！");
+
+
+
+        
+    }
+
+
+    [Test]
     public void CheckCardPowerTest()
     {
         BattleSettings battleSettings = LoadAsset<BattleSettings>("Assets/ScriptableObjects/BattleSettings.asset");

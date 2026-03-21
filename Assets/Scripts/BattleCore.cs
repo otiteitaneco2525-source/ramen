@@ -17,10 +17,22 @@ public sealed class BattleCore
 
     public Serif CurrentSerif => _currentSerif;
 
+    private List<CardPower> _cardAttributePowers;
+
+    public List<CardPower> CardAttributePowers => _cardAttributePowers;
+
     public BattleCore(CardList cardList, BattleSettings battleSettings)
     {
         _cardList = cardList;
         _battleSettings = battleSettings;
+        _cardAttributePowers = new List<CardPower>();
+        _cardAttributePowers.Add(new CardPower(CardAttribute.Light));
+        _cardAttributePowers.Add(new CardPower(CardAttribute.Rich));
+        _cardAttributePowers.Add(new CardPower(CardAttribute.Seafood));
+        _cardAttributePowers.Add(new CardPower(CardAttribute.Animal));
+        _cardAttributePowers.Add(new CardPower(CardAttribute.Stimulation));
+        _cardAttributePowers.Add(new CardPower(CardAttribute.Odor));
+        _cardAttributePowers.Add(new CardPower(CardAttribute.Rare));
     }
 
     /// <summary>
@@ -108,5 +120,59 @@ public sealed class BattleCore
     {
         _deckCards.RemoveAll(x => cards.Contains(x));
         _discardCards.AddRange(cards);
+    }
+
+    /// <summary>
+    /// 攻撃力を計算する
+    /// </summary>
+    /// <param name="selectedCards">選択したカードリスト</param>
+    /// <returns>攻撃力</returns>
+    public int GetAttackPower(List<Card> selectedCards)
+    {
+        // カードの右上にある数値を合計する
+        return selectedCards.Sum(x => x.Power);
+    }
+
+    /// <summary>
+    /// 質問評価を計算する
+    /// </summary>
+    /// <param name="selectedCards">選択したカードリスト</param>
+    /// <returns>質問評価値</returns>
+    public int GetQuestionEvaluation(List<Card> selectedCards)
+    {
+        return selectedCards.Where(x => x.PowerList.Any(y => y.Attribute == _currentSerif.CardAttribute)).Sum(y => y.PowerList.Where(z => z.Attribute == _currentSerif.CardAttribute).Sum(z => z.Power));
+    }
+
+    /// <summary>
+    /// 相性評価を計算する
+    /// </summary>
+    /// <param name="selectedCards">選択したカードリスト</param>
+    /// <returns>相性評価値</returns>
+    public int GetCompatibilityEvaluation(List<Card> selectedCards)
+    {
+        int power = 0;
+        int plusCount = 0;
+        int minusCount = 0;
+
+        foreach (Card card in selectedCards)
+        {
+            foreach (string plusCardName in card.PlusCardNameList)
+            {
+                if (selectedCards.Select(y => y.Name).Contains(plusCardName))
+                {
+                    plusCount++;
+                }
+            }
+            foreach (string minusCardName in card.MinusCardNameList)
+            {
+                if (selectedCards.Select(y => y.Name).Contains(minusCardName))
+                {
+                    minusCount++;
+                }
+            }
+        }
+        power += plusCount * 10;
+        power -= minusCount * 10;
+        return power;
     }
 }
