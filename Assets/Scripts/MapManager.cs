@@ -67,19 +67,30 @@ public class MapManager : MonoBehaviour
 #endif
         }
 
-        // 前回のEventButtonを復元するか、初回なら_firstEventButtonを使う
         EventButton currentEventButton = null;
+
         if (!string.IsNullOrWhiteSpace(_gameEntity.CurrentEventButtonId))
         {
             currentEventButton = _eventButtons.FirstOrDefault(eb => eb.EventButtonId == _gameEntity.CurrentEventButtonId);
+            currentEventButton.NextEventButtonList.ForEach(eb => _mapScrollView.CreateArrowImage(eb));
+            _gameEntity.ClearEventButtonIdList.Add(_gameEntity.CurrentEventButtonId);
+
+            foreach (var clearEventButtonId in _gameEntity.ClearEventButtonIdList)
+            {
+                var clearEventButton = _eventButtons.FirstOrDefault(eb => eb.EventButtonId == clearEventButtonId);
+                if (clearEventButton != null)
+                {
+                    _mapScrollView.CreateCheckMarkImage(clearEventButton);
+                }
+            }
         }
         
         if (currentEventButton == null)
         {
             currentEventButton = _firstEventButton;
+            _mapScrollView.CreateArrowImage(currentEventButton);
         }
 
-        _mapScrollView.MoveToCurrentImage(currentEventButton);
         _mapScrollView.OnScroll(currentEventButton);
 
         List<UniTask> taskList = new List<UniTask>();
@@ -119,18 +130,17 @@ public class MapManager : MonoBehaviour
     {
         Debug.Log("EventButton clicked: " + eventButton.EventButtonType + " " + eventButton.EnemyId);
 
-        // GameEntityのCurrentEventButtonIdがNullの場合、引数のeventButtonが_firstEventButtonであるかチェックする
         if (string.IsNullOrWhiteSpace(_gameEntity.CurrentEventButtonId) && eventButton == _firstEventButton)
         {
             _gameEntity.CurrentEventButtonId = eventButton.EventButtonId;
         }
-        // GameEntityのCurrentEventButtonIdがNullでない場合、引数のeventButtonがCurrentEventButtonのNextEventButtonListに含まれているかチェックする
         else if (!string.IsNullOrWhiteSpace(_gameEntity.CurrentEventButtonId))
         {
             var currentEventButton = _eventButtons.FirstOrDefault(eb => eb.EventButtonId == _gameEntity.CurrentEventButtonId);
             if (currentEventButton != null && currentEventButton.NextEventButtonList.Contains(eventButton))
             {
                 _gameEntity.CurrentEventButtonId = eventButton.EventButtonId;
+                _gameEntity.ClearEventButtonIdList.Add(_gameEntity.CurrentEventButtonId);
             }
             else
             {
@@ -148,7 +158,6 @@ public class MapManager : MonoBehaviour
         }
 
         List<UniTask> taskList = new List<UniTask>();
-        taskList.Add(_mapScrollView.MoveToCurrentImageAsync(eventButton));
         taskList.Add(_mapScrollView.OnScrollAsync(eventButton));
         await UniTask.WhenAll(taskList);
 
@@ -187,6 +196,19 @@ public class MapManager : MonoBehaviour
                 _soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM08).Forget();
                 await _healView.OnShowAsync();
                 break;
+        }
+
+
+        GameObject.FindObjectsByType<ArrowView>(FindObjectsSortMode.None).ToList().ForEach(go => Destroy(go.gameObject));
+        eventButton.NextEventButtonList.ForEach(eb => _mapScrollView.CreateArrowImage(eb));
+
+        foreach (var clearEventButtonId in _gameEntity.ClearEventButtonIdList)
+        {
+            var clearEventButton = _eventButtons.FirstOrDefault(eb => eb.EventButtonId == clearEventButtonId);
+            if (clearEventButton != null)
+            {
+                _mapScrollView.CreateCheckMarkImage(clearEventButton);
+            }
         }
 
         foreach (var e in _eventButtons)

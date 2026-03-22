@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public sealed class GameEntity
@@ -9,6 +10,7 @@ public sealed class GameEntity
     public int MaxHp { get; set; }
     public string CurrentEventButtonId { get; set; } // EventButtonのIDを保存
     public int BattleClearCount { get; set; }
+    public List<String> ClearEventButtonIdList { get; private set; }
 
     public GameEntity()
     {
@@ -19,6 +21,7 @@ public sealed class GameEntity
         MaxHp = 0;
         CurrentEventButtonId = null;
         BattleClearCount = 0;
+        ClearEventButtonIdList = new List<string>();
     }
 
     public void Reset()
@@ -30,6 +33,7 @@ public sealed class GameEntity
         MaxHp = 0;
         CurrentEventButtonId = null;
         BattleClearCount = 0;
+        ClearEventButtonIdList.Clear();
     }
 
     public bool HasCard(string cardId)
