@@ -21,18 +21,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
-      Power: 0
+      Power: -15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: -15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList:
     - "\u306D\u304E"
     - "\u91A4\u6CB9"
@@ -47,18 +68,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: -15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
-      Power: 0
+      Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: -15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList:
     - "\u30C8\u30DE\u30C8"
     - "\u306D\u304E"
@@ -73,18 +115,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
       Power: -15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: -15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList: []
     MinusCardNameList:
     - "\u5473\u564C"
@@ -98,18 +161,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: -15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList:
     - "\u725B\u4E73"
     - "\u8D64\u5510\u8F9B\u5B50"
@@ -123,18 +207,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
       Power: -15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: -15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList:
     - "\u306D\u304E"
     MinusCardNameList:
@@ -149,18 +254,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: -15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: -15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList:
     - "\u8D64\u5510\u8F9B\u5B50"
     - "\u30EC\u30E2\u30F3"
@@ -177,18 +303,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
       Power: -15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: -15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList:
     - "\u91A4\u6CB9"
     - "\u30EC\u30E2\u30F3"
@@ -204,18 +351,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList:
     - "\u3076\u305F"
     MinusCardNameList: []
@@ -227,18 +395,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList:
     - "\u3076\u305F"
     - "\u8C9D"
@@ -251,18 +440,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
-      Power: 0
+      Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList: []
     MinusCardNameList: []
   - CardID: 11
@@ -273,18 +483,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList: []
     MinusCardNameList: []
   - CardID: 12
@@ -295,18 +526,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList:
     - "\u6606\u5E03"
     MinusCardNameList:
@@ -320,18 +572,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: -15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList:
     - "\u30AB\u30EC\u30FC"
     MinusCardNameList:
@@ -359,18 +632,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList: []
     MinusCardNameList: []
   - CardID: 15
@@ -381,18 +675,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList: []
     MinusCardNameList:
     - "\u725B\u8089"
@@ -404,18 +719,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList: []
     MinusCardNameList:
     - "\u3055\u304B\u306A"
@@ -429,18 +765,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList:
     - "\u30AB\u30EC\u30FC"
     MinusCardNameList:
@@ -456,18 +813,39 @@ MonoBehaviour:
     PowerList:
     - Attribute: 1
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 2
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 3
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 4
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 5
       Power: 15
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 6
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     - Attribute: 7
       Power: 0
+      Count: 0
+      PlusPower: 0
+      MinusPower: 0
     PlusCardNameList:
     - "\u30AB\u30EC\u30FC"
     MinusCardNameList:
