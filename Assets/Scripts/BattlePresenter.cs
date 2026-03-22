@@ -48,7 +48,8 @@ public class BattlePresenter : IStartable, IDisposable
     private readonly SoundManager _soundManager;
     [Inject]
     private readonly EnemyRoot _enemyRoot;
-
+    [Inject]
+    private readonly TutorialView _tutorialView;
     private BattleCore _battleCore;
     private CompositeDisposable _disposables = new CompositeDisposable();
     private EnemyView _enemyView;
@@ -56,6 +57,9 @@ public class BattlePresenter : IStartable, IDisposable
 
     public async void Start()
     {
+        _tutorialView.ButtonVisible = false;
+        _tutorialView.TextVisible = false;
+
         _battleSettings.SetDefaultCardId(_gameEntity.CardIdList);
         if (_gameEntity.Hp == 0)
         {
@@ -168,6 +172,8 @@ public class BattlePresenter : IStartable, IDisposable
 
         // 手札のカードを待機状態にする
         _handView.CardViewList.Where(x => x.Visible == true).ToList().ForEach(x => x.SetWaitState());
+
+        _tutorialView.TextVisible = true;
     }
 
     /// <summary>
@@ -196,6 +202,7 @@ public class BattlePresenter : IStartable, IDisposable
     /// <returns>アニメーションを再生する</returns>
     private async UniTask OnPlayerAttackAsync()
     {
+        _tutorialView.TextVisible = false;
         // 選択したカードを中央に移動するアニメーションを再生する
         await _handView.SelectedCardAnimationAsync();
 
@@ -380,6 +387,8 @@ public class BattlePresenter : IStartable, IDisposable
     {
         if (_battleSystem.CurrentState is BattleCardSelectionState)
         {
+            _tutorialView.TextVisible = false;
+            
             _soundManager.PlaySe(Ramen.Data.SoundAsset.SE01);
 
             foreach (var cardView in _handView.CardViewList)

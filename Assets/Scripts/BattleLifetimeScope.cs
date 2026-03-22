@@ -18,6 +18,7 @@ public class BattleLifetimeScope : LifetimeScope
     [SerializeField] BattleUiView _battleUiView;
     [SerializeField] EffectView _effectView;
     [SerializeField] EnemyRoot _enemyRoot;
+    [SerializeField] TutorialView _tutorialView;
     protected override void Configure(IContainerBuilder builder)
     {
         // BattleSystemをシングルトンとして登録
@@ -35,6 +36,7 @@ public class BattleLifetimeScope : LifetimeScope
         builder.RegisterInstance<IBattleUiView>(_battleUiView);
         builder.RegisterInstance<EffectView>(_effectView);
         builder.RegisterInstance<EnemyRoot>(_enemyRoot);
+        builder.RegisterInstance<TutorialView>(_tutorialView);
         // BattleManagerをエントリーポイントとして登録
         builder.RegisterEntryPoint<BattlePresenter>();
     }
