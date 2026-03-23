@@ -50,6 +50,8 @@ MonoBehaviour:
   _seAudioSource: {fileID: 55579753043619842}
   _soundAsset: {fileID: 11400000, guid: 0a4819c934fb28b4e8a3e2ddc57a0f42, type: 2}
   _fadeTime: 0.5
+  _bgmVolume: 0.5
+  _seVolume: 0.5
 --- !u!82 &2474564049312621219
 AudioSource:
   m_ObjectHideFlags: 0

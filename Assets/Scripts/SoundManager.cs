@@ -9,13 +9,15 @@ public sealed class SoundManager : MonoBehaviour
     [SerializeField] AudioSource _seAudioSource;
     [SerializeField] SoundAsset _soundAsset;
     [SerializeField] float _fadeTime;
+    [SerializeField] float _bgmVolume;
+    [SerializeField] float _seVolume;
 
     string _preveBgmName = string.Empty;
     bool _isFade = false;
 
     public void PlaySe(string name)
     {
-        _seAudioSource.PlayOneShot(_soundAsset.GetAudioClip(name));
+        _seAudioSource.PlayOneShot(_soundAsset.GetAudioClip(name), _seVolume);
     }
 
     public void StopSe()
@@ -38,7 +40,7 @@ public sealed class SoundManager : MonoBehaviour
         }
         else
         {
-            await FadeBgnVolume(1f, 0f, token);
+            await FadeBgnVolume(_bgmVolume, 0f, token);
         }
 
         _bgmAudioSource.clip = _soundAsset.GetAudioClip(name);
@@ -46,7 +48,7 @@ public sealed class SoundManager : MonoBehaviour
 
         _preveBgmName = name;
 
-        await FadeBgnVolume(0, 1f, token);
+        await FadeBgnVolume(0, _bgmVolume, token);
 
         _isFade = false;
     }
@@ -54,7 +56,7 @@ public sealed class SoundManager : MonoBehaviour
     public async UniTask StopBgmAsync()
     {
         CancellationToken token = this.GetCancellationTokenOnDestroy();
-        await FadeBgnVolume(1f, 0f, token);
+        await FadeBgnVolume(_bgmVolume, 0f, token);
         _bgmAudioSource.Stop();
         _preveBgmName = string.Empty;
     }
