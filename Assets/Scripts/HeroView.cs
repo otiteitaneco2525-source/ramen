@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public interface IHeroView
 {
@@ -12,34 +11,30 @@ public interface IHeroView
 
 public class HeroView : MonoBehaviour, IHeroView
 {
-    [SerializeField] Slider _hpSlider;
-    private int _hp;
+    [SerializeField] HpView _hpView;
 
     public int GetHp()
     {
-        return _hp;
+        return _hpView.Hp;
     }
 
     public void SetHp(int value)
     {
-        _hp = value;
-        _hpSlider.value = _hp;
+        _hpView.Hp = value;
     }
 
     public void SetMaxHp(int value)
     {
-        _hpSlider.maxValue = value;
+        _hpView.MaxHp = value;
     }
 
     public void Damage(int value)
     {
-        _hp -= value;
-        _hpSlider.value = _hp;
+        _hpView.Hp -= value;
 
-        if (_hp <= 0)
+        if (_hpView.Hp <= 0)
         {
-            _hp = 0;
-            _hpSlider.value = _hp;
+            _hpView.Hp = 0;
         }
     }
 
