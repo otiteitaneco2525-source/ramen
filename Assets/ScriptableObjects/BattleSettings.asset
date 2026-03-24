@@ -18,3 +18,4 @@ MonoBehaviour:
   SerifBonusPower: 15
   DefaultCardId: 1,2,10,11,14,15
   AddMaxHp: 4
+  RecycleCount: 2

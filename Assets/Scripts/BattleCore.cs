@@ -76,6 +76,29 @@ public sealed class BattleCore
     }
 
     /// <summary>
+    /// カードを１枚だけデッキ（必要なら墓地をシャッフルしてデッキ化）から手札に引く
+    /// </summary>
+    /// <returns>引いたカード。引けない場合は null</returns>
+    public Card DrawCard()
+    {
+        if (!IsDrawableCards(_deckCards, 1))
+        {
+            _deckCards.AddRange(_discardCards.ToArray());
+            _discardCards.Clear();
+        }
+
+        if (_deckCards.Count == 0)
+        {
+            return null;
+        }
+
+        var drawn = _deckCards.OrderBy(x => UnityEngine.Random.value).First();
+        _deckCards.Remove(drawn);
+        _handCards.Add(drawn);
+        return drawn;
+    }
+
+    /// <summary>
     /// カードを引く
     /// </summary>
     public void DrawCards()

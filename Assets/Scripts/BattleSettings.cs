@@ -11,7 +11,7 @@ public class BattleSettings : ScriptableObject
     public int SerifBonusPower;
     public string DefaultCardId;
     public int AddMaxHp;
-
+    public int RecycleCount;
     public void SetDefaultCardId(List<string> cardIdList)
     {
         if (cardIdList.Count == 0)

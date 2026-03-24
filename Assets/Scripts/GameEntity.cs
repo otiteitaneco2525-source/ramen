@@ -11,6 +11,7 @@ public sealed class GameEntity
     public string CurrentEventButtonId { get; set; } // EventButtonのIDを保存
     public int BattleClearCount { get; set; }
     public List<String> ClearEventButtonIdList { get; private set; }
+    public int RecycleCount { get; set; }
 
     public GameEntity()
     {
@@ -22,6 +23,7 @@ public sealed class GameEntity
         CurrentEventButtonId = null;
         BattleClearCount = 0;
         ClearEventButtonIdList = new List<string>();
+        RecycleCount = 0;
     }
 
     public void Reset()
@@ -34,6 +36,7 @@ public sealed class GameEntity
         CurrentEventButtonId = null;
         BattleClearCount = 0;
         ClearEventButtonIdList.Clear();
+        RecycleCount = 0;
     }
 
     public bool HasCard(string cardId)

@@ -15,6 +15,8 @@ public interface IHandView
     UniTask DrawCardAnimationAsync();
     UniTask SelectedCardAnimationAsync();
     UniTask ResetSelectedCardsAnimationAsync();
+    UniTask ResetSelectedCardAnimationAsync(CardView cardView);
+    UniTask DrawSingleCardAnimationAsync();
 }
 
 public sealed class HandView : MonoBehaviour, IHandView
@@ -304,5 +306,46 @@ public sealed class HandView : MonoBehaviour, IHandView
         }
 
         await UniTask.WhenAll(taskList);
+    }
+
+    public async UniTask DrawSingleCardAnimationAsync()
+    {
+        await DrawCardAnimationAsync(1, _cardSize, _logicalCanvasSize);
+    }
+
+    public async UniTask ResetSelectedCardAnimationAsync(CardView cardView)
+    {
+        List<UniTask> taskList = new List<UniTask>();
+
+        // 選択したCardViewの透過を0にする
+        foreach (var image in cardView.ImageList)
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
+
+            var motion2 = LMotion.Create(image.color, new Color(image.color.r, image.color.g, image.color.b, 0), 0.25f)
+                .WithEase(Ease.Linear)
+                .BindToColor(image);
+            taskList.Add(motion2.ToUniTask());
+        }
+
+        foreach (var text in cardView.TextList)
+        {
+            text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
+
+            var motion3 = LMotion.Create(text.color, new Color(text.color.r, text.color.g, text.color.b, 0), 0.25f)
+                .WithEase(Ease.Linear)
+                .BindToColor(text);
+            taskList.Add(motion3.ToUniTask());
+        }
+
+        await UniTask.WhenAll(taskList);
+
+        cardView.SetCardData(null);
+        cardView.Visible = false;
+        cardView.SetIdelState();
+        cardView.Reset();
+
+        _selectedCards.Remove(cardView);
+        _selectedCardCount.OnNext(_selectedCards.Count);
     }
 }

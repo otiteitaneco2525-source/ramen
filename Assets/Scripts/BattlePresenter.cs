@@ -50,6 +50,8 @@ public class BattlePresenter : IStartable, IDisposable
     private readonly EnemyRoot _enemyRoot;
     [Inject]
     private readonly TutorialView _tutorialView;
+    [Inject]
+    private readonly RecyclingView _recyclingView;
     private BattleCore _battleCore;
     private CompositeDisposable _disposables = new CompositeDisposable();
     private EnemyView _enemyView;
@@ -59,6 +61,9 @@ public class BattlePresenter : IStartable, IDisposable
     {
         _tutorialView.ButtonVisible = false;
         _tutorialView.TextVisible = false;
+
+        _gameEntity.RecycleCount = _battleSettings.RecycleCount;
+        _recyclingView.SetRecyclingCount(_gameEntity.RecycleCount);
 
         _battleSettings.SetDefaultCardId(_gameEntity.CardIdList);
         if (_gameEntity.Hp == 0)
@@ -96,6 +101,8 @@ public class BattlePresenter : IStartable, IDisposable
         _enemyView.SetStatus(_enemy);
 
         _battleUiView.OnSkipButtonClicked = OnSkipButtonClicked;
+
+        _recyclingView.OnRecyclingButtonClicked = OnRecyclingButtonClicked;
 
         _battleSystem.OnSetup = OnSetupAsync;
         _battleSystem.OnPlayerAttack = OnPlayerAttackAsync;
@@ -337,6 +344,7 @@ public class BattlePresenter : IStartable, IDisposable
         else
         {
             _gameEntity.BattleClearCount++;
+            _gameEntity.RecycleCount = _battleSettings.RecycleCount;
 
             // 戦闘終了後に_gameEntityのHpを現在のHpにする
             _gameEntity.Hp = _heroView.GetHp();
@@ -402,6 +410,67 @@ public class BattlePresenter : IStartable, IDisposable
             _battleSystem.ChangeState(_battleSystem.EnemyAttackState);
 
             await UniTask.Delay(500);
+        }
+    }
+
+    private async void OnRecyclingButtonClicked()
+    {
+        if (_battleSystem.CurrentState is BattleCardSelectionState)
+        {
+            // 手札のカードを１枚選択している　かつ　デッキに１枚以上カードが残っている　かつ　リサイクル回数が残っているか判定する
+            if (_handView.SelectedCards.Count != 1 || _battleCore.DeckCards.Count <= 0 || _gameEntity.RecycleCount <= 0)
+            {
+                return;
+            }
+
+            _gameEntity.RecycleCount--;
+            _recyclingView.SetRecyclingCount(_gameEntity.RecycleCount);
+
+            // 手札のカードを待機状態にする
+            _handView.CardViewList.Where(x => x.Visible == true).ToList().ForEach(x => x.SetIdelState());
+
+            _battleSystem.ChangeState(_battleSystem.WaitState);
+
+            _tutorialView.TextVisible = false;
+
+            _soundManager.PlaySe(Ramen.Data.SoundAsset.SE01);
+
+            // 選択したカードを取得する
+            var selectedCard = _handView.SelectedCards.First(x => x.Visible == true && x.CardData != null);
+
+            // 選択したカードを墓地に送る
+            _battleCore.MoveCardsToDiscard(new List<Card> { selectedCard.CardData });            
+
+            // 墓地に送るカードのアニメーションを再生する
+            await _handView.ResetSelectedCardAnimationAsync(selectedCard);
+
+            // 新しいカードをデッキからランダムに１枚手札に追加する（BattleCore の手札末尾に Add 済み）
+            var drawn = _battleCore.DrawCard();
+
+            // リサイクルで空いたスロットに載せ、CardViewList 上も手札の一番最後に並べる
+            if (drawn != null)
+            {
+                var list = _handView.CardViewList;
+                list.Remove(selectedCard);
+                list.Add(selectedCard);
+                selectedCard.SetCardData(drawn);
+            }
+
+            // 新しいカードを手札に追加するアニメーシュンを再生する
+            await _handView.DrawSingleCardAnimationAsync();
+
+            // 墓地に送ったカードの枚数を反映する
+            _discardView.SetDiscardCount(_battleCore.DiscardCards.Count);
+
+            // デッキの枚数を反映する
+            _deckView.SetDeckCount(_battleCore.DeckCards.Count);
+
+            // 手札のカードを待機状態にする
+            _handView.CardViewList.Where(x => x.Visible == true).ToList().ForEach(x => x.SetWaitState());
+
+            _tutorialView.TextVisible = true;
+
+            _battleSystem.ChangeState(_battleSystem.CardSelectionState);
         }
     }
 
