@@ -74,7 +74,7 @@ public class BattlePresenter : IStartable, IDisposable
 
         Debug.Log("BattlePresenter Start: " + _gameEntity.ToString());
 
-        var enemyPrefab = Addressables.LoadAssetAsync<GameObject>($"Assets/Prefabs/EnemyView_{_gameEntity.EnemyID}.prefab").WaitForCompletion();
+        var enemyPrefab = await Addressables.LoadAssetAsync<GameObject>($"Assets/Prefabs/EnemyView_{_gameEntity.EnemyID}.prefab").Task;
         var enemyObject = GameObject.Instantiate(enemyPrefab, _enemyRoot.transform);
         _enemyView = enemyObject.GetComponent<EnemyView>();
 
