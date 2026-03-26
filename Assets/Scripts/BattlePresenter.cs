@@ -10,7 +10,6 @@ using LitMotion.Extensions;
 using UniRx;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-using UnityEngine.AddressableAssets;
 
 public class BattlePresenter : IStartable, IDisposable
 {
@@ -52,6 +51,8 @@ public class BattlePresenter : IStartable, IDisposable
     private readonly TutorialView _tutorialView;
     [Inject]
     private readonly RecyclingView _recyclingView;
+    [Inject]
+    private readonly EnemyPrefabList _enemyPrefabList;
     private BattleCore _battleCore;
     private CompositeDisposable _disposables = new CompositeDisposable();
     private EnemyView _enemyView;
@@ -74,7 +75,13 @@ public class BattlePresenter : IStartable, IDisposable
 
         Debug.Log("BattlePresenter Start: " + _gameEntity.ToString());
 
-        var enemyPrefab = await Addressables.LoadAssetAsync<GameObject>($"Assets/Prefabs/EnemyView_{_gameEntity.EnemyID}.prefab").Task;
+        var enemyPrefab = _enemyPrefabList.List.FirstOrDefault(x => x.EnemyID == _gameEntity.EnemyID)?.EnemyPrefab;
+        if (enemyPrefab == null)
+        {
+            Debug.LogError($"EnemyPrefab not found: {_gameEntity.EnemyID}");
+            return;
+        }
+
         var enemyObject = GameObject.Instantiate(enemyPrefab, _enemyRoot.transform);
         _enemyView = enemyObject.GetComponent<EnemyView>();
 

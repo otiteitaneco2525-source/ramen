@@ -347,6 +347,7 @@ MonoBehaviour:
   _enemyRoot: {fileID: 1293866440}
   _tutorialView: {fileID: 1309478513}
   _recyclingView: {fileID: 1246544619}
+  _enemyPrefabList: {fileID: 11400000, guid: a64d9c1425a8d0b4f9ac2693ffbfcdf7, type: 2}
 --- !u!4 &259584505
 Transform:
   m_ObjectHideFlags: 0

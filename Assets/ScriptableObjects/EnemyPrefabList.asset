@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83631749e7edf57468000de77cfcae66, type: 3}
+  m_Name: EnemyPrefabList
+  m_EditorClassIdentifier: RemenAssembly::EnemyPrefabList
+  List:
+  - EnemyID: 1
+    EnemyPrefab: {fileID: 8972605801527838708, guid: ea0f76bfa375ac1448c748c22a0b5c43, type: 3}
+  - EnemyID: 2
+    EnemyPrefab: {fileID: 8972605801527838708, guid: 4a52ddda1d6546147bac3167acd22e61, type: 3}
+  - EnemyID: 3
+    EnemyPrefab: {fileID: 8972605801527838708, guid: 4aaeb7ad517379149b2abefb6dc676f3, type: 3}
+  - EnemyID: 4
+    EnemyPrefab: {fileID: 8972605801527838708, guid: 3af34afe9437da348a2274262562a044, type: 3}

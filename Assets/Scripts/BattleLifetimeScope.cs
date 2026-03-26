@@ -20,6 +20,7 @@ public class BattleLifetimeScope : LifetimeScope
     [SerializeField] EnemyRoot _enemyRoot;
     [SerializeField] TutorialView _tutorialView;
     [SerializeField] RecyclingView _recyclingView;
+    [SerializeField] EnemyPrefabList _enemyPrefabList;
     protected override void Configure(IContainerBuilder builder)
     {
         // BattleSystemをシングルトンとして登録
@@ -39,6 +40,7 @@ public class BattleLifetimeScope : LifetimeScope
         builder.RegisterInstance<EnemyRoot>(_enemyRoot);
         builder.RegisterInstance<TutorialView>(_tutorialView);
         builder.RegisterInstance<RecyclingView>(_recyclingView);
+        builder.RegisterInstance<EnemyPrefabList>(_enemyPrefabList);
         // BattleManagerをエントリーポイントとして登録
         builder.RegisterEntryPoint<BattlePresenter>();
     }
