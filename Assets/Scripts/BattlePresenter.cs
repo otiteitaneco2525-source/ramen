@@ -60,7 +60,8 @@ public class BattlePresenter : IStartable, IDisposable
 
     public async void Start()
     {
-        _tutorialView.ButtonVisible = false;
+        _tutorialView.ButtonVisible_1 = false;
+        _tutorialView.ButtonVisible_2 = false;
         _tutorialView.TextVisible = false;
 
         _gameEntity.RecycleCount = _battleSettings.RecycleCount;

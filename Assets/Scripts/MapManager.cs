@@ -13,13 +13,13 @@ public class MapManager : MonoBehaviour
     [Inject] private readonly GameEntity _gameEntity;
     [Inject] private readonly SoundManager _soundManager;
 
-    [SerializeField] private Button _tutorialButton;
     [SerializeField] private HealView _healView;
     [SerializeField] private BattleSettings _battleSettings;
     [SerializeField] private CardSelectView _cardSelectView;
     [SerializeField] private EnemyList _enemyList;
     [SerializeField] private MapScrollView _mapScrollView;
     [SerializeField] private EventButton _firstEventButton;
+    [SerializeField] private TutorialView _tutorialView;
 
     private List<EventButton> _eventButtons = new List<EventButton>();
 
@@ -30,17 +30,25 @@ public class MapManager : MonoBehaviour
         _battleSettings.SetDefaultCardId(_gameEntity.CardIdList);
 
         _healView.OnCloseButtonClicked += OnCloseButtonClicked;
-        _tutorialButton.gameObject.SetActive(_gameEntity.ShowTutorial);
+
+        if (_gameEntity.ShowTutorial)
+        {
+            _tutorialView.ButtonVisible_1 = _gameEntity.ShowTutorial;
+            _tutorialView.ButtonVisible_2 = false;
+            _tutorialView.TextVisible = _gameEntity.ShowTutorial;            
+        }
+        else
+        {
+            _tutorialView.ButtonVisible_1 = false;
+            _tutorialView.ButtonVisible_2 = false;
+            _tutorialView.TextVisible = true;
+        }
 
         _cardSelectView.OnCardBuy += OnCardBuy;
 
         if (_gameEntity.ShowTutorial)
         {
-            _tutorialButton.onClick.AddListener(() => 
-            {
-                _gameEntity.ShowTutorial = false;
-                _tutorialButton.gameObject.SetActive(_gameEntity.ShowTutorial);
-            });
+            _gameEntity.ShowTutorial = false;
         }
 
         _eventButtons = FindObjectsByType<EventButton>(FindObjectsSortMode.None).ToList();
@@ -97,6 +105,10 @@ public class MapManager : MonoBehaviour
 
         if (_gameEntity.BattleClearCount >= BattleBonusMaxCount)
         {
+            _tutorialView.ButtonVisible_1 = false;
+            _tutorialView.ButtonVisible_2 = false;
+            _tutorialView.TextVisible = false;
+
             _gameEntity.BattleClearCount = 0;
             _soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM09).Forget();
             _cardSelectView.DealCards(_gameEntity.CardIdList);
@@ -161,6 +173,10 @@ public class MapManager : MonoBehaviour
         taskList.Add(_mapScrollView.OnScrollAsync(eventButton));
         await UniTask.WhenAll(taskList);
 
+        _tutorialView.ButtonVisible_1 = false;
+        _tutorialView.ButtonVisible_2 = false;
+        _tutorialView.TextVisible = false;
+
         switch (eventButton.EventButtonType)
         {
             case EventButtonType.Battle:
@@ -221,6 +237,10 @@ public class MapManager : MonoBehaviour
     {
         _soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM_MAP).Forget();
         _healView.Visible = false;
+
+        _tutorialView.ButtonVisible_1 = false;
+        _tutorialView.ButtonVisible_2 = false;
+        _tutorialView.TextVisible = true;
     }
 
     private void OnCardBuy(Card card)
@@ -228,5 +248,9 @@ public class MapManager : MonoBehaviour
         _soundManager.PlayBgm(Ramen.Data.SoundAsset.BGM_MAP).Forget();
         _gameEntity.CardIdList.Add(card.CardID);
         _cardSelectView.Visible = false;
+
+        _tutorialView.ButtonVisible_1 = false;
+        _tutorialView.ButtonVisible_2 = false;
+        _tutorialView.TextVisible = true;
     }
 }
